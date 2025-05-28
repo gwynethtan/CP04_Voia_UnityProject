@@ -7,6 +7,7 @@ using static TextToSpeech;
 using TMPro;
 using System;
 using UnityEngine.PlayerLoop;
+using JetBrains.Annotations;
 public class SpeechToText : MonoBehaviour
 {
     private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y"; // Replace with your actual API key
@@ -31,6 +32,8 @@ public class SpeechToText : MonoBehaviour
     int micPosition;
 
     bool currentSpeaking;
+
+    //public TextMeshProUGUI bubbleTextUi;
     void Start()
     {
         if (Microphone.devices.Length > 0)
@@ -175,6 +178,7 @@ public class SpeechToText : MonoBehaviour
                 string transcript = transcription.results[0].alternatives[0].transcript;
                 Debug.Log(transcript);
                 saidText.text = transcript;
+               // StartCoroutine(ShowBubble(transcript,"Transcription"));
             }
 
 
@@ -185,5 +189,10 @@ public class SpeechToText : MonoBehaviour
             Debug.LogError("Error: " + www.error);
             Debug.LogError("Response Body: " + www.downloadHandler.text); // Log the response body if available
         }
+    }
+    IEnumerator ShowBubble(string bubbleText,string category)
+    {
+        //bubbleTextUi.text = bubbleText;
+        yield return new WaitForSeconds(3f);
     }
 }
