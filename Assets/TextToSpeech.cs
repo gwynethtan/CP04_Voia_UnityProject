@@ -7,7 +7,7 @@ using System;
 
 public class TextToSpeech : MonoBehaviour
 {
-    private string apiKey = "AIzaSyD21NcemBDWzghzW3hRq-u6-iZWR3mc1SE";
+    private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y";
     public AudioSource audioSource;
 
     public IEnumerator Speak(string text)

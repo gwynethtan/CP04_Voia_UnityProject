@@ -9,7 +9,7 @@ using System;
 using UnityEngine.PlayerLoop;
 public class SpeechToText : MonoBehaviour
 {
-    private string apiKey = "AIzaSyD21NcemBDWzghzW3hRq-u6-iZWR3mc1SE"; // Replace with your actual API key
+    private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y"; // Replace with your actual API key
     private string url = "https://speech.googleapis.com/v1/speech:recognize?key=";
     public TextMeshProUGUI speechToTextError;
     /// <summary>
@@ -22,7 +22,7 @@ public class SpeechToText : MonoBehaviour
     private int sampleWindow = 128;
 
     float silenceThreshold = 0.01f;
-    float minSoundDuration = 2.0f;
+    float minSoundDuration = 1.0f;
     float soundStartTime = 0f;
     bool wasSpeaking = false;
     float stopSpeakingPause = 0;
@@ -39,6 +39,7 @@ public class SpeechToText : MonoBehaviour
             micClip = Microphone.Start(micName, true, 10, 44100);
         }
     }
+
 
     private void Update()
     {
