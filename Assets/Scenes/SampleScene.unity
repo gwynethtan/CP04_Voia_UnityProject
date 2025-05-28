@@ -4895,6 +4895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 2013571743}
+  textToSpeechError: {fileID: 1048600787}
 --- !u!4 &1384385500
 Transform:
   m_ObjectHideFlags: 0

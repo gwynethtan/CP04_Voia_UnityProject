@@ -40,7 +40,6 @@ public class SpeechToText : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
 

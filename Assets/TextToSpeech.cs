@@ -4,11 +4,13 @@ using UnityEngine.Networking;
 using System.Text;
 using System.IO;
 using System;
+using TMPro;
 
 public class TextToSpeech : MonoBehaviour
 {
     private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y";
     public AudioSource audioSource;
+    public TextMeshProUGUI textToSpeechError;
 
     public IEnumerator Speak(string text)
     {
@@ -43,7 +45,8 @@ public class TextToSpeech : MonoBehaviour
         }
         else
         {
-            Debug.Log("TTS Error: " + www.error);
+            textToSpeechError.text = $"Error: {www.error}\nCode: {www.responseCode}\n{www.downloadHandler.text}";
+
         }
     }
 
