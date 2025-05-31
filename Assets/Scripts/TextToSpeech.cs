@@ -10,7 +10,9 @@ public class TextToSpeech : MonoBehaviour
 {
     private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y";
     public AudioSource audioSource;
-    public TextMeshProUGUI textToSpeechError;
+    public BubbleGroup TextToSpeechBubbleGroup;
+    public BubbleGroup TextToSpeechErrorBubbleGroup;
+    public BubbleMgr bubbleMgr;
 
     public IEnumerator Speak(string text)
     {
@@ -42,11 +44,11 @@ public class TextToSpeech : MonoBehaviour
 
             AudioClip clip = WavUtility.ToAudioClip(wavBytes);
             AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+            StartCoroutine(bubbleMgr.ActivateBubble(TextToSpeechBubbleGroup,text, true));
         }
         else
         {
-            textToSpeechError.text = $"Error: {www.error}\nCode: {www.responseCode}\n{www.downloadHandler.text}";
-
+            StartCoroutine(bubbleMgr.ActivateBubble(TextToSpeechErrorBubbleGroup, $"Error: {www.error}\nCode: {www.responseCode}\n{www.downloadHandler.text}",true));
         }
     }
 

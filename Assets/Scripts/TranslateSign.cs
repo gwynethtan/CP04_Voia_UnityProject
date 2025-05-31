@@ -17,15 +17,12 @@ public class TranslateSign : MonoBehaviour
     /// </summary>
     private List<string> sentenceList = new List<string>();
 
-    /// <summary>
-    /// Text UI to display all signed input
-    /// </summary>
-    public TextMeshProUGUI signedOutputText;
-
-    public TextMeshProUGUI textToSpeechError;
-
-
     public TextToSpeech textToSpeech;
+
+    public BubbleGroup signLanguageBubbleGroup;
+    public BubbleGroup signLanguageErrorBubbleGroup;
+
+    public BubbleMgr bubbleMgr;
 
     /// <summary>
     /// String representation of the full signed input
@@ -59,11 +56,11 @@ public class TranslateSign : MonoBehaviour
         Debug.Log("Sign Pause detected.");
         CombineLetterInList();
         Debug.Log("Full sentence: " + fullSignedText.ToString());
-        textToSpeechError.text = "No signed speech";
         if (fullSignedText.ToString() != "")
         {
-            textToSpeechError.text = "Signed speech incoming";
+            bubbleMgr.HandleBubbleDismissal(signLanguageBubbleGroup);
             StartCoroutine(textToSpeech.Speak(fullSignedText.ToString()));
+            fullSignedText.Clear();
         }
     }
 
@@ -101,7 +98,8 @@ public class TranslateSign : MonoBehaviour
             sentenceList.Add(sign);
             fullSignedText.Append(sign + " ");
         }
+
         // Update the UI display
-        signedOutputText.text = fullSignedText.ToString();
+        StartCoroutine(bubbleMgr.ActivateBubble(signLanguageBubbleGroup, fullSignedText.ToString(),false));
     }
 }

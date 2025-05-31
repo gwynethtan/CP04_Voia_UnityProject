@@ -12,11 +12,10 @@ public class SpeechToText : MonoBehaviour
 {
     private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y"; // Replace with your actual API key
     private string url = "https://speech.googleapis.com/v1/speech:recognize?key=";
-    public TextMeshProUGUI speechToTextError;
-    /// <summary>
-    /// Text UI to display text said by other individuals
-    /// </summary>
-    public TextMeshProUGUI saidText;
+
+    public BubbleGroup SpeechToTextBubbleGroup;
+    public BubbleGroup SpeechToTextErrorBubbleGroup;
+    public BubbleMgr bubbleMgr;
 
     private AudioClip micClip;
     private string micName;
@@ -177,22 +176,16 @@ public class SpeechToText : MonoBehaviour
             {
                 string transcript = transcription.results[0].alternatives[0].transcript;
                 Debug.Log(transcript);
-                saidText.text = transcript;
-               // StartCoroutine(ShowBubble(transcript,"Transcription"));
+                StartCoroutine(bubbleMgr.ActivateBubble(SpeechToTextBubbleGroup, transcript,true));
             }
 
 
         }
         else
         {
-            speechToTextError.text = www.error;
+            StartCoroutine(bubbleMgr.ActivateBubble(SpeechToTextErrorBubbleGroup, www.error, true));
             Debug.LogError("Error: " + www.error);
             Debug.LogError("Response Body: " + www.downloadHandler.text); // Log the response body if available
         }
-    }
-    IEnumerator ShowBubble(string bubbleText,string category)
-    {
-        //bubbleTextUi.text = bubbleText;
-        yield return new WaitForSeconds(3f);
     }
 }
