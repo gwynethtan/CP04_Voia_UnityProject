@@ -20541,7 +20541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471363464037788709, guid: c380524ace9a62c409fb1010a99d2dc5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1620765969033403444, guid: c380524ace9a62c409fb1010a99d2dc5, type: 3}
       propertyPath: m_Materials.Array.size
@@ -20553,7 +20553,7 @@ PrefabInstance:
       objectReference: {fileID: 2145819103859502248, guid: c380524ace9a62c409fb1010a99d2dc5, type: 3}
     - target: {fileID: 1620765969033403444, guid: c380524ace9a62c409fb1010a99d2dc5, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20633,6 +20633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree
       objectReference: {fileID: 0}
+    - target: {fileID: 1801828903738108031, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6889761202603661169, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -20673,6 +20677,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7309665942336402896, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309665942336402896, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2497928160947198881, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
     - target: {fileID: 7309665942336402896, guid: 6adb709db75fffb4487b508197111e8b, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 0
