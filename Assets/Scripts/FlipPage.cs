@@ -30,11 +30,11 @@ public class FlipPage : MonoBehaviour
         while (Mathf.Abs(currentX - targetX) > 0.5f)
         {
             currentX = Mathf.MoveTowards(currentX , targetX, flipSpeed * Time.deltaTime);
-            page.localEulerAngles = new Vector3(currentX, 0, 0);
+            page.localEulerAngles = new Vector3(currentX, -90, 0);
             yield return null;
         }
 
-        page.localEulerAngles = new Vector3(targetX, 0, 0);
+        page.localEulerAngles = new Vector3(targetX, -90, 0);
         isFlipping = false;
     }
 }

@@ -7975,7 +7975,7 @@ PrefabInstance:
     - target: {fileID: 3339367952642848919, guid: 86a5bf68cb51f4e44bd3893bd22a2ba7, type: 3}
       propertyPath: m_ObjectPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 4790620560084228511, guid: 3265fdbe3745c2349ba57d8af4f2a563, type: 3}
+      objectReference: {fileID: 8825015022403150822, guid: 31839874afc84434c9df13c7c3da5daf, type: 3}
     - target: {fileID: 3540285630127457094, guid: 86a5bf68cb51f4e44bd3893bd22a2ba7, type: 3}
       propertyPath: m_Name
       value: MR Interaction Setup
