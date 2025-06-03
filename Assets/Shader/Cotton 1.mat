@@ -131,7 +131,7 @@ Material:
     - _Metallic: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseScale: {r: 20, g: 20, b: 0, a: 0}
     - _Power: {r: 3.52, g: 0, b: 0, a: 0}
-    - _PrimaryColour: {r: 0.38843495, g: 0.31167677, b: 0.48584908, a: 1}
+    - _PrimaryColour: {r: 0.7562894, g: 0.5613208, b: 1, a: 1}
     - _PushOut: {r: 2, g: 0, b: 0, a: 0}
     - _ScrollSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _SecondaryColour: {r: 0.08288091, g: 0.22990467, b: 0.7028302, a: 1}
