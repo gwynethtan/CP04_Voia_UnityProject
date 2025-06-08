@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FlipPage : MonoBehaviour
 {
@@ -9,13 +10,25 @@ public class FlipPage : MonoBehaviour
     public List<float> pageTargetYPositions;
     private int currentPage = 0;
     private bool isFlipping = false;
+    public TextMeshProUGUI text;
+
+    public int CurrentPage => currentPage;
+
+    public void Start()
+    {
+        text.text = "Page " + currentPage;
+    }
+
+    public void Update()
+    {
+        text.text = "Page " + currentPage;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!isFlipping && currentPage < pagePivots.Count)
         {
             StartCoroutine(FlipBookPage(pagePivots[currentPage], currentPage));
-            currentPage++;
         }
     }
 
@@ -49,5 +62,8 @@ public class FlipPage : MonoBehaviour
         }
 
         isFlipping = false;
+
+        currentPage++;
+        text.text = "Page " + currentPage;
     }
 }
