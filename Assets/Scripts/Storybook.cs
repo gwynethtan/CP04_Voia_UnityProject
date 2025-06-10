@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Storybook : MonoBehaviour
 {
-    public FlipPage flipPage; 
+    public FlipPage flipPage;
+    public Transform bookPosition;
 
     private Dictionary<int, Action> actionsByPage;
 
-    public GameObject mountain;
     public GameObject cube; //for debug
-    
+    public TextMeshProUGUI text;
+
+
     void Start()
     {
         actionsByPage = new Dictionary<int, Action>
@@ -22,6 +24,18 @@ public class Storybook : MonoBehaviour
             {3, Page3},
             {4, Page4},
         };
+    }
+
+    void Update()
+    {
+        if(flipPage != null)
+        {
+            text.text = "Success";
+        }
+        else
+        {
+            text.text = "Null";
+        }
     }
 
     public void PageSign(int pageNum)
@@ -42,8 +56,8 @@ public class Storybook : MonoBehaviour
 
     void Page1()
     {
-        mountain.SetActive(true);
-}
+        flipPage.Page1Functions();
+    }
 
     void Page2()
     {

@@ -12,16 +12,29 @@ public class FlipPage : MonoBehaviour
     private bool isFlipping = false;
     public TextMeshProUGUI text;
 
+    public GameObject mountain;
+    public GameObject wolf;
+
     public int CurrentPage => currentPage;
 
     public void Start()
     {
-        text.text = "Page " + currentPage;
+        Storybook storybook = FindObjectOfType<Storybook>();
+        if (storybook != null)
+        {
+            storybook.flipPage = this;
+            storybook.bookPosition = this.transform;
+            text.text = "Page" + currentPage;
+        }
+        else
+        {
+            text.text = "Fail";
+        }
     }
 
     public void Update()
     {
-        text.text = "Page " + currentPage;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,9 +74,19 @@ public class FlipPage : MonoBehaviour
             page.localPosition = newPos;
         }
 
+        if (currentPage == 0)
+        {
+            mountain.SetActive(true);
+        }
+
         isFlipping = false;
+        text.text = "Page" + currentPage;
 
         currentPage++;
-        text.text = "Page " + currentPage;
+    }
+
+    public void Page1Functions()
+    {
+        wolf.SetActive(true);
     }
 }
