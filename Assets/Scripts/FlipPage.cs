@@ -19,6 +19,7 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
+        mountain.SetActive(true);
         Storybook storybook = FindObjectOfType<Storybook>();
         if (storybook != null)
         {
