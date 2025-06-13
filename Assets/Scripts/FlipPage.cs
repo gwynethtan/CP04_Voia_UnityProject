@@ -5,6 +5,8 @@ using TMPro;
 
 public class FlipPage : MonoBehaviour
 {
+    // NOTE TO SELF: pg 0 is cover page
+
     public List<Transform> pagePivots;
     public float flipSpeed;
     public List<float> pageTargetYPositions;
@@ -12,6 +14,9 @@ public class FlipPage : MonoBehaviour
     private bool isFlipping = false;
     public TextMeshProUGUI text;
 
+    public Collider pageFlipTrigger;
+
+    [Header("Prefabs")]
     public GameObject mountain;
     public GameObject wolf;
 
@@ -37,6 +42,7 @@ public class FlipPage : MonoBehaviour
 
     }
 
+    // Need to add cannot flip if prev page not done
     private void OnTriggerEnter(Collider other)
     {
         if (!isFlipping && currentPage < pagePivots.Count)

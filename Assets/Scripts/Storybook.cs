@@ -10,6 +10,7 @@ public class Storybook : MonoBehaviour
     public Transform bookPosition;
 
     private Dictionary<int, Action> actionsByPage;
+    //private Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>(); // Use later for error handling + double side book
 
     public GameObject cube; //for debug
     public TextMeshProUGUI text;
@@ -17,9 +18,10 @@ public class Storybook : MonoBehaviour
 
     void Start()
     {
+        //total 14 pages
         actionsByPage = new Dictionary<int, Action>
         {
-            {1, Page1},
+            {1, Page1}, // s
             {2, Page2},
             {3, Page3},
             {4, Page4},
@@ -42,6 +44,16 @@ public class Storybook : MonoBehaviour
     {
         if (pageNum == flipPage.CurrentPage) 
         {
+            /*if (pageNum > 1)
+            {
+                int prevPage = pageNum - 1;
+                if (!pageCompleted.TryGetValue(prevPage, out bool previousCompleted) || !previousCompleted) 
+                {
+                    //If previous page not there yet (no entry to dictionary)/previous page action not completed yet
+                    return;
+                }
+            }*/
+
             if (actionsByPage.TryGetValue(pageNum, out Action action))
             {
                 action.Invoke();
@@ -54,23 +66,39 @@ public class Storybook : MonoBehaviour
         }
     }
 
+    /* Will test
+    public void MarkPageCompleted(int pageNum)
+    {
+        pageCompleted[pageNum] = true;
+    }
+
+    public bool CheckPageCompleted(int pageNum)
+    {
+        return pageCompleted.TryGetValue(pageNum, out bool completed) && completed;
+    }*/
+
+
     void Page1()
     {
         flipPage.Page1Functions();
+
+        //pageCompleted[1] = true;
     }
 
     void Page2()
     {
-        //wtv
+        //flipPage.Page2Functions();
+
+        //pageCompleted[2] = true;
     }
 
     void Page3()
     {
-        //wtv
+        //flipPage.Page3Functions();
     }
 
     void Page4()
     {
-        //wtv
+        //flipPage.Page4Functions();
     }
 }
