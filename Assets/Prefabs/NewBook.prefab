@@ -2790,6 +2790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1074700118050085910, guid: 1c3f4998f9cf90f46b2b1d908953010b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6440772164702389632, guid: 1c3f4998f9cf90f46b2b1d908953010b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.58698
@@ -2828,6 +2832,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6440772164702389632, guid: 1c3f4998f9cf90f46b2b1d908953010b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915280389329439271, guid: 1c3f4998f9cf90f46b2b1d908953010b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
