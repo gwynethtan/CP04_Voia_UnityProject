@@ -24,6 +24,7 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
+     
         Storybook storybook = FindObjectOfType<Storybook>();
         if (storybook != null)
         {
