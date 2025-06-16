@@ -4966,10 +4966,6 @@ PrefabInstance:
       value: Shockwave
       objectReference: {fileID: 0}
     - target: {fileID: 8040594949448822375, guid: 14a0bb2a73a08c842a4502b767725821, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040594949448822375, guid: 14a0bb2a73a08c842a4502b767725821, type: 3}
       propertyPath: TrailModule.mode
       value: 1
       objectReference: {fileID: 0}
