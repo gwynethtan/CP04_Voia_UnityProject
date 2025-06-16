@@ -22,7 +22,6 @@ public class Storybook : MonoBehaviour
         actionsByPage = new Dictionary<int, Action>
         {
             {1, Page1}, // s
-            {2, Page2},
             {3, Page3},
             {4, Page4},
         };
