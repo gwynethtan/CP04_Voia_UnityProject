@@ -19,6 +19,7 @@ public class FlipPage : MonoBehaviour
     [Header("Prefabs")]
     public GameObject mountain;
     public GameObject wolf;
+    public GameObject DB_Sing; // New - Praise
 
     public int CurrentPage => currentPage;
 
@@ -95,5 +96,10 @@ public class FlipPage : MonoBehaviour
     public void Page1Functions()
     {
         wolf.SetActive(true);
+    }
+
+    public void Page3Functions()
+    {
+        DB_Sing.SetActive(true); // New - Praise
     }
 }

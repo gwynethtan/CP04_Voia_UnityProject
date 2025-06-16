@@ -85,16 +85,11 @@ public class Storybook : MonoBehaviour
         //pageCompleted[1] = true;
     }
 
-    void Page2()
-    {
-        //flipPage.Page2Functions();
-
-        //pageCompleted[2] = true;
-    }
-
     void Page3()
     {
-        //flipPage.Page3Functions();
+        flipPage.Page3Functions();
+
+        //pageCompleted[2] = true;
     }
 
     void Page4()

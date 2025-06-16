@@ -1810,6 +1810,7 @@ MonoBehaviour:
   pageFlipTrigger: {fileID: 0}
   mountain: {fileID: 8506626407774552656}
   wolf: {fileID: 1442730482566870866, guid: d83ab03dc3e743545a11608bf3d9d032, type: 3}
+  DB_Sing: {fileID: 3418646653636101039, guid: 2cd95586453970e41b145daa109029ca, type: 3}
 --- !u!65 &8322098903144742511
 BoxCollider:
   m_ObjectHideFlags: 0
