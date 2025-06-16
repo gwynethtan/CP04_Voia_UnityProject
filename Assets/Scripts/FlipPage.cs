@@ -96,10 +96,13 @@ public class FlipPage : MonoBehaviour
     public void Page1Functions()
     {
         wolf.SetActive(true);
+        Debug.Log("Page 1 animation triggered.");
     }
 
     public void Page3Functions()
     {
-        DB_Sing.SetActive(true); // New - Praise
+        // New - Praise
+        DB_Sing.SetActive(true); 
+        Debug.Log("Page 3 animation triggered.");
     }
 }

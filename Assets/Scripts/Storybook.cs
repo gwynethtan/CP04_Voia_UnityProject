@@ -11,6 +11,7 @@ public class Storybook : MonoBehaviour
 
     private Dictionary<int, Action> actionsByPage;
     //private Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>(); // Use later for error handling + double side book
+    private Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>();
 
     public GameObject cube; //for debug
     public TextMeshProUGUI text;
@@ -21,9 +22,8 @@ public class Storybook : MonoBehaviour
         //total 14 pages
         actionsByPage = new Dictionary<int, Action>
         {
-            {1, Page1}, // s
+            {1, Page1},
             {3, Page3},
-            {4, Page4},
         };
     }
 
@@ -41,9 +41,10 @@ public class Storybook : MonoBehaviour
 
     public void PageSign(int pageNum)
     {
+        // Only trigger action if page matches current page
         if (pageNum == flipPage.CurrentPage) 
         {
-            /*if (pageNum > 1)
+            if (pageNum > 1)
             {
                 int prevPage = pageNum - 1;
                 if (!pageCompleted.TryGetValue(prevPage, out bool previousCompleted) || !previousCompleted) 
@@ -51,11 +52,12 @@ public class Storybook : MonoBehaviour
                     //If previous page not there yet (no entry to dictionary)/previous page action not completed yet
                     return;
                 }
-            }*/
+            }
 
             if (actionsByPage.TryGetValue(pageNum, out Action action))
             {
                 action.Invoke();
+                MarkPageCompleted(pageNum); // - Praise (In case wrong)
             }
         }
 
@@ -64,8 +66,6 @@ public class Storybook : MonoBehaviour
             //Instantiate(cube);
         }
     }
-
-    /* Will test
     public void MarkPageCompleted(int pageNum)
     {
         pageCompleted[pageNum] = true;
@@ -74,7 +74,7 @@ public class Storybook : MonoBehaviour
     public bool CheckPageCompleted(int pageNum)
     {
         return pageCompleted.TryGetValue(pageNum, out bool completed) && completed;
-    }*/
+    }
 
 
     void Page1()
@@ -89,10 +89,5 @@ public class Storybook : MonoBehaviour
         flipPage.Page3Functions();
 
         //pageCompleted[2] = true;
-    }
-
-    void Page4()
-    {
-        //flipPage.Page4Functions();
     }
 }
