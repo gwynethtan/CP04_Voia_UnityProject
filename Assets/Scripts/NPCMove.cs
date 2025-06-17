@@ -29,8 +29,8 @@ public class NPCMove : MonoBehaviour
     {
         if (_destination != null)
         {
-            Vector3 targetVector = _destination.position;
-            _navMeshAgent.SetDestination(targetVector);
+            Vector3 targetVector = _destination.position; //Gets the position of _destination
+            _navMeshAgent.SetDestination(targetVector); //Tells NavMeshAgent to start walking toward that position.
         }
     }
 }
