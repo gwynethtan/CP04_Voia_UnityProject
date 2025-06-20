@@ -162,7 +162,7 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 6 animation triggered.");
     }
 
-    public void Page7Functions()
+    /* public void Page7Functions()
     {
         // Activate the wolf
         MainWolf_Idle.SetActive(true);
@@ -182,7 +182,7 @@ public class FlipPage : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f); 
         npc.SetDestination();
-    }
+    } */
 
     public void Page8Functions()
     {

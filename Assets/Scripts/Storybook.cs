@@ -107,23 +107,23 @@ public class Storybook : MonoBehaviour
         //pageCompleted[4] = true;
     }
 
-    void Page7()
+    /*void Page7()
     { 
         flipPage.Page7Functions();
-    }
+    } */
 
     void Page8()
     {
-        flipPage.Page7Functions();
+        flipPage.Page8Functions();
     }
 
     void Page9()
     {
-        flipPage.Page7Functions();
+        flipPage.Page9Functions();
     }
 
     void Page10()
     {
-        flipPage.Page7Functions();
+        flipPage.Page10Functions();
     }
 }

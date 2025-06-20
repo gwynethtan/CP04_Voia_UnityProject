@@ -19489,7 +19489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &356691884193817076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -62342,7 +62342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &521347112026060230
 Transform:
   m_ObjectHideFlags: 0
@@ -85894,7 +85894,7 @@ Terrain:
   m_GameObject: {fileID: 8164189269367196103}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: da6e8154629d86f43ac1850916080754, type: 2}
+  m_TerrainData: {fileID: 0}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
