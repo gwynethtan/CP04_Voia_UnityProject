@@ -40731,8 +40731,8 @@ MonoBehaviour:
   rain: {fileID: 6428830696217491018}
   MainWolf_Idle: {fileID: 9156336907452066850}
   MainWolf_Dance: {fileID: 6677890859644834475}
-  Heartbeat: {fileID: 0}
-  Shockwave: {fileID: 0}
+  Heartbeat: {fileID: 7777882643566058063}
+  Shockwave: {fileID: 7285094929044878243}
   Music: {fileID: 2821282946072182944}
   Black_notes: {fileID: 7696983461708816964}
 --- !u!65 &8322098903144742511
