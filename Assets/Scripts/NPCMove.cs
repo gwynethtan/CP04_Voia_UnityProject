@@ -32,5 +32,5 @@ public class NPCMove : MonoBehaviour
             Vector3 targetVector = _destination.position; //Gets the position of _destination
             _navMeshAgent.SetDestination(targetVector); //Tells NavMeshAgent to start walking toward that position.
         }
-    }
+    } 
 }

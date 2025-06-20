@@ -23,9 +23,16 @@ public class Storybook : MonoBehaviour
         actionsByPage = new Dictionary<int, Action>
         {
             {1, Page1},
-            {3, Page3},
-            {5, Page5},
-            {6, Page6},
+            {2, Page3},
+            {3, Page5},
+            {4, Page6},
+            {5, Page7},
+            {6, Page8},
+            {7, Page9},
+            {8, Page10},
+      
+        
+         
         };
     }
 
@@ -34,6 +41,7 @@ public class Storybook : MonoBehaviour
         if(flipPage != null)
         {
             text.text = "Success";
+            /* OnPageFlipped(flipPage.CurrentPage); */
         }
         else
         {
@@ -78,52 +86,81 @@ public class Storybook : MonoBehaviour
         return pageCompleted.TryGetValue(pageNum, out bool completed) && completed;
     }
 
+    /* public void OnPageFlipped(int newPage)
+    {
+        if (newPage == 2 || newPage == 4)
+        {
+            if (!pageCompleted.ContainsKey(newPage))
+            {
+                MarkPageCompleted(newPage);
+                Debug.Log("Auto-completed page " + newPage);
+            }
+        }
+    } */
 
     void Page1()
     {
         flipPage.Page1Functions();
 
-        //pageCompleted[1] = true;
+        pageCompleted[1] = true;
+    }
+
+    void Page2()
+    {
+        flipPage.Page2Functions();
+
+        pageCompleted[2] = true;
     }
 
     void Page3()
     {
         flipPage.Page3Functions();
 
-        //pageCompleted[2] = true;
+        pageCompleted[3] = true;
+    }
+
+    void Page4()
+    {
+        flipPage.Page4Functions();
+
+        pageCompleted[4] = true;
     }
 
     void Page5()
     {
         flipPage.Page5Functions();
 
-        //pageCompleted[3] = true;
+        pageCompleted[5] = true;
     }
 
     void Page6()
     {
         flipPage.Page6Functions();
 
-        //pageCompleted[4] = true;
+        pageCompleted[6] = true;
     }
 
-    /*void Page7()
+    void Page7()
     { 
         flipPage.Page7Functions();
-    } */
+        pageCompleted[7] = true;
+    } 
 
     void Page8()
     {
         flipPage.Page8Functions();
+        pageCompleted[8] = true;
     }
 
     void Page9()
     {
         flipPage.Page9Functions();
+        pageCompleted[9] = true;
     }
 
     void Page10()
     {
         flipPage.Page10Functions();
+        pageCompleted[10] = true;
     }
 }

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-
+using UnityEngine.VFX;
 
 
 public class FlipPage : MonoBehaviour
@@ -52,7 +51,11 @@ public class FlipPage : MonoBehaviour
 
     //Page 10; Music and dancing
     public GameObject Music;
-    public GameObject Black_notes; 
+    public GameObject Black_notes;
+
+    //fake page for 2 and 4
+    public GameObject Cube;
+
 
     public int CurrentPage => currentPage;
 
@@ -132,6 +135,12 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 1 animation triggered.");
     }
 
+    public void Page2Functions()
+    {
+        Cube.SetActive(true);
+        Debug.Log("Page 2  animation triggered.");
+    }
+
     public void Page3Functions()
     {
         // New - Praise
@@ -144,6 +153,11 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 3 animation triggered.");
     }
 
+    public void Page4Functions()
+    {
+        Cube.SetActive(false);
+        Debug.Log("Page 4  animation triggered.");
+    }
     public void Page5Functions()
     {
         // New - Praise
@@ -162,7 +176,7 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 6 animation triggered.");
     }
 
-    /* public void Page7Functions()
+    public void Page7Functions()
     {
         // Activate the wolf
         MainWolf_Idle.SetActive(true);
@@ -182,7 +196,7 @@ public class FlipPage : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f); 
         npc.SetDestination();
-    } */
+    }
 
     public void Page8Functions()
     {
@@ -198,6 +212,9 @@ public class FlipPage : MonoBehaviour
     {
         Heartbeat.SetActive(true);
         Shockwave.SetActive(true);
+        Heartbeat.GetComponent<VisualEffect>().Play();
+        Shockwave.GetComponent<VisualEffect>().Play();
+
         Debug.Log("Page 9 animation triggered.");
     }
 
@@ -205,7 +222,8 @@ public class FlipPage : MonoBehaviour
     {
         Music.SetActive(true);
         Black_notes.SetActive(true);
-
+        Music.GetComponent<VisualEffect>().Play();
+        Black_notes.GetComponent<VisualEffect>().Play();
         Debug.Log("Page 10 animation triggered.");
     }
 }
