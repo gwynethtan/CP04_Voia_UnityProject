@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 
 
+
+
 public class FlipPage : MonoBehaviour
 {
     // NOTE TO SELF: pg 0 is cover page
@@ -36,6 +38,21 @@ public class FlipPage : MonoBehaviour
 
     // Page 6: Tree change texture into angry + rain
     public GameObject rain;
+
+    // Page 7: Wolf walking down the mountain
+    public GameObject MainWolf_Idle;
+
+    // Page 8: Wolf Dancing
+    public GameObject MainWolf_Dance;
+ 
+
+    //Page 9: Wolf heart
+    public GameObject Heartbeat;
+    public GameObject Shockwave;
+
+    //Page 10; Music and dancing
+    public GameObject Music;
+    public GameObject Black_notes; 
 
     public int CurrentPage => currentPage;
 
@@ -144,4 +161,52 @@ public class FlipPage : MonoBehaviour
 
         Debug.Log("Page 6 animation triggered.");
     }
+
+    public void Page7Functions()
+    {
+        // Activate the wolf
+        MainWolf_Idle.SetActive(true);
+
+        // Call SetDestination from NPCMove script
+        NPCMove npcMove = MainWolf_Idle.GetComponent<NPCMove>();
+        if (npcMove != null)
+        {
+            // Delay 
+            StartCoroutine(CallDestinationWithDelay(npcMove));
+        }
+
+        Debug.Log("Page 7 animation triggered.");
+    }
+
+    private IEnumerator CallDestinationWithDelay(NPCMove npc)
+    {
+        yield return new WaitForSeconds(0.4f); 
+        npc.SetDestination();
+    }
+
+    public void Page8Functions()
+    {
+       
+        MainWolf_Idle.SetActive(false);
+        MainWolf_Dance.SetActive(true);
+       
+
+        Debug.Log("Page 8 animation triggered.");
+    }
+
+    public void Page9Functions()
+    {
+        Heartbeat.SetActive(true);
+        Shockwave.SetActive(true);
+        Debug.Log("Page 9 animation triggered.");
+    }
+
+    public void Page10Functions()
+    {
+        Music.SetActive(true);
+        Black_notes.SetActive(true);
+
+        Debug.Log("Page 10 animation triggered.");
+    }
 }
+    

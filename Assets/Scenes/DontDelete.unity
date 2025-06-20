@@ -121,7 +121,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1d7f7ffbbfc734a43bf9fda4050c368b, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &1571061
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,7 +6785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2255823023279369704, guid: d83ab03dc3e743545a11608bf3d9d032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2345
+      value: 0.241
       objectReference: {fileID: 0}
     - target: {fileID: 2255823023279369704, guid: d83ab03dc3e743545a11608bf3d9d032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10166,7 +10166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &326156972458973807
 GameObject:
   m_ObjectHideFlags: 0
@@ -11918,7 +11918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &681222651978506516
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -34216,7 +34216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681253783036108306}
   m_Layer: 0
-  m_Name: Terrain (3)
+  m_Name: StorybookTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43848,7 +43848,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2471562529965561733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -47985,7 +47985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &6368116438849828683
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -48624,7 +48624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6494382238574553302
 Transform:
   m_ObjectHideFlags: 0
@@ -52201,7 +52201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7168750574171982836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9177915868812651432, guid: 86a5bf68cb51f4e44bd3893bd22a2ba7, type: 3}
@@ -52304,7 +52304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &7199878771763092116
 GameObject:
   m_ObjectHideFlags: 0
@@ -60084,7 +60084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8917461236677717483
 Transform:
   m_ObjectHideFlags: 0
