@@ -24,6 +24,8 @@ public class Storybook : MonoBehaviour
         {
             {1, Page1},
             {3, Page3},
+            {5, Page5},
+            {6, Page6},
         };
     }
 
@@ -89,5 +91,19 @@ public class Storybook : MonoBehaviour
         flipPage.Page3Functions();
 
         //pageCompleted[2] = true;
+    }
+
+    void Page5()
+    {
+        flipPage.Page5Functions();
+
+        //pageCompleted[3] = true;
+    }
+
+    void Page6()
+    {
+        flipPage.Page6Functions();
+
+        //pageCompleted[4] = true;
     }
 }

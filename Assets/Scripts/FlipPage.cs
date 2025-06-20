@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using TreeEditor;
 
 public class FlipPage : MonoBehaviour
 {
@@ -19,7 +20,22 @@ public class FlipPage : MonoBehaviour
     [Header("Prefabs")]
     public GameObject mountain;
     public GameObject wolf;
-    public GameObject DB_Sing; // New - Praise
+
+    // Page 3: Spawn Tree + wolf singing
+
+    public GameObject DB_Sing;
+    public GameObject LB_Sing;
+    public GameObject LG_Sing;
+    public GameObject heroTree;
+    public GameObject trees;
+
+    // Page 5: Bottom of the mountain, got 3 wolves + press button and speech bubble
+    public GameObject DB_Idle;
+    public GameObject LB_Idle;
+    public GameObject LG_Idle;
+
+    // Page 6: Tree change texture into angry + rain
+    public GameObject rain;
 
     public int CurrentPage => currentPage;
 
@@ -102,7 +118,30 @@ public class FlipPage : MonoBehaviour
     public void Page3Functions()
     {
         // New - Praise
-        DB_Sing.SetActive(true); 
+        DB_Sing.SetActive(true);
+        LB_Sing.SetActive(true);
+        LG_Sing.SetActive(true);
+        heroTree.SetActive(true);
+        trees.SetActive(true);
+        
         Debug.Log("Page 3 animation triggered.");
+    }
+
+    public void Page5Functions()
+    {
+        // New - Praise
+        DB_Idle.SetActive(true);
+        LB_Idle.SetActive(true);
+        LG_Idle.SetActive(true);
+
+        Debug.Log("Page 5 animation triggered.");
+    }
+
+    public void Page6Functions()
+    {
+        // New - Praise
+        rain.SetActive(true);
+
+        Debug.Log("Page 6 animation triggered.");
     }
 }
