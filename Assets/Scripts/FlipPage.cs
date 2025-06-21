@@ -149,6 +149,8 @@ public class FlipPage : MonoBehaviour
         LG_Sing.SetActive(true);
         heroTree.SetActive(true);
         trees.SetActive(true);
+
+        currentPage++;
         
         Debug.Log("Page 3 animation triggered.");
     }
@@ -164,6 +166,8 @@ public class FlipPage : MonoBehaviour
         DB_Idle.SetActive(true);
         LB_Idle.SetActive(true);
         LG_Idle.SetActive(true);
+
+        currentPage++;
 
         Debug.Log("Page 5 animation triggered.");
     }
@@ -190,6 +194,8 @@ public class FlipPage : MonoBehaviour
         }
 
         Debug.Log("Page 7 animation triggered.");
+
+        currentPage++;
     }
 
     private IEnumerator CallDestinationWithDelay(NPCMove npc)
@@ -216,6 +222,8 @@ public class FlipPage : MonoBehaviour
         Shockwave.GetComponent<VisualEffect>().Play();
 
         Debug.Log("Page 9 animation triggered.");
+
+        currentPage++;
     }
 
     public void Page10Functions()
