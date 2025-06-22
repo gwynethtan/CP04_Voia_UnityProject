@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 
 public class FlipPage : MonoBehaviour
@@ -22,6 +23,10 @@ public class FlipPage : MonoBehaviour
     public GameObject mountain;
     public GameObject wolf;
 
+
+    //To access animator
+    public Animator animator;
+
     // Page 3: Spawn Tree + wolf singing
 
     public GameObject DB_Sing;
@@ -29,6 +34,9 @@ public class FlipPage : MonoBehaviour
     public GameObject LG_Sing;
     public GameObject heroTree;
     public GameObject trees;
+    public GameObject Piano;
+    public GameObject Drum;
+    
 
     // Page 5: Bottom of the mountain, got 3 wolves + press button and speech bubble
     public GameObject DB_Idle;
@@ -37,9 +45,8 @@ public class FlipPage : MonoBehaviour
 
     // Page 6: Tree change texture into angry + rain
     public GameObject rain;
-
-    // Page 7: Wolf walking down the mountain
-    public GameObject MainWolf_Idle;
+    public GameObject Angry;
+    public GameObject Smiling;
 
     // Page 8: Wolf Dancing
     public GameObject MainWolf_Dance;
@@ -61,6 +68,8 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
+
+        animator = GetComponent<Animator>();
      
         Storybook storybook = FindObjectOfType<Storybook>();
         if (storybook != null)
@@ -135,9 +144,11 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 1 animation triggered.");
     }
 
+    //Testing Only 
     public void Page2Functions()
     {
         Cube.SetActive(true);
+        Cube.GetComponent<VisualEffect>().Play();
         Debug.Log("Page 2  animation triggered.");
     }
 
@@ -147,35 +158,89 @@ public class FlipPage : MonoBehaviour
         DB_Sing.SetActive(true);
         LB_Sing.SetActive(true);
         LG_Sing.SetActive(true);
-        heroTree.SetActive(true);
-        trees.SetActive(true);
+        //heroTree.SetActive(true);
+        //trees.SetActive(true);
 
-        currentPage++;
-        
+        //Verlaine 
+
+        //Show the animation of singing
+        DB_Sing.GetComponent<Animator>().SetBool("isSigned", true);
+        LB_Sing.GetComponent<Animator>().SetBool("isSigned", true);
+        LG_Sing.GetComponent<Animator>().SetBool("isSigned", true);
+
+        Piano.SetActive(true);
+        Drum.SetActive(true);
+
+        //currentPage++;
+
         Debug.Log("Page 3 animation triggered.");
     }
 
     public void Page4Functions()
     {
         Cube.SetActive(false);
+        Cube.GetComponent<VisualEffect>().Stop();
         Debug.Log("Page 4  animation triggered.");
     }
     public void Page5Functions()
     {
         // New - Praise
-        DB_Idle.SetActive(true);
-        LB_Idle.SetActive(true);
-        LG_Idle.SetActive(true);
+        //DB_Idle.SetActive(true);
+        //LB_Idle.SetActive(true);
+        //LG_Idle.SetActive(true);
 
-        currentPage++;
+
+        //Verlaine 
+        //Show idle
+        DB_Sing.GetComponent<Animator>().SetBool("isSigned", false);
+        LB_Sing.GetComponent<Animator>().SetBool("isSigned", false);
+        LG_Sing.GetComponent<Animator>().SetBool("isSigned", false);
+
+        // Call MoveToDestination from NPCMove script
+
+        // Get all NPC Move components
+        NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
+        NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
+        NPCMove npcLG = LG_Sing.GetComponent<NPCMove>();
+
+        // 4 Secs delay
+        StartCoroutine(MoveAllNPCsAfterDelay(npcDB, npcLB, npcLG));
+
+        //currentPage++;
 
         Debug.Log("Page 5 animation triggered.");
+  
     }
+    private IEnumerator MoveAllNPCsAfterDelay(NPCMove npcDB, NPCMove npcLB, NPCMove npcLG)
+    {
+        // Wait for 4 seconds
+        yield return new WaitForSeconds(0f);
+
+        // Move all NPCs simultaneously
+        if (npcDB != null) npcDB.MoveToDestination();
+        if (npcLB != null) npcLB.MoveToDestination();
+        if (npcLG != null) npcLG.MoveToDestination();
+    } 
 
     public void Page6Functions()
     {
         // New - Praise
-        rain.SetActive(true);
+        //rain.SetActive(true);
+
+        //Verlaine
+        //rain.GetComponent<VisualEffect>().Play();
+        //Angry.SetActive(true);
+        //Smiling.SetActive(false);
+
+        // Get the NPCMove components
+        NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
+        NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
+        NPCMove npcLG = LG_Sing.GetComponent<NPCMove>();
+
+        // Call MoveToDestination2 on each NPC
+        if (npcDB != null) npcDB.MoveToDestination2();
+        if (npcLB != null) npcLB.MoveToDestination2();
+        if (npcLG != null) npcLG.MoveToDestination2();
 
         Debug.Log("Page 6 animation triggered.");
     }
@@ -183,33 +248,33 @@ public class FlipPage : MonoBehaviour
     public void Page7Functions()
     {
         // Activate the wolf
-        MainWolf_Idle.SetActive(true);
+        wolf.SetActive(true);
 
-        // Call SetDestination from NPCMove script
-        NPCMove npcMove = MainWolf_Idle.GetComponent<NPCMove>();
-        if (npcMove != null)
-        {
-            // Delay 
-            StartCoroutine(CallDestinationWithDelay(npcMove));
-        }
+        // Call the function from NPCMove script
+
+        NPCMove npcMW = wolf.GetComponent<NPCMove>();
+
+        if (npcMW != null) npcMW.MoveToDestination();
 
         Debug.Log("Page 7 animation triggered.");
 
-        currentPage++;
+        //currentPage++;
     }
 
     private IEnumerator CallDestinationWithDelay(NPCMove npc)
     {
         yield return new WaitForSeconds(0.4f); 
-        npc.SetDestination();
-    }
+        npc.MoveToDestination();
+    } 
 
     public void Page8Functions()
     {
-       
-        MainWolf_Idle.SetActive(false);
-        MainWolf_Dance.SetActive(true);
-       
+
+        //verlaine
+
+        wolf.GetComponent<Animator>().SetBool("isSigned2", true);
+        Angry.SetActive(false);
+        rain.GetComponent<VisualEffect>().Stop();
 
         Debug.Log("Page 8 animation triggered.");
     }
@@ -223,7 +288,7 @@ public class FlipPage : MonoBehaviour
 
         Debug.Log("Page 9 animation triggered.");
 
-        currentPage++;
+        //currentPage++;
     }
 
     public void Page10Functions()

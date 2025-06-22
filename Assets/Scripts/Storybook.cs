@@ -131,7 +131,7 @@ public class Storybook : MonoBehaviour
         flipPage.Page5Functions();
 
         pageCompleted[5] = true;
-    }
+    } 
 
     void Page6()
     {
@@ -144,7 +144,7 @@ public class Storybook : MonoBehaviour
     { 
         flipPage.Page7Functions();
         pageCompleted[7] = true;
-    } 
+    }
 
     void Page8()
     {
