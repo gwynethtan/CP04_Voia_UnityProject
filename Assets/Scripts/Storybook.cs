@@ -23,16 +23,15 @@ public class Storybook : MonoBehaviour
         actionsByPage = new Dictionary<int, Action>
         {
             {1, Page1},
-            {2, Page3},
-            {3, Page5},
-            {4, Page6},
-            {5, Page7},
-            {6, Page8},
-            {7, Page9},
-            {8, Page10},
-      
-        
-         
+            {2, Page2},
+            {3, Page3},
+            {4, Page4},
+            {5, Page5},
+            {6, Page6},
+            {7, Page7},
+            {8, Page8},
+            {9, Page9},
+            {10, Page10},
         };
     }
 
@@ -62,6 +61,22 @@ public class Storybook : MonoBehaviour
                     //If previous page not there yet (no entry to dictionary)/previous page action not completed yet
                     return;
                 }
+            }
+
+            // praise new - For page 8 game interaction
+            if (pageNum == 8 && flipPage.isPage8Active)
+            {
+                flipPage.health--;
+                flipPage.slider.value = flipPage.health;
+
+                if (flipPage.health <= 0)
+                {
+                    flipPage.isPage8Active = false;
+                    MarkPageCompleted(8);
+                    Debug.Log("Page 8 completed after 5 signs.");
+                }
+
+                return;
             }
 
             if (actionsByPage.TryGetValue(pageNum, out Action action))

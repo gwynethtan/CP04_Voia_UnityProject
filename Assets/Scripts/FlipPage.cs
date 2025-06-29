@@ -36,7 +36,6 @@ public class FlipPage : MonoBehaviour
     public GameObject trees;
     public GameObject Piano;
     public GameObject Drum;
-    
 
     // Page 5: Bottom of the mountain, got 3 wolves + press button and speech bubble
     public GameObject DB_Idle;
@@ -50,7 +49,6 @@ public class FlipPage : MonoBehaviour
 
     // Page 8: Wolf Dancing
     public GameObject MainWolf_Dance;
- 
 
     //Page 9: Wolf heart
     public GameObject Heartbeat;
@@ -63,6 +61,10 @@ public class FlipPage : MonoBehaviour
     //fake page for 2 and 4
     public GameObject Cube;
 
+    // Game Interaction
+    public Slider slider; 
+    public int health = 5;
+    public bool isPage8Active = false;
 
     public int CurrentPage => currentPage;
 
@@ -82,11 +84,6 @@ public class FlipPage : MonoBehaviour
         {
             text.text = "Fail";
         }
-    }
-
-    public void Update()
-    {
-
     }
 
     // Need to add cannot flip if prev page not done
@@ -138,6 +135,11 @@ public class FlipPage : MonoBehaviour
         currentPage++;
     }
 
+    // Game Interaction
+    public void updateHealthbar()
+    {
+
+    }
     public void Page1Functions()
     {
         wolf.SetActive(true);
@@ -275,6 +277,15 @@ public class FlipPage : MonoBehaviour
         wolf.GetComponent<Animator>().SetBool("isSigned2", true);
         Angry.SetActive(false);
         rain.GetComponent<VisualEffect>().Stop();
+
+        // new praise
+        // Show health bar
+        slider.gameObject.SetActive(true);
+        slider.maxValue = 5;
+        slider.value = 5;
+
+        health = 5;
+        isPage8Active = true;
 
         Debug.Log("Page 8 animation triggered.");
     }
