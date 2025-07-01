@@ -201,9 +201,12 @@ public class FlipPage : MonoBehaviour
         // Call MoveToDestination from NPCMove script
 
         // Get all NPC Move components
+  
         NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
         NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
         NPCMove npcLG = LG_Sing.GetComponent<NPCMove>();
+
+   
 
         // 4 Secs delay
         StartCoroutine(MoveAllNPCsAfterDelay(npcDB, npcLB, npcLG));

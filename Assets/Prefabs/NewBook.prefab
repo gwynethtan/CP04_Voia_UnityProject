@@ -1553,6 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 5276004168568424245}
   destination2: {fileID: 1290023796097726382}
+  runningThreshold: 0.1
 --- !u!54 &3883681427549169329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3701,7 +3702,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7145,7 +7146,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -23084,7 +23085,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -35193,7 +35194,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -38242,7 +38243,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -40874,6 +40875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 3958704047382903887}
   destination2: {fileID: 8356612104194719945}
+  runningThreshold: 0.1
 --- !u!195 &7387975312611995454
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -40884,7 +40886,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -55709,7 +55711,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -55735,6 +55737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 3263757178146144425}
   destination2: {fileID: 2156351073718395712}
+  runningThreshold: 0.1
 --- !u!64 &3769930962272019923
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -85994,7 +85997,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -91933,7 +91936,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -92076,6 +92079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 1686586786426359180}
   destination2: {fileID: 8028954054358912958}
+  runningThreshold: 0.1
 --- !u!195 &4334144824201470485
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -92086,7 +92090,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -100110,6 +100114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 5276004168568424245}
   destination2: {fileID: 0}
+  runningThreshold: 0.1
 --- !u!1 &9179450842658471885
 GameObject:
   m_ObjectHideFlags: 0
