@@ -14,7 +14,7 @@ public class FlipPage : MonoBehaviour
     public float flipSpeed;
     public List<float> pageTargetYPositions;
     private int currentPage = 0;
-    private bool isFlipping = false;
+    public bool isFlipping = false;
     public TextMeshProUGUI text;
 
     public Collider pageFlipTrigger;
@@ -44,19 +44,20 @@ public class FlipPage : MonoBehaviour
 
     // Page 6: Tree change texture into angry + rain
     public GameObject rain;
-    public GameObject Angry;
-    public GameObject Smiling;
+    public GameObject angry;
+    public GameObject smiling;
+    public GameObject angryEffect;
 
     // Page 8: Wolf Dancing
-    public GameObject MainWolf_Dance;
+    public GameObject mainWolf_Dance;
 
     //Page 9: Wolf heart
-    public GameObject Heartbeat;
-    public GameObject Shockwave;
+    public GameObject heartbeat;
+    public GameObject shockwave;
 
     //Page 10; Music and dancing
-    public GameObject Music;
-    public GameObject Black_notes;
+    public GameObject music;
+    public GameObject black_notes;
 
     //fake page for 2 and 4
     public GameObject Cube;
@@ -64,7 +65,6 @@ public class FlipPage : MonoBehaviour
     // Game Interaction
     public Slider slider; 
     public int health = 5;
-    public bool isPage8Active = false;
 
     public int CurrentPage => currentPage;
 
@@ -130,9 +130,10 @@ public class FlipPage : MonoBehaviour
         }
 
         isFlipping = false;
-        text.text = "Page" + currentPage;
+        pageFlipTrigger.enabled = false;
 
         currentPage++;
+        text.text = "Page" + currentPage;
     }
 
     // Game Interaction
@@ -147,12 +148,12 @@ public class FlipPage : MonoBehaviour
     }
 
     //Testing Only 
-    public void Page2Functions()
+    /* public void Page2Functions()
     {
         Cube.SetActive(true);
         Cube.GetComponent<VisualEffect>().Play();
         Debug.Log("Page 2  animation triggered.");
-    }
+    } */
 
     public void Page3Functions()
     {
@@ -178,12 +179,6 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 3 animation triggered.");
     }
 
-    public void Page4Functions()
-    {
-        Cube.SetActive(false);
-        Cube.GetComponent<VisualEffect>().Stop();
-        Debug.Log("Page 4  animation triggered.");
-    }
     public void Page5Functions()
     {
         // New - Praise
@@ -201,12 +196,9 @@ public class FlipPage : MonoBehaviour
         // Call MoveToDestination from NPCMove script
 
         // Get all NPC Move components
-  
         NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
         NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
         NPCMove npcLG = LG_Sing.GetComponent<NPCMove>();
-
-   
 
         // 4 Secs delay
         StartCoroutine(MoveAllNPCsAfterDelay(npcDB, npcLB, npcLG));
@@ -216,6 +208,7 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 5 animation triggered.");
   
     }
+
     private IEnumerator MoveAllNPCsAfterDelay(NPCMove npcDB, NPCMove npcLB, NPCMove npcLG)
     {
         // Wait for 4 seconds
@@ -247,10 +240,15 @@ public class FlipPage : MonoBehaviour
         if (npcLB != null) npcLB.MoveToDestination2();
         if (npcLG != null) npcLG.MoveToDestination2();
 
+        smiling.SetActive(false);
+        angry.SetActive(true);
+        angryEffect.SetActive(true);
+        rain.SetActive(true);
+
         Debug.Log("Page 6 animation triggered.");
     }
 
-    public void Page7Functions()
+    public void Page8Functions()
     {
         // Activate the wolf
         wolf.SetActive(true);
@@ -261,9 +259,7 @@ public class FlipPage : MonoBehaviour
 
         if (npcMW != null) npcMW.MoveToDestination();
 
-        Debug.Log("Page 7 animation triggered.");
-
-        //currentPage++;
+        Debug.Log("Page 8 animation triggered.");
     }
 
     private IEnumerator CallDestinationWithDelay(NPCMove npc)
@@ -272,14 +268,16 @@ public class FlipPage : MonoBehaviour
         npc.MoveToDestination();
     } 
 
-    public void Page8Functions()
+    public void Page10Functions()
     {
 
         //verlaine
 
         wolf.GetComponent<Animator>().SetBool("isSigned2", true);
-        Angry.SetActive(false);
-        rain.GetComponent<VisualEffect>().Stop();
+        angry.SetActive(false);
+        smiling.SetActive(true);
+        angryEffect.SetActive(false);
+        rain.SetActive(false);
 
         // new praise
         // Show health bar
@@ -288,30 +286,27 @@ public class FlipPage : MonoBehaviour
         slider.value = 5;
 
         health = 5;
-        isPage8Active = true;
 
-        Debug.Log("Page 8 animation triggered.");
+        Debug.Log("Page 10 animation triggered.");
     }
 
-    public void Page9Functions()
+    public void Page13Functions()
     {
-        Heartbeat.SetActive(true);
-        Shockwave.SetActive(true);
-        Heartbeat.GetComponent<VisualEffect>().Play();
-        Shockwave.GetComponent<VisualEffect>().Play();
+        heartbeat.SetActive(true);
+        shockwave.SetActive(true);
 
-        Debug.Log("Page 9 animation triggered.");
+
+        Debug.Log("Page 13 animation triggered.");
 
         //currentPage++;
     }
 
-    public void Page10Functions()
+    public void Page14Functions()
     {
-        Music.SetActive(true);
-        Black_notes.SetActive(true);
-        Music.GetComponent<VisualEffect>().Play();
-        Black_notes.GetComponent<VisualEffect>().Play();
-        Debug.Log("Page 10 animation triggered.");
+        music.SetActive(true);
+        black_notes.SetActive(true);
+
+        Debug.Log("Page 14 animation triggered.");
     }
 }
     
