@@ -1204,6 +1204,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5430113987969548091, guid: 31839874afc84434c9df13c7c3da5daf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430113987969548091, guid: 31839874afc84434c9df13c7c3da5daf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8825015022403150822, guid: 31839874afc84434c9df13c7c3da5daf, type: 3}
       propertyPath: m_Name
       value: NewBook

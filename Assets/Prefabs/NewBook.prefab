@@ -1456,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8167497616761789038
 Transform:
   m_ObjectHideFlags: 0
@@ -1553,6 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 5276004168568424245}
   destination2: {fileID: 1290023796097726382}
+  runningThreshold: 0.1
 --- !u!54 &3883681427549169329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3701,7 +3702,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7145,7 +7146,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -20203,7 +20204,7 @@ Transform:
   m_GameObject: {fileID: 2452465324171531373}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.167155, z: -0, w: 0.9859307}
-  m_LocalPosition: {x: -3.02, y: 0.82, z: -3.35}
+  m_LocalPosition: {x: -2.23, y: 0.82, z: -3.71}
   m_LocalScale: {x: 38.38638, y: 38.386383, z: 38.38638}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23084,7 +23085,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -35193,7 +35194,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -38242,7 +38243,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -40821,7 +40822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5378160485127176734
 Transform:
   m_ObjectHideFlags: 0
@@ -40831,7 +40832,7 @@ Transform:
   m_GameObject: {fileID: 4749257858048858276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7660445, z: -0, w: -0.64278764}
-  m_LocalPosition: {x: 0.287, y: -0.029999996, z: -0.89500034}
+  m_LocalPosition: {x: 0.262, y: -0.029999996, z: -0.895}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40874,6 +40875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 3958704047382903887}
   destination2: {fileID: 8356612104194719945}
+  runningThreshold: 0.1
 --- !u!195 &7387975312611995454
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -40884,7 +40886,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -55660,7 +55662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6888484909458047976
 Transform:
   m_ObjectHideFlags: 0
@@ -55709,7 +55711,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -55735,6 +55737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 3263757178146144425}
   destination2: {fileID: 2156351073718395712}
+  runningThreshold: 0.1
 --- !u!64 &3769930962272019923
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -85994,7 +85997,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -91933,7 +91936,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -92023,7 +92026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7391586926582239408
 Transform:
   m_ObjectHideFlags: 0
@@ -92033,7 +92036,7 @@ Transform:
   m_GameObject: {fileID: 7917294649137121802}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.02890994, z: -0, w: -0.99958205}
-  m_LocalPosition: {x: -0.3900004, y: -0.044999994, z: -1.0910004}
+  m_LocalPosition: {x: -0.39, y: -0.044999994, z: -1.188}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -92076,6 +92079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 1686586786426359180}
   destination2: {fileID: 8028954054358912958}
+  runningThreshold: 0.1
 --- !u!195 &4334144824201470485
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -92086,7 +92090,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 0.5
+  m_Speed: 0.05
   m_Acceleration: 8
   avoidancePriority: 0
   m_AngularSpeed: 120
@@ -100110,6 +100114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destination: {fileID: 5276004168568424245}
   destination2: {fileID: 0}
+  runningThreshold: 0.1
 --- !u!1 &9179450842658471885
 GameObject:
   m_ObjectHideFlags: 0

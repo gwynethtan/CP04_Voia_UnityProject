@@ -166,9 +166,9 @@ public class FlipPage : MonoBehaviour
         //Verlaine 
 
         //Show the animation of singing
-        DB_Sing.GetComponent<Animator>().SetBool("isSigned", true);
+        DB_Sing.GetComponent<Animator>().SetBool("isSigned3", true);
         LB_Sing.GetComponent<Animator>().SetBool("isSigned", true);
-        LG_Sing.GetComponent<Animator>().SetBool("isSigned", true);
+        LG_Sing.GetComponent<Animator>().SetBool("isSigned4", true);
 
         Piano.SetActive(true);
         Drum.SetActive(true);
@@ -194,16 +194,19 @@ public class FlipPage : MonoBehaviour
 
         //Verlaine 
         //Show idle
-        DB_Sing.GetComponent<Animator>().SetBool("isSigned", false);
+        DB_Sing.GetComponent<Animator>().SetBool("isSigned3", false);
         LB_Sing.GetComponent<Animator>().SetBool("isSigned", false);
-        LG_Sing.GetComponent<Animator>().SetBool("isSigned", false);
+        LG_Sing.GetComponent<Animator>().SetBool("isSigned4", false);
 
         // Call MoveToDestination from NPCMove script
 
         // Get all NPC Move components
+  
         NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
         NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
         NPCMove npcLG = LG_Sing.GetComponent<NPCMove>();
+
+   
 
         // 4 Secs delay
         StartCoroutine(MoveAllNPCsAfterDelay(npcDB, npcLB, npcLG));
