@@ -36,6 +36,12 @@ public class FlipPage : MonoBehaviour
     public GameObject trees;
     public GameObject Piano;
     public GameObject Drum;
+    public GameObject trunk;
+    public GameObject rightHand;
+    public GameObject leftHand;
+    public GameObject Spawner1;
+    public GameObject Spawner2;
+    public GameObject Spawner3;
 
     // Page 5: Bottom of the mountain, got 3 wolves + press button and speech bubble
     public GameObject DB_Idle;
@@ -70,7 +76,7 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
-
+        
         animator = GetComponent<Animator>();
      
         Storybook storybook = FindObjectOfType<Storybook>();
@@ -173,7 +179,9 @@ public class FlipPage : MonoBehaviour
 
         Piano.SetActive(true);
         Drum.SetActive(true);
-
+        Spawner1.SetActive(true);
+        Spawner2.SetActive(true);
+        Spawner3.SetActive(true);
         //currentPage++;
 
         Debug.Log("Page 3 animation triggered.");
@@ -239,6 +247,10 @@ public class FlipPage : MonoBehaviour
         if (npcDB != null) npcDB.MoveToDestination2();
         if (npcLB != null) npcLB.MoveToDestination2();
         if (npcLG != null) npcLG.MoveToDestination2();
+
+        trunk.GetComponent<Animator>().SetBool("isAngry", true);
+        rightHand.GetComponent<Animator>().SetBool("isAngry", true);
+        leftHand.GetComponent<Animator>().SetBool("isAngry", true);
 
         smiling.SetActive(false);
         angry.SetActive(true);
