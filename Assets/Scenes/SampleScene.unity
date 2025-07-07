@@ -3925,11 +3925,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1328756813983853004, guid: eb29d2f9bf1a96646a4a02c0ea22d7ac, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4666920180402827301, guid: eb29d2f9bf1a96646a4a02c0ea22d7ac, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048218477401297598, guid: eb29d2f9bf1a96646a4a02c0ea22d7ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
