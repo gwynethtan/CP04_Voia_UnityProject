@@ -21461,7 +21461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &481030095228695253
 Transform:
   m_ObjectHideFlags: 0
@@ -33260,7 +33260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6545401356636991841
 Transform:
   m_ObjectHideFlags: 0
@@ -50601,7 +50601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5378160485127176734
 Transform:
   m_ObjectHideFlags: 0
@@ -51856,7 +51856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2547566558971743122
 Transform:
   m_ObjectHideFlags: 0
@@ -70415,7 +70415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6888484909458047976
 Transform:
   m_ObjectHideFlags: 0
@@ -106779,7 +106779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7391586926582239408
 Transform:
   m_ObjectHideFlags: 0
@@ -108499,12 +108499,12 @@ GameObject:
   - component: {fileID: 8981861401520311719}
   - component: {fileID: 4220714892454960203}
   m_Layer: 0
-  m_Name: Spawn Effect (3)
+  m_Name: Disappear Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7426946473097646830
 Transform:
   m_ObjectHideFlags: 0
@@ -108656,7 +108656,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 13
+      scalar: 1.41
       minScalar: 0.48
       maxCurve:
         serializedVersion: 2
@@ -110305,7 +110305,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.7
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -112479,7 +112479,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 0.1
     lifetime:
@@ -113322,8 +113322,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5e4f13c189f52c41b268566ef867c64, type: 2}
-  - {fileID: 2100000, guid: a5e4f13c189f52c41b268566ef867c64, type: 2}
+  - {fileID: 2100000, guid: f9f2e3e714c7f09499c8df4968852445, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
