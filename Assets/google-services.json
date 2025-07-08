@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "29720863711",
+    "firebase_url": "https://voia-fcf74-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "voia-fcf74",
+    "storage_bucket": "voia-fcf74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29720863711:android:d044129651a1eaf9f85a6a",
+        "android_client_info": {
+          "package_name": "com.google.firebase.voia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7UaDHrjaKXr0A8wMhI3UBleC7Px5xs7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
