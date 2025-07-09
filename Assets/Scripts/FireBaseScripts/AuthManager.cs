@@ -35,6 +35,12 @@ public class AuthManager : MonoBehaviour
     public Button CreateBtn;
     public Button ForgetBtn;
 
+    /// <summary>
+    /// Canvas
+    /// </summary>
+    public GameObject LogInCanvas;
+    public GameObject SignUpCanvas;
+
     private void OnLogIn()
     {
         string username = UsernameInput.text.Trim();
@@ -67,6 +73,7 @@ public class AuthManager : MonoBehaviour
         // Hide the error message after 1 seconds
         Invoke("HideErrorMessage", 1f);
     }
+
     private void HideErrorMessage()
     {
         errorMessageText.gameObject.SetActive(false); // Hide the error message UI
@@ -94,8 +101,22 @@ public class AuthManager : MonoBehaviour
         CreateUserAccount(email, password, username);
     }
 
-    public void CreateUserAccount(string email, string password, string username)
+    private void CreateUserAccount(string email, string password, string username)
     {
+        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                Debug.Log($"Error creating account: {task.Exception}");
 
+                return;
+            }
+
+            FirebaseUser newPlayer = task.Result.User;
+            Debug.Log($"User account created successfully: {newPlayer.Email}");
+
+            // Save initial user data after successful signup
+            UserDataManager.Instance.SaveInitialUserData(newPlayer.UserId, email, username);
+        });
     }
 }
