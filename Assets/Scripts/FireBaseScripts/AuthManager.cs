@@ -19,7 +19,7 @@ public class AuthManager : MonoBehaviour
     public TMP_Text errorMessageText;
     public TMP_Text passText;
 
-    public TMP_InputField UsernameInput, PasswordInput, SignUpEmailInput, EmailInput, SignUpPasswordInput, ForgotEmailInput;
+    public TMP_InputField UserInput, PasswordInput, SignUpUserInput, EmailInput, SignUpPasswordInput, ForgotEmailInput;
 
     public Button LogInBtn;
     public Button SignUpBtn;
@@ -38,7 +38,7 @@ public class AuthManager : MonoBehaviour
 
     private void OnLogIn()
     {
-        string email = UsernameInput.text.Trim();
+        string email = UserInput.text.Trim();
         string password = PasswordInput.text.Trim();
         LogIn(email, password);
     }
@@ -75,7 +75,7 @@ public class AuthManager : MonoBehaviour
     private void OnSignUp()
     {
         string email = EmailInput.text.Trim();
-        string username = UsernameInput.text.Trim();
+        string username = UserInput.text.Trim();
         string password = PasswordInput.text.Trim();
 
         if (string.IsNullOrEmpty(username))
