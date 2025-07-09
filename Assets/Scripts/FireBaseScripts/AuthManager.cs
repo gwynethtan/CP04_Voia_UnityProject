@@ -71,9 +71,11 @@ public class AuthManager : MonoBehaviour
                             case AuthError.UserNotFound:
                                 ShowLoginAccountError("Account does not exist!");
                                 break;
+
                             case AuthError.WrongPassword:
                                 ShowLoginPasswordError("Incorrect password!");
                                 break;
+
                             default:
                                 ShowLoginAccountError("Login failed: " + errorCode);
                                 break;
