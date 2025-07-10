@@ -12,9 +12,12 @@ public class SceneCapture : MonoBehaviour
         // Get reference to arsession
         var arSession = Object.FindAnyObjectByType<ARSession>();
 
-        // Access scene cpature API
-        var success = (arSession.subsystem as MetaOpenXRSessionSubsystem)
-            .TryRequestSceneCapture();
+        if(arSession != null)
+        {
+            // Access scene cpature API
+            var success = (arSession.subsystem as MetaOpenXRSessionSubsystem)
+                .TryRequestSceneCapture();
+        }
     }
 
     // Update is called once per frame
