@@ -14,50 +14,58 @@ namespace PDollarGestureRecognizer
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
-		public static Gesture ReadGestureFromXML(string xml) {
+		public static Gesture ReadGestureFromXML(string xml)
+        {
 
-			XmlTextReader xmlReader = null;
-			Gesture gesture = null;
+            XmlTextReader xmlReader = null;
+            Gesture gesture = null;
 
-			try {
+            try
+            {
 
-				xmlReader = new XmlTextReader(new StringReader(xml));
-				gesture = ReadGesture(xmlReader);
+                xmlReader = new XmlTextReader(new StringReader(xml));
+                gesture = ReadGesture(xmlReader);
 
-			} finally {
+            }
+            finally
+            {
 
-				if (xmlReader != null)
-					xmlReader.Close();
-			}
+                if (xmlReader != null)
+                    xmlReader.Close();
+            }
 
-			return gesture;
-		}
+            return gesture;
+        }
 
-		/// <summary>
-		/// Reads a multistroke gesture from an XML file
-		/// </summary>
-		/// <param name="fileName"></param>
-		/// <returns></returns>
-		public static Gesture ReadGestureFromFile(string fileName) {
+        /// <summary>
+        /// Reads a multistroke gesture from an XML file
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static Gesture ReadGestureFromFile(string fileName)
+        {
 
-			XmlTextReader xmlReader = null;
-			Gesture gesture = null;
-			
-			try {
-				
-				xmlReader = new XmlTextReader(File.OpenText(fileName));
-				gesture = ReadGesture(xmlReader);
-				
-			} finally {
-				
-				if (xmlReader != null)
-					xmlReader.Close();
-			}
-			
-			return gesture;
-		}
+            XmlTextReader xmlReader = null;
+            Gesture gesture = null;
 
-		private static Gesture ReadGesture(XmlTextReader xmlReader)
+            try
+            {
+
+                xmlReader = new XmlTextReader(File.OpenText(fileName));
+                gesture = ReadGesture(xmlReader);
+
+            }
+            finally
+            {
+
+                if (xmlReader != null)
+                    xmlReader.Close();
+            }
+
+            return gesture;
+        }
+
+        private static Gesture ReadGesture(XmlTextReader xmlReader)
         {
             List<Point> points = new List<Point>();
             int currentStrokeIndex = -1;
@@ -123,6 +131,18 @@ namespace PDollarGestureRecognizer
                 }
                 sw.WriteLine("\t</Stroke>");
                 sw.WriteLine("</Gesture>");
+            }
+        }
+
+        public struct MovementData
+        {
+            public Gesture gesture;
+            public Point[] points;
+
+            public MovementData(Gesture gesture, Point[] points)
+            {
+                this.gesture = gesture;
+                this.points = points;
             }
         }
     }

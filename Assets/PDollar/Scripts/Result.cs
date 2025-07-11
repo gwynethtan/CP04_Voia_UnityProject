@@ -1,8 +1,9 @@
-﻿namespace PDollarGestureRecognizer {
+﻿namespace PDollarGestureRecognizer
+{
+    public struct Result
+    {
 
-	public struct Result {
-
-		public string GestureClass;
-		public float Score;
-	}
+        public string GestureClass;
+        public float Score;
+    }
 }

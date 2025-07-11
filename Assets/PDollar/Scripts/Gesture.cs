@@ -78,7 +78,7 @@ namespace PDollarGestureRecognizer
         public Gesture(Point[] points, string gestureName = "")
         {
             this.Name = gestureName;
-            
+
             // normalizes the array of points with respect to scale, origin, and number of points
             this.Points = Scale(points);
             this.Points = TranslateTo(Points, Centroid(Points));
