@@ -37,12 +37,17 @@ public class MovementMgr : MonoBehaviour
     public TMP_Text debugDisplay;
 
     /// <summary>
-    /// Flag to check if making new movement
+    /// Flag to check if user creating new movement
     /// </summary>
-    public Toggle creationMode;
+    public Toggle createNewMovement;
 
     /// <summary>
-    /// Creation mode new gesture
+    /// Pose that the user should be creating with
+    /// </summary>
+    public XRHandPose creationPose;
+
+    /// <summary>
+    /// Gesture name for the pose user is creating 
     /// </summary>
     public string newGestureName;
 
@@ -52,24 +57,19 @@ public class MovementMgr : MonoBehaviour
     public float newPositionThresholdDistance = 0.05f;
 
     /// <summary>
-    /// List of existing gestures
+    /// Accurate set of coordinates for the proper movement 
     /// </summary>
-    private List<Gesture> trainingSet = new List<Gesture>();
+    private List<Gesture> properCoordinatesList = new List<Gesture>();
 
     /// <summary>
-    /// Position points as the hand moves
+    /// Stores a list of coordinates of the users hand position 
     /// </summary>
-    private List<Vector3> positionsList = new List<Vector3>();
+    private List<Vector3> currentCoordinatesList = new List<Vector3>();
 
     /// <summary>
     /// Accuracy rate for the pose to be recognised
     /// </summary>
     public float recognitionThreshold = 0.7f;
-
-    /// <summary>
-    /// Pose that the user should be creating with
-    /// </summary>
-    public XRHandPose creationPose;
 
     /// <summary>
     /// Defines what hand the manager is managing for 
@@ -139,7 +139,7 @@ public class MovementMgr : MonoBehaviour
             handPose = creationPose.CheckConditions(handJointsUpdatedEventArgs);
         }
 
-        if (creationMode.isOn)
+        if (createNewMovement.isOn)
         {
             if (handPose && isMoving)
             {
@@ -147,7 +147,7 @@ public class MovementMgr : MonoBehaviour
             }
             else if (handPose && !isMoving)
             {
-                StartCreationMovement();
+                RecordCreationMovement();
             }
             else if (!handPose && isMoving)
             {
@@ -184,11 +184,11 @@ public class MovementMgr : MonoBehaviour
     /// <summary>
     /// Creates and starts tracking the movement in creation mode
     /// </summary>
-    public void StartCreationMovement()
+    public void RecordCreationMovement()
     {
         isMoving = true;
-        positionsList.Clear();
-        positionsList.Add(movementSource.position);
+        currentCoordinatesList.Clear();
+        currentCoordinatesList.Add(movementSource.position);
         Debug.Log($"Initial movementSource position: {movementSource.position}");
         DisplayHandMovementProgress($"Initial movementSource position: {movementSource.position}", debugDisplay);
         if (debugCubePrefab)
@@ -201,11 +201,11 @@ public class MovementMgr : MonoBehaviour
     /// <summary>
     /// Starts the movement and begins tracking the position of the movement source.
     /// </summary>
-    public void StartMovement(string movementPoseName, XRHandPose requiredPose)
+    public void RecordMovement(string movementPoseName, XRHandPose requiredPose)
     {
         isMoving = true;
-        positionsList.Clear();
-        positionsList.Add(movementSource.position);
+        currentCoordinatesList.Clear();
+        currentCoordinatesList.Add(movementSource.position);
 
         // Debug the initial position of movementSource
         Debug.Log($"Initial movementSource position: {movementSource.position}");
@@ -224,18 +224,18 @@ public class MovementMgr : MonoBehaviour
     /// </summary>
     public void UpdateMovement()
     {
-        if (positionsList.Count == 0)
+        if (currentCoordinatesList.Count == 0)
         {
-            DisplayHandMovementProgress(positionsList.Count.ToString(), debugDisplay);
+            DisplayHandMovementProgress(currentCoordinatesList.Count.ToString(), debugDisplay);
         }
 
-        Vector3 lastPosition = positionsList[positionsList.Count - 1];
+        Vector3 lastPosition = currentCoordinatesList[currentCoordinatesList.Count - 1];
         float distance = Vector3.Distance(movementSource.position, lastPosition);
         Debug.Log($"Distance: {distance} (Threshold: {newPositionThresholdDistance})"); 
 
         if (distance > newPositionThresholdDistance)
         {
-            positionsList.Add(movementSource.position);
+            currentCoordinatesList.Add(movementSource.position);
             Debug.Log($"New position added: {movementSource.position}");
 
             if (debugCubePrefab)
@@ -273,10 +273,10 @@ public class MovementMgr : MonoBehaviour
     {
         isMoving = false;
 
-        Point[] pointArray = new Point[positionsList.Count];
-        for (int i = 0; i < positionsList.Count; i++)
+        Point[] pointArray = new Point[currentCoordinatesList.Count];
+        for (int i = 0; i < currentCoordinatesList.Count; i++)
         {
-            pointArray[i] = new Point(positionsList[i].x, positionsList[i].y, 0);
+            pointArray[i] = new Point(currentCoordinatesList[i].x, currentCoordinatesList[i].y, 0);
         }
 
         Gesture newGesture = new Gesture(pointArray);
@@ -294,7 +294,7 @@ public class MovementMgr : MonoBehaviour
         Point[] pointArray = GetFinishedMovement().points;
         Debug.Log($"Saving new gesture: {newGestureName}");
         newGesture.Name = newGestureName;
-        trainingSet.Add(newGesture);
+        properCoordinatesList.Add(newGesture);
         string fileName = Application.persistentDataPath + "/" + newGestureName + handName +".xml";
         GestureIO.WriteGesture(pointArray, newGestureName, fileName);
         DisplayHandMovementProgress(fileName, debugDisplay);

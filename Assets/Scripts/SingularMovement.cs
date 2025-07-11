@@ -45,13 +45,13 @@ public class SingularMovement : MonoBehaviour
     {
         movementMgr.creationPose = requiredPose;
         movementMgr.currentStaticWord = staticWord;
-        movementMgr.StartMovement(movementPoseName, requiredPose);
+        movementMgr.RecordMovement(movementPoseName, requiredPose);
     }
 
     /// <summary>
     /// Handles logic when the hand stops moving 
     /// </summary>
-    public void CompareMovement()
+    public void EndMovement()
     {
         movementMgr.DisplayHandMovementProgress("Comparing", movementMgr.debugDisplay);
         movementDone = movementMgr.CompareMovement(movementPoseName, requiredPose, movementFile);
@@ -59,16 +59,16 @@ public class SingularMovement : MonoBehaviour
         {
             if (otherMovement != null) // For dual hand movements
             {
+                // Resets the tracking movement boolean to false
                 if (otherMovement.movementDone)
                 {
                     movementDone = false;
                     otherMovement.movementDone = false;
                 }
+                // Produces the sign 
                 else
                 {
-                    movementMgr.DisplayHandMovementProgress(movementPoseName, movementMgr.debugDisplay);
                     movementMgr.translateSign.SignedWord(movementPoseName);
-                    movementMgr.DisplayHandMovementProgress("Other movement not done yet", movementMgr.debugDisplay);
                 }
             }
             else // For single hand movements
