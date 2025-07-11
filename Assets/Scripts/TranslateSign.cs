@@ -17,11 +17,24 @@ public class TranslateSign : MonoBehaviour
     /// </summary>
     private List<string> sentenceList = new List<string>();
 
+    /// <summary>
+    /// Reference to text to speech script
+    /// </summary>
     public TextToSpeech textToSpeech;
 
+    /// <summary>
+    /// Reference to sign language bubble ui 
+    /// </summary>
     public BubbleGroup signLanguageBubbleGroup;
+
+    /// <summary>
+    /// Reference to sign language bubble error ui 
+    /// </summary>
     public BubbleGroup signLanguageErrorBubbleGroup;
 
+    /// <summary>
+    /// Reference to bubbleMgr script
+    /// </summary>
     public BubbleMgr bubbleMgr;
 
     /// <summary>
@@ -29,13 +42,19 @@ public class TranslateSign : MonoBehaviour
     /// </summary>
     private StringBuilder fullSignedText = new StringBuilder();
 
+    /// <summary>
+    /// Reference to the last time sign language was used by user
+    /// </summary>
     private float lastSignTime = 0f;
+
+    /// <summary>
+    /// Check if user was previously signing
+    /// </summary>
     private bool wasSigning = false;
 
-    void Start()
-    {
-    }
-
+    /// <summary>
+    /// Check if user have been signing 
+    /// </summary>
     private void Update()
     {
         if (wasSigning)
@@ -51,6 +70,9 @@ public class TranslateSign : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Converts sign into text and into speech. Displays UI once done.
+    /// </summary>
     private void SignEnd()
     {
         Debug.Log("Sign Pause detected.");
@@ -64,6 +86,9 @@ public class TranslateSign : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Combines all the letters into a word 
+    /// </summary>
     private void CombineLetterInList()
     {
         if (letterList.Count > 0)
@@ -88,7 +113,7 @@ public class TranslateSign : MonoBehaviour
         wasSigning = true;
         if (sign.Length == 1)
         {
-            // Single letter — add to letter list
+            // adds single words into a list 
             letterList.Add(sign);
             fullSignedText.Append(sign);
         }

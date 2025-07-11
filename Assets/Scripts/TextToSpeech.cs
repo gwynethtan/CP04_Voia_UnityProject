@@ -8,12 +8,36 @@ using TMPro;
 
 public class TextToSpeech : MonoBehaviour
 {
+    /// <summary>
+    /// Google API key
+    /// </summary>
     private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y";
+
+    /// <summary>
+    /// Output for audio
+    /// </summary>
     public AudioSource audioSource;
+
+    /// <summary>
+    /// UI for text to speech bubble
+    /// </summary>
     public BubbleGroup TextToSpeechBubbleGroup;
+
+    /// <summary>
+    /// UI for text to speech error bubble 
+    /// </summary>
     public BubbleGroup TextToSpeechErrorBubbleGroup;
+
+    /// <summary>
+    /// Reference to BubbleMgr script
+    /// </summary>
     public BubbleMgr bubbleMgr;
 
+    /// <summary>
+    /// Converts sign language text to into speech for hearing individuals
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     public IEnumerator Speak(string text)
     {
         string url = "https://texttospeech.googleapis.com/v1/text:synthesize?key=" + apiKey;
@@ -44,7 +68,7 @@ public class TextToSpeech : MonoBehaviour
 
             AudioClip clip = WavUtility.ToAudioClip(wavBytes);
             AudioSource.PlayClipAtPoint(clip, Vector3.zero);
-            StartCoroutine(bubbleMgr.ActivateBubble(TextToSpeechBubbleGroup,text, true));
+            StartCoroutine(bubbleMgr.ActivateBubble(TextToSpeechBubbleGroup,text, true)); // Shows users that text has been converted
         }
         else
         {
@@ -52,6 +76,9 @@ public class TextToSpeech : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get audio content
+    /// </summary>
     [System.Serializable]
     public class TTSResponse
     {

@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Represents a single transcription alternative returned by the Google Speech-to-Text API.
+/// </summary>
 [System.Serializable]
 public class Alternative
 {
@@ -9,6 +12,9 @@ public class Alternative
     public float confidence;
 }
 
+/// <summary>
+/// Represents one result block containing one or more transcription alternatives.
+/// </summary>
 [System.Serializable]
 public class Result
 {
@@ -17,6 +23,9 @@ public class Result
     public string languageCode;
 }
 
+/// <summary>
+/// Represents the full response from the Google Speech-to-Text API.
+/// </summary>
 [System.Serializable]
 public class TranscriptionResponse
 {
@@ -25,6 +34,10 @@ public class TranscriptionResponse
     public string requestId;
 }
 
+
+/// <summary>
+/// Represents a UI group for showing a speech bubble with text.
+/// </summary>
 [System.Serializable]
 public class BubbleGroup
 {

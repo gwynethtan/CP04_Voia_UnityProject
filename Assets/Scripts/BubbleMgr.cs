@@ -6,18 +6,45 @@ using UnityEngine;
 
 public class BubbleMgr : MonoBehaviour
 {
+    /// <summary>
+    /// Duration of the bubble displayed
+    /// </summary>
     public float displayDuration = 10f;
+
+    /// <summary>
+    /// Duration of the bubble fade
+    /// </summary>
     public float fadeDuration = 0.001f;
+
+    /// <summary>
+    /// Duration of the bubble rising
+    /// </summary>
     public float riseDuration = 0.001f;
 
+    /// <summary>
+    /// Tallest height of the bubble
+    /// </summary>
     public float firstSlotHeight = 0.1857001f;
+
+    /// <summary>
+    /// Gap between the bubble 
+    /// </summary>
     public float heightGap = 0.45f;
 
+    /// <summary>
+    /// List of bubbles to be displayed
+    /// </summary>
     private List<BubbleGroup> bubbleGroupList= new List<BubbleGroup>();
+
+    /// <summary>
+    /// Displays bubble and defines its position
+    /// </summary>
+    /// <param name="bubbleGroup"></param>
+    /// <param name="sentText"></param>
+    /// <param name="autoFade"></param>
+    /// <returns></returns>
     public IEnumerator ActivateBubble(BubbleGroup bubbleGroup, string sentText, bool autoFade)
     {
-        Debug.Log("hello");
-
         bubbleGroup.bubbleText.text = sentText;
 
         if (bubbleGroup.bubbleActive == false) // ALready active bubbles will remain at their same position
@@ -41,6 +68,10 @@ public class BubbleMgr : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Dismisses bubble once it has been displayed for a period of time 
+    /// </summary>
+    /// <param name="bubbleGroup"></param>
     public void HandleBubbleDismissal(BubbleGroup bubbleGroup)
     {
         int removedIndex = bubbleGroupList.IndexOf(bubbleGroup);

@@ -10,29 +10,84 @@ using UnityEngine.PlayerLoop;
 using JetBrains.Annotations;
 public class SpeechToText : MonoBehaviour
 {
-    private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y"; // Replace with your actual API key
+    /// <summary>
+    /// Google API key
+    /// </summary>
+    private string apiKey = "AIzaSyCcVIOOl5ke4pnsPXPMdTDWZ_QQre2KO2Y";
+
+    /// <summary>
+    /// Google API url
+    /// </summary>
     private string url = "https://speech.googleapis.com/v1/speech:recognize?key=";
 
+    /// <summary>
+    /// UI for speech to text bubble 
+    /// </summary>
     public BubbleGroup SpeechToTextBubbleGroup;
+
+    /// <summary>
+    /// UI for speech to text error bubble 
+    /// </summary>
     public BubbleGroup SpeechToTextErrorBubbleGroup;
+
+    /// <summary>
+    /// Reference to bubble manager 
+    /// </summary>
     public BubbleMgr bubbleMgr;
 
+    /// <summary>
+    /// Live audio recording clip
+    /// </summary>
     private AudioClip micClip;
+
+    /// <summary>
+    /// Active microphone device name
+    /// </summary>
     private string micName;
+
+    /// <summary>
+    /// Window size for calculating volume
+    /// </summary>
     private int sampleWindow = 128;
 
+    /// <summary>
+    /// Minimum volume to consider as speech
+    /// </summary>
     float silenceThreshold = 0.01f;
+
+    /// <summary>
+    /// Minimum continuous sound to trigger transcription
+    /// </summary>
     float minSoundDuration = 1.0f;
-    float soundStartTime = 0f;
+
+    /// <summary>
+    /// Whether user was previously speaking
+    /// </summary>
     bool wasSpeaking = false;
+
+    /// <summary>
+    /// Pause timer after speech ends
+    /// </summary>
     float stopSpeakingPause = 0;
+
+    /// <summary>
+    /// Duration of current speech
+    /// </summary>
     float stillSpeaking=0f;
+
+    /// <summary>
+    /// Current volume
+    /// </summary>
     float volume;
+
+    /// <summary>
+    /// Current microphone position
+    /// </summary>
     int micPosition;
 
-    bool currentSpeaking;
-
-    //public TextMeshProUGUI bubbleTextUi;
+    /// <summary>
+    /// Gets the microphone data
+    /// </summary>
     void Start()
     {
         if (Microphone.devices.Length > 0)
@@ -42,35 +97,35 @@ public class SpeechToText : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Converts speech to text every 3 seconds for the live captioning effect
+    /// </summary>
     private void Update()
     {
-
         volume = GetVolume();
         micPosition = Microphone.GetPosition(micName);
         if (volume >= silenceThreshold)
         {
             wasSpeaking = true;
-            currentSpeaking = true;
             stillSpeaking+= Time.deltaTime;
-            Debug.Log("U r talking");
+            Debug.Log("User speaking");
             if (stopSpeakingPause > 0)
             {
                 stopSpeakingPause = 0;
             }
             if (stillSpeaking >= minSoundDuration)
             {
-                Debug.Log("over limit");
+                Debug.Log("Over limit");
                 GetStartEndClip(micPosition, stillSpeaking);
                 stillSpeaking = 0; // to reset to ensure transcription comes every 2 sec
             }
-
         }
         else
         {
             if (wasSpeaking)
             {
                 stopSpeakingPause += Time.deltaTime;
-                if (stopSpeakingPause >= 1) //long pauses coz there are pauses in between words when speaking
+                if (stopSpeakingPause >= 1) //long pauses as there are pauses in between words when speaking
                 {
                     Debug.Log("slay"+ stillSpeaking);
                     wasSpeaking = false;
@@ -83,16 +138,19 @@ public class SpeechToText : MonoBehaviour
                 }
                 else
                 {
-                    stillSpeaking += Time.deltaTime; // Srill increasing till 2 sec when so stillSpeaking>0 wouldnt work 
+                    stillSpeaking += Time.deltaTime; 
 
                 }
             }
         }
     }
-    
 
 
-
+    /// <summary>
+    /// Determines the start and end sample points of the clip and extracts a subclip
+    /// </summary>
+    /// <param name="micPositionFunc"></param>
+    /// <param name="soundDuration"></param>
     void GetStartEndClip(int micPositionFunc,float soundDuration)
     {
         Debug.Log("hello:" + soundDuration);
@@ -105,6 +163,10 @@ public class SpeechToText : MonoBehaviour
         StartCoroutine(RecordAndSend(subClip));
     }
 
+    /// <summary>
+    /// Calculates current microphone volume using RMS
+    /// </summary>
+    /// <returns></returns>
     float GetVolume()
     {
         float[] samples = new float[sampleWindow];
@@ -116,6 +178,13 @@ public class SpeechToText : MonoBehaviour
         return Mathf.Sqrt(sum / sampleWindow);
     }
 
+    /// <summary>
+    /// Trims a portion of the audio clip from startSample to endSample
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="startSample"></param>
+    /// <param name="endSample"></param>
+    /// <returns></returns>
     public static AudioClip TrimClip(AudioClip clip, int startSample, int endSample)
     {
         float[] data = new float[endSample - startSample];
@@ -124,6 +193,12 @@ public class SpeechToText : MonoBehaviour
         newClip.SetData(data, 0);
         return newClip;
     }
+
+    /// <summary>
+    /// Converts the audio clip to WAV, sends it to Google Speech API, and displays the result
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <returns></returns>
     IEnumerator RecordAndSend(AudioClip clip)
     {
         var samples = new float[clip.samples * clip.channels];
@@ -176,10 +251,11 @@ public class SpeechToText : MonoBehaviour
             {
                 string transcript = transcription.results[0].alternatives[0].transcript;
                 Debug.Log(transcript);
-                StartCoroutine(bubbleMgr.ActivateBubble(SpeechToTextBubbleGroup, transcript,true));
+                if (transcript != null)
+                {
+                    StartCoroutine(bubbleMgr.ActivateBubble(SpeechToTextBubbleGroup, transcript, true)); // Displays text for user
+                }
             }
-
-
         }
         else
         {
