@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fb3781030442f2bcc893f0dbffabc5, type: 3}
-  m_Name: C
+  m_Name: Climb
   m_EditorClassIdentifier: 
   m_FingerShapeConditions:
   - m_FingerID: 0
@@ -21,10 +21,10 @@ MonoBehaviour:
       m_Tolerance: 0
       m_Desired: 0.4
     - m_ShapeType: 1
-      m_UpperTolerance: 0.583
-      m_LowerTolerance: 0.575
+      m_UpperTolerance: 0.294
+      m_LowerTolerance: 0.314
       m_Tolerance: 0
-      m_Desired: 0.407
+      m_Desired: 0.183
   - m_FingerID: 1
     m_Targets:
     - m_ShapeType: 2
@@ -33,15 +33,10 @@ MonoBehaviour:
       m_Tolerance: 0
       m_Desired: 0.4
     - m_ShapeType: 1
-      m_UpperTolerance: 0.543
-      m_LowerTolerance: 0.558
+      m_UpperTolerance: 0.336
+      m_LowerTolerance: 0.353
       m_Tolerance: 0
-      m_Desired: 0.422
-    - m_ShapeType: 3
-      m_UpperTolerance: 0.543
-      m_LowerTolerance: 0.558
-      m_Tolerance: 0
-      m_Desired: 0
+      m_Desired: 0.202
   - m_FingerID: 2
     m_Targets:
     - m_ShapeType: 2
@@ -50,10 +45,10 @@ MonoBehaviour:
       m_Tolerance: 0
       m_Desired: 0.4
     - m_ShapeType: 1
-      m_UpperTolerance: 0.526
-      m_LowerTolerance: 0.546
+      m_UpperTolerance: 0.365
+      m_LowerTolerance: 0.36
       m_Tolerance: 0
-      m_Desired: 0.417
+      m_Desired: 0.247
   - m_FingerID: 3
     m_Targets:
     - m_ShapeType: 2
@@ -62,10 +57,10 @@ MonoBehaviour:
       m_Tolerance: 0
       m_Desired: 0.4
     - m_ShapeType: 1
-      m_UpperTolerance: 0.499
-      m_LowerTolerance: 0.516
+      m_UpperTolerance: 0.393
+      m_LowerTolerance: 0.383
       m_Tolerance: 0
-      m_Desired: 0.388
+      m_Desired: 0.259
   - m_FingerID: 4
     m_Targets:
     - m_ShapeType: 2
@@ -74,7 +69,7 @@ MonoBehaviour:
       m_Tolerance: 0
       m_Desired: 0.4
     - m_ShapeType: 1
-      m_UpperTolerance: 0.499
-      m_LowerTolerance: 0.499
+      m_UpperTolerance: 0.333
+      m_LowerTolerance: 0.333
       m_Tolerance: 0
-      m_Desired: 0.405
+      m_Desired: 0.257

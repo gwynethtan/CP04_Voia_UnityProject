@@ -10,60 +10,55 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fb3781030442f2bcc893f0dbffabc5, type: 3}
-  m_Name: Happy
+  m_Name: BentV
   m_EditorClassIdentifier: 
   m_FingerShapeConditions:
+  - m_FingerID: 0
+    m_Targets:
+    - m_ShapeType: 1
+      m_UpperTolerance: 0.3
+      m_LowerTolerance: 0.3
+      m_Tolerance: 0
+      m_Desired: 0.537
   - m_FingerID: 1
     m_Targets:
-    - m_ShapeType: 0
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
+    - m_ShapeType: 1
+      m_UpperTolerance: 0.2
+      m_LowerTolerance: 0.2
       m_Tolerance: 0
       m_Desired: 0
+    - m_ShapeType: 2
+      m_UpperTolerance: 0.34
+      m_LowerTolerance: 0.268
+      m_Tolerance: 0
+      m_Desired: 1
     - m_ShapeType: 4
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
+      m_UpperTolerance: 0.2
+      m_LowerTolerance: 0.2
       m_Tolerance: 0
-      m_Desired: 0
+      m_Desired: 1
   - m_FingerID: 2
     m_Targets:
-    - m_ShapeType: 0
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
+    - m_ShapeType: 1
+      m_UpperTolerance: 0.325
+      m_LowerTolerance: 0.355
       m_Tolerance: 0
       m_Desired: 0
-    - m_ShapeType: 4
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
+    - m_ShapeType: 2
+      m_UpperTolerance: 0.305
+      m_LowerTolerance: 0.318
       m_Tolerance: 0
-      m_Desired: 0
+      m_Desired: 1
   - m_FingerID: 3
     m_Targets:
     - m_ShapeType: 0
       m_UpperTolerance: 0.3
       m_LowerTolerance: 0.3
       m_Tolerance: 0
-      m_Desired: 0
-    - m_ShapeType: 4
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
-      m_Tolerance: 0
-      m_Desired: 0
+      m_Desired: 1
   - m_FingerID: 4
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
-      m_Tolerance: 0
-      m_Desired: 0
-  - m_FingerID: 0
-    m_Targets:
-    - m_ShapeType: 0
-      m_UpperTolerance: 0.3
-      m_LowerTolerance: 0.3
-      m_Tolerance: 0
-      m_Desired: 0
-    - m_ShapeType: 4
       m_UpperTolerance: 0.3
       m_LowerTolerance: 0.3
       m_Tolerance: 0

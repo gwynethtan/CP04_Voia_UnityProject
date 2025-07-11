@@ -16,8 +16,13 @@ MonoBehaviour:
   m_RelativeOrientation:
     m_UserConditions:
     - m_HandAxis: 2
-      m_AlignmentCondition: 0
-      m_ReferenceDirection: 0
-      m_AngleTolerance: 60
+      m_AlignmentCondition: 2
+      m_ReferenceDirection: 4
+      m_AngleTolerance: 42.8
+      m_IgnorePositionY: 0
+    - m_HandAxis: 0
+      m_AlignmentCondition: 2
+      m_ReferenceDirection: 2
+      m_AngleTolerance: 42.8
       m_IgnorePositionY: 0
     m_TargetConditions: []

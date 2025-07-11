@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fb3781030442f2bcc893f0dbffabc5, type: 3}
-  m_Name: Hello
+  m_Name: Rain
   m_EditorClassIdentifier: 
   m_FingerShapeConditions:
   - m_FingerID: 1
@@ -37,14 +37,14 @@ MonoBehaviour:
   - m_FingerID: 4
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.25
-      m_LowerTolerance: 0.25
+      m_UpperTolerance: 0.15
+      m_LowerTolerance: 0.15
       m_Tolerance: 0
       m_Desired: 0
   - m_FingerID: 0
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.375
-      m_LowerTolerance: 0.375
+      m_UpperTolerance: 0.15
+      m_LowerTolerance: 0.15
       m_Tolerance: 0
       m_Desired: 0
