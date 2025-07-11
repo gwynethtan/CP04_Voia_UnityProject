@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Gesture Name = "Happy">
+	<Stroke>
+		<Point X = "0.4316479" Y = "0.7140206" T = "0" Pressure = "0" />
+		<Point X = "0.4374334" Y = "0.7235278" T = "0" Pressure = "0" />
+		<Point X = "0.4406172" Y = "0.7342013" T = "0" Pressure = "0" />
+		<Point X = "0.4470726" Y = "0.7350708" T = "0" Pressure = "0" />
+		<Point X = "0.4475111" Y = "0.7471966" T = "0" Pressure = "0" />
+	</Stroke>
+</Gesture>

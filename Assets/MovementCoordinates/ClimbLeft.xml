@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Gesture Name = "ClimbLeft">
+	<Stroke>
+		<Point X = "-0.2350599" Y = "0.8929583" T = "0" Pressure = "0" />
+		<Point X = "-0.23021" Y = "0.8817563" T = "0" Pressure = "0" />
+		<Point X = "-0.2257456" Y = "0.8725232" T = "0" Pressure = "0" />
+		<Point X = "-0.2220169" Y = "0.8583393" T = "0" Pressure = "0" />
+		<Point X = "-0.2199879" Y = "0.8480959" T = "0" Pressure = "0" />
+		<Point X = "-0.2210169" Y = "0.8381501" T = "0" Pressure = "0" />
+		<Point X = "-0.2200646" Y = "0.8280841" T = "0" Pressure = "0" />
+		<Point X = "-0.2176183" Y = "0.81776" T = "0" Pressure = "0" />
+		<Point X = "-0.2193848" Y = "0.8041532" T = "0" Pressure = "0" />
+		<Point X = "-0.2256911" Y = "0.7978415" T = "0" Pressure = "0" />
+		<Point X = "-0.2344531" Y = "0.7912733" T = "0" Pressure = "0" />
+		<Point X = "-0.2447423" Y = "0.7935143" T = "0" Pressure = "0" />
+		<Point X = "-0.2550038" Y = "0.7988855" T = "0" Pressure = "0" />
+		<Point X = "-0.2635542" Y = "0.8052815" T = "0" Pressure = "0" />
+		<Point X = "-0.2704818" Y = "0.8124673" T = "0" Pressure = "0" />
+		<Point X = "-0.2716792" Y = "0.8273793" T = "0" Pressure = "0" />
+	</Stroke>
+</Gesture>
