@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Gesture Name = "Talking">
+	<Stroke>
+		<Point X = "-0.2304727" Y = "-0.3527083" T = "0" Pressure = "0" />
+		<Point X = "-0.2000633" Y = "-0.3521085" T = "0" Pressure = "0" />
+		<Point X = "-0.1862444" Y = "-0.3539152" T = "0" Pressure = "0" />
+		<Point X = "-0.1517168" Y = "-0.3734889" T = "0" Pressure = "0" />
+		<Point X = "-0.140544" Y = "-0.3827872" T = "0" Pressure = "0" />
+		<Point X = "-0.1291458" Y = "-0.3948226" T = "0" Pressure = "0" />
+		<Point X = "-0.1401144" Y = "-0.3793116" T = "0" Pressure = "0" />
+		<Point X = "-0.1480866" Y = "-0.3715659" T = "0" Pressure = "0" />
+		<Point X = "-0.1684615" Y = "-0.3668668" T = "0" Pressure = "0" />
+		<Point X = "-0.1766792" Y = "-0.3702353" T = "0" Pressure = "0" />
+	</Stroke>
+</Gesture>
