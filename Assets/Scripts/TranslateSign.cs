@@ -53,6 +53,22 @@ public class TranslateSign : MonoBehaviour
     private bool wasSigning = false;
 
     /// <summary>
+    /// String containing current signed word
+    /// </summary>
+    private string signedWord;
+
+    /// <summary>
+    /// Reference to SignDanceManager script
+    /// </summary>
+    public SignDanceManager signDanceManager;
+
+    /// <summary>
+    /// Reference to Storybook script
+    /// </summary>
+    public Storybook storybook;
+
+
+    /// <summary>
     /// Check if user have been signing 
     /// </summary>
     private void Update()
@@ -78,10 +94,19 @@ public class TranslateSign : MonoBehaviour
         Debug.Log("Sign Pause detected.");
         CombineLetterInList();
         Debug.Log("Full sentence: " + fullSignedText.ToString());
+        signedWord = fullSignedText.ToString().Trim();
+
         if (fullSignedText.ToString() != "")
         {
             bubbleMgr.HandleBubbleDismissal(signLanguageBubbleGroup);
-            StartCoroutine(textToSpeech.Speak(fullSignedText.ToString()));
+            StartCoroutine(textToSpeech.Speak(signedWord));
+
+            // Trigger signing names for page index 6
+            signDanceManager.OnWordSigned(signedWord);
+
+            // Call delay before signing current page
+            StartCoroutine(DelayedSignCurrentPage());
+
             fullSignedText.Clear();
         }
     }
@@ -127,4 +152,24 @@ public class TranslateSign : MonoBehaviour
         // Update the UI display
         StartCoroutine(bubbleMgr.ActivateBubble(signLanguageBubbleGroup, fullSignedText.ToString(),false));
     }
+
+    /// <summary>
+    /// Returns currently detected signed word as string
+    /// </summary>
+    /// <returns></returns>
+    public string GetSignedWord()
+    {
+        return signedWord;
+    }
+
+    /// <summary>
+    /// Delays signing current page to allow enough time to get signedWord
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DelayedSignCurrentPage()
+    {
+        yield return new WaitForSeconds(2f);
+        storybook.SignCurrentPage();
+    }
+
 }

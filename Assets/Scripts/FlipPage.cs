@@ -18,6 +18,8 @@ public class FlipPage : MonoBehaviour
     public TextMeshProUGUI text;
 
     public Collider pageFlipTrigger;
+    public SignDanceManager signDanceManager;
+    public Storybook storybook;
 
     [Header("Prefabs")]
     public GameObject mountain;
@@ -64,7 +66,6 @@ public class FlipPage : MonoBehaviour
 
     // Game Interaction
     public Slider slider; 
-    public int health = 5;
 
     public int CurrentPage => currentPage;
 
@@ -73,20 +74,20 @@ public class FlipPage : MonoBehaviour
 
         animator = GetComponent<Animator>();
      
-        Storybook storybook = FindObjectOfType<Storybook>();
+        storybook = FindObjectOfType<Storybook>();
         if (storybook != null)
         {
             storybook.flipPage = this;
             storybook.bookPosition = this.transform;
             text.text = "Page" + currentPage;
         }
+
         else
         {
             text.text = "Fail";
         }
     }
 
-    // Need to add cannot flip if prev page not done
     private void OnTriggerEnter(Collider other)
     {
         if (!isFlipping && currentPage < pagePivots.Count)
@@ -116,7 +117,7 @@ public class FlipPage : MonoBehaviour
 
         page.localEulerAngles = new Vector3(targetX, -90, 0);
 
-        // put in corrct order after flipping
+        // put in correct order after flipping
         if (pageIndex < pageTargetYPositions.Count)
         {
             Vector3 newPos = page.localPosition;
@@ -130,30 +131,37 @@ public class FlipPage : MonoBehaviour
         }
 
         isFlipping = false;
+
+        // Lock page after flipping
         pageFlipTrigger.enabled = false;
 
         currentPage++;
         text.text = "Page" + currentPage;
     }
 
-    // Game Interaction
-    public void updateHealthbar()
+    public int GetCurrentPageIndex()
     {
-
+        return currentPage;
     }
+
+
+    /// <summary>
+    /// Health bar for page index 6 interaction
+    /// </summary>
+    /// <param name="newHealth"></param>
+    public void UpdateHealthBar(int newHealth)
+    {
+        if (slider != null)
+        {
+            slider.value = newHealth;
+        }
+    }
+
     public void Page1Functions()
     {
         wolf.SetActive(true);
         Debug.Log("Page 1 animation triggered.");
     }
-
-    //Testing Only 
-    /* public void Page2Functions()
-    {
-        Cube.SetActive(true);
-        Cube.GetComponent<VisualEffect>().Play();
-        Debug.Log("Page 2  animation triggered.");
-    } */
 
     public void Page3Functions()
     {
@@ -271,21 +279,23 @@ public class FlipPage : MonoBehaviour
     public void Page10Functions()
     {
 
+        if (signDanceManager != null)
+        {
+            signDanceManager.promptText.gameObject.SetActive(true);
+            signDanceManager.feedbackText.gameObject.SetActive(true);
+            signDanceManager.ResetGame();  
+            signDanceManager.ShowNextPrompt();
+        }
+
         //verlaine
 
         wolf.GetComponent<Animator>().SetBool("isSigned2", true);
-        angry.SetActive(false);
-        smiling.SetActive(true);
-        angryEffect.SetActive(false);
-        rain.SetActive(false);
 
         // new praise
         // Show health bar
         slider.gameObject.SetActive(true);
-        slider.maxValue = 5;
-        slider.value = 5;
-
-        health = 5;
+        slider.maxValue = 3;
+        slider.value = 3;
 
         Debug.Log("Page 10 animation triggered.");
     }

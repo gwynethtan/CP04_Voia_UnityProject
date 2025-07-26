@@ -7,10 +7,27 @@ using UnityEngine;
 public class Storybook : MonoBehaviour
 {
     public FlipPage flipPage;
+    public SignDanceManager signDanceManager;
+    public TranslateSign translateSign;
     public Transform bookPosition;
 
     private Dictionary<int, Action> actionsByPage;
-    private Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>();
+    public Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>();
+
+    // Dictionary for matching page and words
+    private Dictionary<int, string> expectedSigns = new Dictionary<int, string>()
+    {
+        { 1, "Wolf" },
+        { 2, "Sing" },
+        { 3, "Talking" },
+        { 4, "Rain" },
+        { 5, "Climb" },
+        { 6, "Dance" },
+        { 7, "Heart" },
+        { 8, "Happily" }
+    };
+
+    public string signedWord;
 
     public TextMeshProUGUI text;
     public TextMeshProUGUI pageCheck;
@@ -18,6 +35,12 @@ public class Storybook : MonoBehaviour
 
     void Start()
     {
+        signDanceManager = FindObjectOfType<SignDanceManager>();
+        if (signDanceManager != null)
+        {
+            signDanceManager.storybook = this;
+        }
+
         //total 14 actual pages, 8 signed pages
         actionsByPage = new Dictionary<int, Action>
         {
@@ -30,18 +53,15 @@ public class Storybook : MonoBehaviour
             {7, Page13},
             {8, Page14},
         };
+
     }
 
+    
     void Update()
     {
-        if(flipPage != null)
-        {
-            text.text = "Success";
-        }
-        else
-        {
-            text.text = "Null";
-        }
+        // Keep updating signedWord
+        signedWord = translateSign.GetSignedWord();
+        completedCheck.text = signedWord;
     }
 
     public void SignCurrentPage()
@@ -62,72 +82,83 @@ public class Storybook : MonoBehaviour
         PageSign(flipPage.CurrentPage);
     }
 
+    /// <summary>
+    /// Compares signedWord and expectedWord and starts page activities if correct
+    /// </summary>
+    /// <param name="pageNum"></param>
     public void PageSign(int pageNum)
     {
-        // completedCheck.text = "Page:::: " +pageNum;
-        // Only trigger action if page matches current page
-        if (pageNum == flipPage.CurrentPage) 
+        //text.text = pageNum.ToString();
+        if (pageNum == flipPage.CurrentPage)
         {
             if (pageNum > 1)
             {
                 int prevPage = pageNum - 1;
-                if (!pageCompleted.TryGetValue(prevPage, out bool previousCompleted) || !previousCompleted) 
+                // Check whether previous page completed
+                if (!pageCompleted.TryGetValue(prevPage, out bool previousCompleted) || !previousCompleted)
                 {
-                    //If previous page not there yet (no entry to dictionary)/previous page action not completed yet
-                    completedCheck.text = "Previous page not complete.";
+                    completedCheck.text = "Previous page not complete";
                     return;
                 }
             }
-            else
+
+            // Check if there is expected sign for this page
+            if (!expectedSigns.TryGetValue(pageNum, out string expectedWord))
             {
-                completedCheck.text = "Previous page completed, proceed.";
-            }
-
-            /*// praise new - For page 8 game interaction
-            if (pageNum == 8 && flipPage.isPage8Active)
-            {
-                flipPage.health--;
-                flipPage.slider.value = flipPage.health;
-
-                if (flipPage.health <= 0)
-                {
-                    flipPage.isPage8Active = false;
-                    MarkPageCompleted(8);
-                    Debug.Log("Page 8 completed after 5 signs.");
-                }
-
+                Debug.Log("No expected sign");
                 return;
             }
 
-            if (actionsByPage.TryGetValue(pageNum, out Action action))
+            // Check whether something has been signed ans stored as signedWord
+            if (string.IsNullOrEmpty(signedWord))
             {
-                action.Invoke();
-                //MarkPageCompleted(pageNum); // - Praise (In case wrong)
-                pageCheck.text = "Page Completed (Storybook): " + pageNum;
-            }*/
-        }
+                pageCheck.text = "No signed word detected";
+                return;
+            }
 
-        if (actionsByPage.TryGetValue(pageNum, out Action action))
-        {
-            action.Invoke();
-            MarkPageCompleted(pageNum); // - Praise (In case wrong)
-            pageCheck.text = "Page Completed (Storybook): " + pageNum;
+            // Compare signed word to expected word (ignore case)
+            if (signedWord.Equals(expectedWord, StringComparison.OrdinalIgnoreCase))
+            {
+                completedCheck.text = $"Correct sign for page {pageNum}: {signedWord}";
+
+                // Call page action
+                if (actionsByPage.TryGetValue(pageNum, out Action action))
+                {
+                    action.Invoke();
+
+                    // Mark page completed unless it is game page
+                    if (flipPage.CurrentPage != 6) 
+                    {
+                        MarkPageCompleted(pageNum);
+                    }
+                    pageCheck.text = "Page Completed (Storybook): " + pageNum;
+                }
+            }
+
+            // if incorrect word signed
+            else
+            {
+                completedCheck.text = $"Incorrect sign. Expected; {expectedWord}";
+                return;
+            }
         }
         else
         {
-            pageCheck.text = "nO MATCH";
+            Debug.Log("Page not matching");
         }
     }
 
+
+    /// <summary>
+    /// Checks whether page is done and unlock trigger to flip to next page
+    /// </summary>
+    /// <param name="pageNum"></param>
     public void MarkPageCompleted(int pageNum)
     {
-        pageCompleted[pageNum] = true;
-        flipPage.pageFlipTrigger.enabled = true;
-    }
-
-    public bool CheckPageCompleted(int pageNum)
-    {
-        return pageCompleted.TryGetValue(pageNum, out bool completed) && completed;
+        if (pageCompleted[pageNum] == true)
+        {
+            flipPage.pageFlipTrigger.enabled = true;
+        }
     }
 
     void Page1()
@@ -160,10 +191,12 @@ public class Storybook : MonoBehaviour
         pageCompleted[5] = true;
     }
 
+    /// <summary>
+    /// Game page
+    /// </summary>
     void Page10()
     { 
         flipPage.Page10Functions();
-        pageCompleted[6] = true;
     }
 
     void Page13()
