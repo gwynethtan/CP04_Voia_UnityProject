@@ -6,23 +6,30 @@ using UnityEngine.XR.OpenXR.Features.Meta;
 
 public class SceneCapture : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool sceneCaptured { get; private set; } = false;
+
+    public void StartSceneCapture()
     {
         // Get reference to arsession
         var arSession = Object.FindAnyObjectByType<ARSession>();
 
-        if(arSession != null)
+        if (arSession != null)
         {
-            // Access scene cpature API
+            // Access scene capture API
             var success = (arSession.subsystem as MetaOpenXRSessionSubsystem)
                 .TryRequestSceneCapture();
+
+            Debug.Log("Scene capture success.");
+        }
+        else
+        {
+            Debug.Log("Scene capture failed.");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
