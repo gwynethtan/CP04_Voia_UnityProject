@@ -6,8 +6,6 @@ using UnityEngine.XR.OpenXR.Features.Meta;
 
 public class SceneCapture : MonoBehaviour
 {
-    public bool sceneCaptured { get; private set; } = false;
-
     public void StartSceneCapture()
     {
         // Get reference to arsession
