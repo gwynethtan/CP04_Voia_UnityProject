@@ -258,9 +258,6 @@ public class FlipPage : MonoBehaviour
 
     public void Page8Functions()
     {
-        // Activate the wolf
-        wolf.SetActive(true);
-
         // Call the function from NPCMove script
 
         NPCMove npcMW = wolf.GetComponent<NPCMove>();
