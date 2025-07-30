@@ -46,7 +46,7 @@ public class AuthManager : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
     }
 
-    public void OnLogIn()  // Public to link from Unity UI
+    public void OnLogIn()
     {
         string email = LogInUserInput.text.Trim();
         string password = LogInPassInput.text.Trim();
@@ -55,10 +55,24 @@ public class AuthManager : MonoBehaviour
 
     private void LogIn(string email, string password)
     {
+        if (string.IsNullOrEmpty(email))
+        {
+            ShowLoginAccountError("Email cannot be empty!");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(password))
+        {
+            ShowLoginPasswordError("Password cannot be empty!");
+            return;
+        }
+
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
+                bool shownError = false;
+
                 foreach (var exception in task.Exception.Flatten().InnerExceptions)
                 {
                     if (exception is FirebaseException firebaseEx)
@@ -66,22 +80,22 @@ public class AuthManager : MonoBehaviour
                         var errorCode = (AuthError)firebaseEx.ErrorCode;
                         Debug.Log($"Login error: {errorCode}");
 
-                        switch (errorCode)
+                        if (errorCode == AuthError.UserNotFound || errorCode == AuthError.WrongPassword)
                         {
-                            case AuthError.UserNotFound:
-                                ShowLoginAccountError("Account does not exist!");
-                                break;
-
-                            case AuthError.WrongPassword:
-                                ShowLoginPasswordError("Incorrect password!");
-                                break;
-
-                            default:
-                                ShowLoginAccountError("Login failed: " + errorCode);
-                                break;
+                            Debug.Log("Showing login error: Incorrect email or password!");
+                            ShowLoginAccountError("Incorrect email or password!");
+                            shownError = true;
+                            break;
                         }
                     }
                 }
+
+                if (!shownError)
+                {
+                    Debug.Log("Unknown login error. Showing fallback message.");
+                    ShowLoginAccountError("Incorrect Email or Password.");
+                }
+
                 return;
             }
 
@@ -90,11 +104,8 @@ public class AuthManager : MonoBehaviour
         });
     }
 
-    public void OnSignUp()  // Public to link from Unity UI
+    public void OnSignUp(string email, string password, string username)
     {
-        string email = SignUpEmailInput.text.Trim();
-        string username = SignUpUserInput.text.Trim();
-        string password = SignUpPasswordInput.text.Trim();
 
         if (string.IsNullOrEmpty(username))
         {
@@ -135,7 +146,8 @@ public class AuthManager : MonoBehaviour
         });
     }
 
-    // LogIn Error Text
+    // === Error Message Helpers ===
+
     private void ShowLoginAccountError(string message)
     {
         loginAccErrorText.text = message;
@@ -160,7 +172,6 @@ public class AuthManager : MonoBehaviour
         loginPassErrorText.gameObject.SetActive(false);
     }
 
-    // SignUp Error Text
     private void ShowSignupUsernameError(string message)
     {
         signupUserErrorText.text = message;
@@ -196,6 +207,4 @@ public class AuthManager : MonoBehaviour
     {
         signupPasswErrorText.gameObject.SetActive(false);
     }
-
-
 }
