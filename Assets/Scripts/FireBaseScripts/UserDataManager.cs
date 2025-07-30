@@ -154,6 +154,31 @@ public class UserDataManager : MonoBehaviour
         Debug.Log("Updated playerDetails date");
     }
 
+    /// <summary>
+    /// Update user online status
+    /// </summary>
+    /// <param name="currentUserId"></param>
+    /// <param name="playerOnline"></param>
+    public void AddPhoto(string currentUserId, bool playerOnline)
+    {
+        Dictionary<string, object> updatedDetails = new Dictionary<string, object>
+        {
+            ["playerOnline"] = playerOnline
+        };
+        dbRef.Child("users").Child(currentUserId).Child("userDetails").UpdateChildrenAsync(updatedDetails);
+        Debug.Log("Updated playerDetails date");
+    }
+
+    /// <summary>
+    /// Stores the images the user took into database
+    /// </summary>
+    /// <param name="imageUrl"></param>
+    public void AddImage(string currentUserId, string imageUrl)
+    {
+        DatabaseReference imagesRef = dbRef.Child("users").Child(currentUserId).Child("imagesTaken");
+        imagesRef.Push().SetValueAsync(imageUrl);
+        Debug.Log("Image added to database");
+    }
 
     public void GetLastResetDate(string userId, Action<int> callback)
     {
