@@ -81,12 +81,22 @@ public class AuthManager : MonoBehaviour
                         var errorCode = (AuthError)firebaseEx.ErrorCode;
                         Debug.Log($"Login error: {errorCode}");
 
-                        if (errorCode == AuthError.UserNotFound || errorCode == AuthError.WrongPassword)
+                        switch (errorCode)
                         {
-                            Debug.Log("Showing login error: Incorrect email or password!");
-                            ShowLoginAccountError("Incorrect email or password!");
-                            shownError = true;
-                            break;
+                            case AuthError.UserNotFound:
+                                ShowLoginAccountError("Account does not exist.");
+                                shownError = true;
+                                break;
+
+                            case AuthError.WrongPassword:
+                                ShowLoginAccountError("Incorrect email or password!");
+                                shownError = true;
+                                break;
+
+                            case AuthError.InvalidEmail:
+                                ShowLoginAccountError("Invalid email format.");
+                                shownError = true;
+                                break;
                         }
                     }
                 }
@@ -105,8 +115,12 @@ public class AuthManager : MonoBehaviour
         });
     }
 
-    public void OnSignUp(string email, string password, string username)
+
+    public void OnSignUp()
     {
+        string username = SignUpUserInput.text.Trim();
+        string email = SignUpEmailInput.text.Trim();
+        string password = SignUpPasswordInput.text.Trim();
 
         if (string.IsNullOrEmpty(username))
         {
