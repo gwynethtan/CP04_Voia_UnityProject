@@ -10,10 +10,14 @@ public class UserData
 {
     public string email;
     public string username;
+    public string dateCreated;
+    public string userOnline;
 
-    public UserData(string email, string username)
+    public UserData(string email, string username, string dateCreated, string userOnline)
     {
         this.email = email;
         this.username = username;
+        this.dateCreated = dateCreated;
+        this.userOnline = userOnline;
     }
 }
