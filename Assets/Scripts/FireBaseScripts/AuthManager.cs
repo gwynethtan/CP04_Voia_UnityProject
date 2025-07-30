@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Extensions;
 using Firebase;
+using System;
 
 public class AuthManager : MonoBehaviour
 {
@@ -141,8 +142,8 @@ public class AuthManager : MonoBehaviour
 
             FirebaseUser newPlayer = task.Result.User;
             Debug.Log($"User account created successfully: {newPlayer.Email}");
-
-            UserDataManager.Instance.SaveInitialUserData(newPlayer.UserId, email, username);
+            long currentTimestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+            UserDataManager.Instance.SaveInitialUserData(newPlayer.UserId, email, username, currentTimestamp, true);
         });
     }
 

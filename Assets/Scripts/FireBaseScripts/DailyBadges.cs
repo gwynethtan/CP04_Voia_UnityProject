@@ -13,7 +13,7 @@ public class DailyBadges
     /// <summary>
     /// Variable to store the date the player's health
     /// </summary>
-    public string lastReset;
+    public long lastReset;
 
     /// <summary>
     /// Variable to store player score
@@ -35,7 +35,7 @@ public class DailyBadges
     /// <param name="timeTakenToSaveDog">The time taken to save the dog</param>
     /// <param name="healthRemaining">The player's remaining health</param>
     /// <param name="score">The player's score</param>
-    public DailyBadges(string lastReset, int badgesCompleted)
+    public DailyBadges(long lastReset, int badgesCompleted)
     {
         this.lastReset = lastReset; // Set savedDog
         this.badgesCompleted = badgesCompleted; // Set time to save dog

@@ -26,7 +26,7 @@ public class UserDataManager : MonoBehaviour
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
-    public void SaveInitialUserData(string userId, string email, string username,string dateCreated, string userOnline)
+    public void SaveInitialUserData(string userId, string email, string username,long dateCreated, bool userOnline)
     {
         if (string.IsNullOrEmpty(username))
         {
@@ -128,7 +128,7 @@ public class UserDataManager : MonoBehaviour
                         {
                             ["dayPoints"] = scoreTask.Result.Value
                         };
-                        dbRef.Child("users").Child(currentUserId).Child("pointDetails").Child(DateTime.Now.ToString("yyyy-MM-dd")).UpdateChildrenAsync(updatedDetails);
+                        dbRef.Child("users").Child(currentUserId).Child("pointDetails").Child(DateTime.Now.ToString()).UpdateChildrenAsync(updatedDetails);
                     }
                 });
 
