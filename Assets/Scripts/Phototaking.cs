@@ -51,6 +51,11 @@ public class Phototaking : MonoBehaviour
     private Camera mainCam = null;
 
     /// <summary>
+    /// Reference to database script
+    /// </summary>
+    public UserDataManager userDataManager;
+
+    /// <summary>
     /// Reference to MyDatabase script
     /// </summary>
     //public MyDatabase myDatabase;
@@ -186,6 +191,7 @@ public class Phototaking : MonoBehaviour
         string fileName = Path.GetFileName(filePath);
         string uploadUrl = $"{supabaseUrl}/storage/v1/object/{bucketName}/{UPLOAD_FOLDER}/{fileName}";
         Debug.Log("Upload URL: " + uploadUrl);
+        userDataManager.AddImage(uploadUrl);
 
 
         try

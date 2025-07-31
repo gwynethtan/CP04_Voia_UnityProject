@@ -18,12 +18,32 @@ public class UserDataManager : MonoBehaviour
     public static UserDataManager Instance { get; private set; }
     private DatabaseReference dbRef;
 
+    /// <summary>
+    /// Reference to auth script for userId
+    /// </summary>
+    public AuthManager authManager;
+
+    /// <summary>
+    /// Variable to store the current user id 
+    /// </summary>
+    public string currentUserId = "";
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+    }
+
+    /// <summary>
+    /// Gets the current user id to store inside player current stats node
+    /// </summary>
+    /// <returns></returns>
+    public string SetCurrentUserId()
+    {
+        currentUserId = authManager.currentUserId; // Checking if user logged out or not
+        return currentUserId;
     }
 
     public void SaveInitialUserData(string userId, string email, string username,long dateCreated, bool userOnline)
@@ -37,12 +57,12 @@ public class UserDataManager : MonoBehaviour
 
         // New data created for it to be pushed into database later
         UserData userData = new UserData(email, username, dateCreated, userOnline);
-        ActivityDetails activityDetails = new ActivityDetails(0, 0, 0, 0);
+        ActivityDetails activityDetails = new ActivityDetails(0, 0, 0);
         DailyBadges dailyBadges = new DailyBadges(dateCreated, 0);
         IndivBadges indivBadges = new IndivBadges(0, 0);
 
         // Generate unique paths
-        var playerPath = dbRef.Child(userId);
+        var playerPath = dbRef.Child("users").Child(userId);
         var userDetailsPath = playerPath.Child("userDetails");
         var activityDetailsPath = playerPath.Child("activityDetails");
         var dailyBadgesPath = playerPath.Child("dailyBadges");
@@ -67,42 +87,41 @@ public class UserDataManager : MonoBehaviour
         playerPath.UpdateChildrenAsync(updatedDetails);
     }
 
-    public async void SettleIndivBadgesAsync(string currentUserId, int points, string badgeType, string activityType)
+    public async void UpdateIndivBadges(int points, string badgeType, string activityType)
     {
-        var pointsRef = dbRef.Child("users").Child(currentUserId).Child("points");
+        var pointsRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("points");
         DataSnapshot pointsSnap = await pointsRef.GetValueAsync();
         int currentPoints = pointsSnap.Exists ? Convert.ToInt32(pointsSnap.Value) : 0;
         await pointsRef.SetValueAsync(currentPoints + points);
 
-        var activityRef = dbRef.Child("users").Child(currentUserId).Child("activityDetails").Child(activityType);
+        var activityRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("activityDetails").Child(activityType);
         DataSnapshot activitySnap = await activityRef.GetValueAsync();
         int currentActivityCount = activitySnap.Exists ? Convert.ToInt32(activitySnap.Value) : 0;
         await activityRef.SetValueAsync(currentActivityCount + 1);
 
-        var badgeScoreRef = dbRef.Child("users").Child(currentUserId).Child(badgeType).Child("currentScore");
+        var badgeScoreRef = dbRef.Child("users").Child(SetCurrentUserId()).Child(badgeType).Child("currentScore");
         DataSnapshot scoreSnap = await badgeScoreRef.GetValueAsync();
         int currentScore = scoreSnap.Exists ? Convert.ToInt32(scoreSnap.Value) : 0;
         int updatedScore = currentScore + 1;
         await badgeScoreRef.SetValueAsync(updatedScore);
 
-        var badgeGoalRef = dbRef.Child("users").Child(currentUserId).Child(badgeType).Child("badgeGoal");
+        var badgeGoalRef = dbRef.Child("users").Child(SetCurrentUserId()).Child(badgeType).Child("badgeGoal");
         DataSnapshot goalSnap = await badgeGoalRef.GetValueAsync();
         int badgeGoal = goalSnap.Exists ? Convert.ToInt32(goalSnap.Value) : int.MaxValue;
 
         if (updatedScore >= badgeGoal)
         {
-            var completedRef = dbRef.Child("users").Child(currentUserId).Child("dailyBadges").Child("badgesCompleted");
+            var completedRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child("badgesCompleted");
             DataSnapshot completedSnap = await completedRef.GetValueAsync();
             int completedCount = completedSnap.Exists ? Convert.ToInt32(completedSnap.Value) : 0;
             await completedRef.SetValueAsync(completedCount + 1);
         }
     }
 
-
     //need check if need reset badge 
-    public void CheckResetBadge(string currentUserId)
+    public void CheckResetBadge()
     {
-        GetLastResetDate(currentUserId, (lastResetDate) =>
+        GetLastResetDate((lastResetDate) =>
         {
             // Assuming lastResetDate is in Unix timestamp (seconds since epoch)
             var lastDateTime = DateTimeOffset.FromUnixTimeSeconds(lastResetDate).DateTime;
@@ -144,28 +163,13 @@ public class UserDataManager : MonoBehaviour
     /// </summary>
     /// <param name="currentUserId"></param>
     /// <param name="playerOnline"></param>
-    public void UpdateUserOnline(string currentUserId, bool playerOnline)
+    public void UpdateUserOnline(bool playerOnline)
     {
         Dictionary<string, object> updatedDetails = new Dictionary<string, object>
         {
             ["playerOnline"] = playerOnline
         };
-        dbRef.Child("users").Child(currentUserId).Child("userDetails").UpdateChildrenAsync(updatedDetails);
-        Debug.Log("Updated playerDetails date");
-    }
-
-    /// <summary>
-    /// Update user online status
-    /// </summary>
-    /// <param name="currentUserId"></param>
-    /// <param name="playerOnline"></param>
-    public void AddPhoto(string currentUserId, bool playerOnline)
-    {
-        Dictionary<string, object> updatedDetails = new Dictionary<string, object>
-        {
-            ["playerOnline"] = playerOnline
-        };
-        dbRef.Child("users").Child(currentUserId).Child("userDetails").UpdateChildrenAsync(updatedDetails);
+        dbRef.Child("users").Child(SetCurrentUserId()).Child("userDetails").UpdateChildrenAsync(updatedDetails);
         Debug.Log("Updated playerDetails date");
     }
 
@@ -173,20 +177,20 @@ public class UserDataManager : MonoBehaviour
     /// Stores the images the user took into database
     /// </summary>
     /// <param name="imageUrl"></param>
-    public void AddImage(string currentUserId, string imageUrl)
+    public void AddImage(string imageUrl)
     {
-        DatabaseReference imagesRef = dbRef.Child("users").Child(currentUserId).Child("imagesTaken");
+        DatabaseReference imagesRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("imagesTaken");
         imagesRef.Push().SetValueAsync(imageUrl);
         Debug.Log("Image added to database");
     }
 
-    public void GetLastResetDate(string userId, Action<int> callback)
+    public void GetLastResetDate(Action<int> callback)
     {
-        dbRef.Child("users").Child(userId).Child("dailyBadges").Child("lastReset").GetValueAsync().ContinueWithOnMainThread(task =>
+        dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child("lastReset").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.Log($"Failed to fetch user data for {userId}: {task.Exception}");
+                Debug.Log($"Failed to fetch user data for {SetCurrentUserId()}: {task.Exception}");
                 return;
             }
 
@@ -197,7 +201,7 @@ public class UserDataManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"No valid badgeGoal found for user {userId}.");
+                Debug.Log($"No valid badgeGoal found for user {SetCurrentUserId()}.");
             }
         });
     }

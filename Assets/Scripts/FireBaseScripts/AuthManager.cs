@@ -33,18 +33,76 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField SignUpEmailInput;
     public TMP_InputField SignUpPasswordInput;
 
+    /// <summary>
+    /// Variable to store log in panel
+    /// </summary>
+    public GameObject logInPanel;
+
+    /// <summary>
+    /// Variable to store log out panel
+    /// </summary>
+    public GameObject logOutPanel;
+
     public Button LogInBtn;
     public Button SignUpBtn;
 
     public GameObject LogInCanvas;
     public GameObject SignUpCanvas;
 
+    /// <summary>
+    /// Variable to store current user id 
+    /// </summary>
+    public string currentUserId;
+
+    /// <summary>
+    /// Reference to database code
+    /// </summary>
+    public UserDataManager userDataManager;
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         auth = FirebaseAuth.DefaultInstance;
+    }
+
+    private void Start()
+    {
+        // Initialize Firebase Authentication
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
+            if (task.Result == DependencyStatus.Available)
+            {
+                auth = FirebaseAuth.DefaultInstance;
+                Debug.Log("Firebase Auth initialized successfully.");
+                auth.StateChanged += AuthOnStateChanged;
+            }
+            else
+            {
+                Debug.LogError("Could not resolve all Firebase dependencies: " + task.Result);
+            }
+        });
+    }
+
+    /// <summary>
+    /// Checks it if user authenticated
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AuthOnStateChanged(object sender, EventArgs e)
+    {
+        Debug.Log("Auth state changed");
+
+        if (auth.CurrentUser == null || !auth.CurrentUser.IsValid())
+        {
+            Debug.Log("User Not Authenticated");
+            currentUserId = "";
+        }
+        else
+        {
+            Debug.Log("Current User is: " + auth.CurrentUser.UserId);
+            currentUserId = auth.CurrentUser.UserId;
+            userDataManager.CheckResetBadge();
+        }
     }
 
     public void OnLogIn()
@@ -161,6 +219,17 @@ public class AuthManager : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Logout the user account
+    /// </summary>
+    public void Logout()
+    {
+        userDataManager.UpdateUserOnline(false);
+        auth.SignOut();
+        logOutPanel.gameObject.SetActive(false);
+        logInPanel.gameObject.SetActive(true);
+    }
+
     // === Error Message Helpers ===
 
     private void ShowLoginAccountError(string message)
@@ -221,5 +290,13 @@ public class AuthManager : MonoBehaviour
     private void HideSignupPasswordError()
     {
         signupPasswErrorText.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Shows login panel and hides the sign up panel
+    /// </summary>
+    public void ShowLogInPanel()
+    {
+
     }
 }

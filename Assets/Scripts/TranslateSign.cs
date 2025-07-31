@@ -67,7 +67,7 @@ public class TranslateSign : MonoBehaviour
     /// </summary>
     public Storybook storybook;
 
-
+    public UserDataManager userDataManager;
     /// <summary>
     /// Check if user have been signing 
     /// </summary>
@@ -126,6 +126,7 @@ public class TranslateSign : MonoBehaviour
             sentenceList.Add(constructedWord.ToString());
             letterList.Clear();
             fullSignedText.Append(" ");
+            userDataManager.UpdateIndivBadges(1, "signTrackerToday", "totalSignedWords");
         }
     }
 
@@ -147,6 +148,7 @@ public class TranslateSign : MonoBehaviour
             CombineLetterInList();
             sentenceList.Add(sign);
             fullSignedText.Append(sign + " ");
+            userDataManager.UpdateIndivBadges(1, "signTrackerToday", "totalSignedWords");
         }
 
         // Update the UI display
