@@ -9,6 +9,7 @@ public class Storybook : MonoBehaviour
     public FlipPage flipPage;
     public SignDanceManager signDanceManager;
     public TranslateSign translateSign;
+    public UserDataManager userDataManager;
     public Transform bookPosition;
 
     private Dictionary<int, Action> actionsByPage;
@@ -32,6 +33,8 @@ public class Storybook : MonoBehaviour
     public TextMeshProUGUI text;
     public TextMeshProUGUI pageCheck;
     public TextMeshProUGUI completedCheck;
+
+    public bool storybookCompleted = false;
 
     void Start()
     {
@@ -209,5 +212,21 @@ public class Storybook : MonoBehaviour
     {
         flipPage.Page14Functions();
         pageCompleted[8] = true;
+    }
+
+    public void CheckStorybookCompleted()
+    {
+        for (int i = 1; i <= 8; i++)
+        {
+            if (!pageCompleted.ContainsKey(i) || !pageCompleted[i])
+            {
+                Debug.Log("Not all pages complete.");
+                return;
+            }
+        }
+
+        storybookCompleted = true;
+        Debug.Log("Storybook completed");
+        userDataManager.UpdateIndivBadges(1, "bookTrackerToday", "booksRead");
     }
 }

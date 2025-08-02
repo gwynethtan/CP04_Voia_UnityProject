@@ -22,6 +22,7 @@ public class AuthManager : MonoBehaviour
     public TMP_Text signupUserErrorText;
     public TMP_Text signupEmailErrorText;
     public TMP_Text signupPasswErrorText;
+    public TMP_Text signupCompleteText;
 
     // Login error messages
     public TMP_Text loginAccErrorText;
@@ -48,6 +49,7 @@ public class AuthManager : MonoBehaviour
 
     public GameObject LogInCanvas;
     public GameObject SignUpCanvas;
+    public GameObject bookCanvas;
 
     /// <summary>
     /// Variable to store current user id 
@@ -169,6 +171,8 @@ public class AuthManager : MonoBehaviour
             }
 
             FirebaseUser user = task.Result.User;
+            LogInCanvas.SetActive(false);
+            bookCanvas.SetActive(true);
             Debug.Log("User logged in successfully: " + user.Email);
         });
     }
@@ -216,6 +220,7 @@ public class AuthManager : MonoBehaviour
             Debug.Log($"User account created successfully: {newPlayer.Email}");
             long currentTimestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
             UserDataManager.Instance.SaveInitialUserData(newPlayer.UserId, email, username, currentTimestamp, true);
+            signupCompleteText.gameObject.SetActive(true);
         });
     }
 

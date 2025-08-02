@@ -158,11 +158,11 @@ public class UserDataManager : MonoBehaviour
     /// </summary>
     /// <param name="currentUserId"></param>
     /// <param name="playerOnline"></param>
-    public void UpdateUserOnline(bool playerOnline)
+    public void UpdateUserOnline(bool userOnline)
     {
         Dictionary<string, object> updatedDetails = new Dictionary<string, object>
         {
-            ["playerOnline"] = playerOnline
+            ["userOnline"] = userOnline
         };
         dbRef.Child("users").Child(SetCurrentUserId()).Child("userDetails").UpdateChildrenAsync(updatedDetails);
         Debug.Log("Updated playerDetails date");

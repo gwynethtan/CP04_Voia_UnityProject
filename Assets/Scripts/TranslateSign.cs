@@ -172,6 +172,11 @@ public class TranslateSign : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         storybook.SignCurrentPage();
+
+        if (!storybook.storybookCompleted)
+        {
+            storybook.CheckStorybookCompleted();
+        }
     }
 
 }
