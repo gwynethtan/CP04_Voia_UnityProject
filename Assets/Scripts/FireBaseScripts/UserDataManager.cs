@@ -79,12 +79,7 @@ public class UserDataManager : MonoBehaviour
         pointTrackerTodayPath.SetRawJsonValueAsync(JsonUtility.ToJson(indivBadges));
         signTrackerTodayPath.SetRawJsonValueAsync(JsonUtility.ToJson(indivBadges));
         wordTrackerTodayPath.SetRawJsonValueAsync(JsonUtility.ToJson(indivBadges));
-
-        Dictionary<string, object> updatedDetails = new Dictionary<string, object>
-        {
-            ["points"] = 0
-        };
-        playerPath.UpdateChildrenAsync(updatedDetails);
+        playerPath.Child("points").SetValueAsync(0);
     }
 
     public async void UpdateIndivBadges(int points, string badgeType, string activityType)
@@ -99,13 +94,13 @@ public class UserDataManager : MonoBehaviour
         int currentActivityCount = activitySnap.Exists ? Convert.ToInt32(activitySnap.Value) : 0;
         await activityRef.SetValueAsync(currentActivityCount + 1);
 
-        var badgeScoreRef = dbRef.Child("users").Child(SetCurrentUserId()).Child(badgeType).Child("currentScore");
+        var badgeScoreRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child(badgeType).Child("currentScore");
         DataSnapshot scoreSnap = await badgeScoreRef.GetValueAsync();
         int currentScore = scoreSnap.Exists ? Convert.ToInt32(scoreSnap.Value) : 0;
         int updatedScore = currentScore + 1;
         await badgeScoreRef.SetValueAsync(updatedScore);
 
-        var badgeGoalRef = dbRef.Child("users").Child(SetCurrentUserId()).Child(badgeType).Child("badgeGoal");
+        var badgeGoalRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child(badgeType).Child("badgeGoal");
         DataSnapshot goalSnap = await badgeGoalRef.GetValueAsync();
         int badgeGoal = goalSnap.Exists ? Convert.ToInt32(goalSnap.Value) : int.MaxValue;
 
@@ -201,7 +196,7 @@ public class UserDataManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"No valid badgeGoal found for user {SetCurrentUserId()}.");
+                Debug.Log($"Last reset not found for {SetCurrentUserId()}.");
             }
         });
     }
