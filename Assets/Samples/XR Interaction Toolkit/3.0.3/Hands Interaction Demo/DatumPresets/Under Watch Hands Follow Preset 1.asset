@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9846808ef0fb41b39630338c123c9269, type: 3}
-  m_Name: Under Watch Hands Follow Preset
+  m_Name: Under Watch Hands Follow Preset 1
   m_EditorClassIdentifier: 
   m_Comments: 
   m_ReadOnly: 1
   m_Value:
-    rightHandLocalPosition: {x: 0, y: -0.05, z: -0.03}
-    leftHandLocalPosition: {x: 0, y: -0.05, z: -0.03}
+    rightHandLocalPosition: {x: 0, y: -0.05, z: -0.04}
+    leftHandLocalPosition: {x: 0, y: -0.05, z: -0.04}
     rightHandLocalRotation: {x: 0, y: 0, z: 180}
     leftHandLocalRotation: {x: 0, y: 0, z: 180}
     palmReferenceAxis: 4
