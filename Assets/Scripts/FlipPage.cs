@@ -72,7 +72,6 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
-        Page6Functions();
         animator = GetComponent<Animator>();
      
         storybook = FindObjectOfType<Storybook>();
@@ -158,6 +157,9 @@ public class FlipPage : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Signed word: Wolf
+    /// </summary>
     public void Page1Functions()
     {
         wolf.SetActive(true);
@@ -191,6 +193,9 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 3 animation triggered.");
     }
 
+    /// <summary>
+    /// Signed word: Talking
+    /// </summary>
     public void Page5Functions()
     {
         // New - Praise
@@ -239,6 +244,9 @@ public class FlipPage : MonoBehaviour
         speechBubbles.SetActive(true);
     }
 
+    /// <summary>
+    /// Signed word: Rain
+    /// </summary>
     public void Page6Functions()
     {
         // New - Praise
@@ -267,6 +275,9 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 6 animation triggered.");
     }
 
+    /// <summary>
+    /// Signed word: Climbed
+    /// </summary>
     public void Page8Functions()
     {
         // Call the function from NPCMove script
@@ -282,8 +293,12 @@ public class FlipPage : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f); 
         npc.MoveToDestination();
-    } 
+    }
 
+    /// <summary>
+    /// Signed word: Dance
+    /// With Names - from signDanceManager
+    /// </summary>
     public void Page10Functions()
     {
 
@@ -308,6 +323,9 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 10 animation triggered.");
     }
 
+    /// <summary>
+    /// Signed word: Heart
+    /// </summary>
     public void Page13Functions()
     {
         heartbeat.SetActive(true);
@@ -319,6 +337,9 @@ public class FlipPage : MonoBehaviour
         //currentPage++;
     }
 
+    /// <summary>
+    /// Signed word: Happily
+    /// </summary>
     public void Page14Functions()
     {
         music.SetActive(true);
