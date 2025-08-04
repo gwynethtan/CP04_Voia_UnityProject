@@ -43,6 +43,7 @@ public class FlipPage : MonoBehaviour
     public GameObject DB_Idle;
     public GameObject LB_Idle;
     public GameObject LG_Idle;
+    public GameObject speechBubbles;
 
     // Page 6: Tree change texture into angry + rain
     public GameObject rain;
@@ -71,7 +72,7 @@ public class FlipPage : MonoBehaviour
 
     public void Start()
     {
-
+        Page6Functions();
         animator = GetComponent<Animator>();
      
         storybook = FindObjectOfType<Storybook>();
@@ -163,6 +164,9 @@ public class FlipPage : MonoBehaviour
         Debug.Log("Page 1 animation triggered.");
     }
 
+    /// <summary>
+    /// Signed word: Sing
+    /// </summary>
     public void Page3Functions()
     {
         // New - Praise
@@ -210,6 +214,7 @@ public class FlipPage : MonoBehaviour
 
         // 4 Secs delay
         StartCoroutine(MoveAllNPCsAfterDelay(npcDB, npcLB, npcLG));
+        StartCoroutine(ShowSpeechBubblesAfterDelay());
 
         //currentPage++;
 
@@ -226,7 +231,13 @@ public class FlipPage : MonoBehaviour
         if (npcDB != null) npcDB.MoveToDestination();
         if (npcLB != null) npcLB.MoveToDestination();
         if (npcLG != null) npcLG.MoveToDestination();
-    } 
+    }
+
+    private IEnumerator ShowSpeechBubblesAfterDelay()
+    {
+        yield return new WaitForSeconds(7f);
+        speechBubbles.SetActive(true);
+    }
 
     public void Page6Functions()
     {
