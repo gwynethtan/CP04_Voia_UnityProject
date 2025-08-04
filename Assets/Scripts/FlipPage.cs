@@ -267,6 +267,7 @@ public class FlipPage : MonoBehaviour
         if (npcLB != null) npcLB.MoveToDestination2();
         if (npcLG != null) npcLG.MoveToDestination2();
 
+        speechBubbles.SetActive(false);
         smiling.SetActive(false);
         angry.SetActive(true);
         angryEffect.SetActive(true);
