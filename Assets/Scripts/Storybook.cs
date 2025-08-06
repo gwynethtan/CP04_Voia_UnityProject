@@ -64,24 +64,24 @@ public class Storybook : MonoBehaviour
     {
         // Keep updating signedWord
         signedWord = translateSign.GetSignedWord();
-        completedCheck.text = signedWord;
+        Debug.Log(signedWord);
     }
 
     public void SignCurrentPage()
     {
         if(flipPage == null)
         {
-            completedCheck.text = "Cannot sign, no FlipPage.";
+            Debug.Log("Cannot sign, no FlipPage.");
             return;
         }
 
         if (flipPage.isFlipping)
         {
-            completedCheck.text = "Page is flipping...";
+            Debug.Log("Page is flipping...");
             return;
         }
 
-        completedCheck.text = "CurrentPage signed";
+        Debug.Log("CurrentPage signed");
         PageSign(flipPage.CurrentPage);
     }
 
@@ -100,7 +100,7 @@ public class Storybook : MonoBehaviour
                 // Check whether previous page completed
                 if (!pageCompleted.TryGetValue(prevPage, out bool previousCompleted) || !previousCompleted)
                 {
-                    completedCheck.text = "Previous page not complete";
+                    Debug.Log("Previous page not complete");
                     return;
                 }
             }
@@ -115,14 +115,14 @@ public class Storybook : MonoBehaviour
             // Check whether something has been signed ans stored as signedWord
             if (string.IsNullOrEmpty(signedWord))
             {
-                pageCheck.text = "No signed word detected";
+                Debug.Log("No signed word detected");
                 return;
             }
 
             // Compare signed word to expected word (ignore case)
             if (signedWord == "b" || signedWord.Equals(expectedWord, StringComparison.OrdinalIgnoreCase) )
             {
-                completedCheck.text = $"Correct sign for page {pageNum}: {signedWord}";
+                Debug.Log($"Correct sign for page {pageNum}: {signedWord}");
 
                 // Call page action
                 if (actionsByPage.TryGetValue(pageNum, out Action action))
@@ -134,14 +134,14 @@ public class Storybook : MonoBehaviour
                     {
                         MarkPageCompleted(pageNum);
                     }
-                    pageCheck.text = "Page Completed (Storybook): " + pageNum;
+                    Debug.Log("Page Completed (Storybook): " + pageNum);
                 }
             }
 
             // if incorrect word signed
             else
             {
-                completedCheck.text = $"Incorrect sign. Expected; {expectedWord}";
+                Debug.Log($"Incorrect sign. Expected; {expectedWord}");
                 return;
             }
         }

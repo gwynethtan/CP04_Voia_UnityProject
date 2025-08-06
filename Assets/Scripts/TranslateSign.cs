@@ -101,9 +101,6 @@ public class TranslateSign : MonoBehaviour
             bubbleMgr.HandleBubbleDismissal(signLanguageBubbleGroup);
             StartCoroutine(textToSpeech.Speak(signedWord));
 
-            // Trigger signing names for page index 6
-            signDanceManager.OnWordSigned(signedWord);
-
             // Call delay before signing current page
             StartCoroutine(DelayedSignCurrentPage());
 
@@ -172,6 +169,8 @@ public class TranslateSign : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         storybook.SignCurrentPage();
+        // Trigger signing names for page index 6
+        signDanceManager.OnWordSigned(signedWord);
 
         if (!storybook.storybookCompleted)
         {

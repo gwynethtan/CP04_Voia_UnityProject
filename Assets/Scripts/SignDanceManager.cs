@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class SignDanceManager : MonoBehaviour
 {
+    /*
     [Header("Text")]
     // Shows what name to dance
     public TextMeshProUGUI promptText;
     // Show whether correct or not (For debug)
-    public TextMeshProUGUI feedbackText;
+    public TextMeshProUGUI feedbackText;*/
 
     [Header("References")]
     public FlipPage flipPage;  
     public Storybook storybook;
+
 
     [Header("Wolves")]
     public GameObject DB_Sing; 
@@ -27,6 +29,9 @@ public class SignDanceManager : MonoBehaviour
     private string[] targetWords = { "VAL", "BEL", "ELLE" };
     private int currentWordIndex = 0;
     public bool completedAllWords = false;
+
+    public BubbleGroup bubbleGroup;
+    public BubbleMgr bubbleMgr;
 
     private void Start()
     {
@@ -44,6 +49,8 @@ public class SignDanceManager : MonoBehaviour
         {
             storybook.signDanceManager = this;
         }
+
+        bubbleMgr = FindObjectOfType<BubbleMgr>();
     }
 
     /// <summary>
@@ -65,7 +72,7 @@ public class SignDanceManager : MonoBehaviour
         // Check if signed word matches current target name
         if (signedWord == targetWords[currentWordIndex])
         {
-            feedbackText.text = $"{signedWord} done";
+            ShowEval($"{signedWord} signed correctly!");
             TriggerWolfDance(currentWordIndex);
             currentWordIndex++;
 
@@ -73,8 +80,7 @@ public class SignDanceManager : MonoBehaviour
             if (currentWordIndex >= targetWords.Length)
             {
                 completedAllWords = true;
-                promptText.text = "All words signed";
-                feedbackText.text = "All words signed";
+                ShowEval("All words signed correctly, tree defeated!");
                 return;
             }
 
@@ -83,7 +89,7 @@ public class SignDanceManager : MonoBehaviour
         }
         else
         {
-            feedbackText.text = "Wrong.";
+            ShowEval($"{signedWord} signed wrongly. Please try again.");
         }
     }
 
@@ -94,11 +100,11 @@ public class SignDanceManager : MonoBehaviour
     {
         if (currentWordIndex < targetWords.Length)
         {
-            promptText.text = $"Sign: {targetWords[currentWordIndex]}";
+            ShowNamePrompt($"Sign: {targetWords[currentWordIndex]}");
         }
         else
         {
-            promptText.text = "";
+            ShowNamePrompt("");
         }
     }
 
@@ -136,8 +142,8 @@ public class SignDanceManager : MonoBehaviour
                 // Mark page completed
                 storybook.pageCompleted[6] = true;
                 storybook.MarkPageCompleted(6);
-                feedbackText.gameObject.SetActive(false);
-                promptText.gameObject.SetActive(false);
+                //feedbackText.gameObject.SetActive(false);
+                //promptText.gameObject.SetActive(false);
                 break;
         }
 
@@ -146,6 +152,21 @@ public class SignDanceManager : MonoBehaviour
             // Update health bar
             flipPage.UpdateHealthBar(health);
         }
+    }
+
+    public void ShowNamePrompt(string namePrompt)
+    {
+        StartCoroutine(bubbleMgr.ActivateBubble(bubbleGroup, namePrompt, false));
+    }
+
+    public void DisableNamePrompt()
+    {
+        bubbleMgr.HandleBubbleDismissal(bubbleGroup);
+    }
+
+    public void ShowEval(string evaluationText)
+    {
+        StartCoroutine(bubbleMgr.ActivateBubble(bubbleGroup, evaluationText, true));
     }
 
     /// <summary>

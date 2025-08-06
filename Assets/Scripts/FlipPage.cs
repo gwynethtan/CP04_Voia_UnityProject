@@ -305,10 +305,16 @@ public class FlipPage : MonoBehaviour
 
         if (signDanceManager != null)
         {
-            signDanceManager.promptText.gameObject.SetActive(true);
-            signDanceManager.feedbackText.gameObject.SetActive(true);
+            //signDanceManager.promptText.gameObject.SetActive(true);
+            //signDanceManager.feedbackText.gameObject.SetActive(true);
+            Debug.Log("Showing next prompt");
             signDanceManager.ResetGame();  
             signDanceManager.ShowNextPrompt();
+        }
+
+        else
+        {
+            Debug.LogWarning("Signdancemanager is null");
         }
 
         //verlaine
