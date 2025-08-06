@@ -220,7 +220,7 @@ public class AuthManager : MonoBehaviour
             Debug.Log($"User account created successfully: {newPlayer.Email}");
             long currentTimestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
             UserDataManager.Instance.SaveInitialUserData(newPlayer.UserId, email, username, currentTimestamp, true);
-            signupCompleteText.gameObject.SetActive(true);
+            ShowSignupComplete();
         });
     }
 
@@ -295,6 +295,17 @@ public class AuthManager : MonoBehaviour
     private void HideSignupPasswordError()
     {
         signupPasswErrorText.gameObject.SetActive(false);
+    }
+
+    private void ShowSignupComplete()
+    {
+        signupCompleteText.gameObject.SetActive(true);
+        Invoke(nameof(HideSignupComplete), 2f);
+    }
+
+    private void HideSignupComplete()
+    {
+        signupCompleteText.gameObject.SetActive(false);
     }
 
     /// <summary>
