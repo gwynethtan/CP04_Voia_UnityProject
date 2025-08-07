@@ -66,7 +66,9 @@ public class FlipPage : MonoBehaviour
     public GameObject Cube;
 
     // Game Interaction
-    public Slider slider; 
+    public Slider slider;
+
+    public bool danceSigned = false;
 
     public int CurrentPage => currentPage;
 
@@ -198,12 +200,6 @@ public class FlipPage : MonoBehaviour
     /// </summary>
     public void Page5Functions()
     {
-        // New - Praise
-        //DB_Idle.SetActive(true);
-        //LB_Idle.SetActive(true);
-        //LG_Idle.SetActive(true);
-
-
         //Verlaine 
         //Show idle
         DB_Sing.GetComponent<Animator>().SetBool("isSigned3", false);
@@ -249,14 +245,6 @@ public class FlipPage : MonoBehaviour
     /// </summary>
     public void Page6Functions()
     {
-        // New - Praise
-        //rain.SetActive(true);
-
-        //Verlaine
-        //rain.GetComponent<VisualEffect>().Play();
-        //Angry.SetActive(true);
-        //Smiling.SetActive(false);
-
         // Get the NPCMove components
         NPCMove npcDB = DB_Sing.GetComponent<NPCMove>();
         NPCMove npcLB = LB_Sing.GetComponent<NPCMove>();
@@ -305,11 +293,11 @@ public class FlipPage : MonoBehaviour
 
         if (signDanceManager != null)
         {
-            //signDanceManager.promptText.gameObject.SetActive(true);
-            //signDanceManager.feedbackText.gameObject.SetActive(true);
+
             Debug.Log("Showing next prompt");
-            signDanceManager.ResetGame();  
-            signDanceManager.ShowNextPrompt();
+            signDanceManager.namePromptUI.gameObject.SetActive(true);
+            signDanceManager.ResetGame();
+            danceSigned = true;
         }
 
         else
@@ -340,8 +328,6 @@ public class FlipPage : MonoBehaviour
 
 
         Debug.Log("Page 13 animation triggered.");
-
-        //currentPage++;
     }
 
     /// <summary>

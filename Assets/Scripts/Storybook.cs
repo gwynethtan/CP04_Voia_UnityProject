@@ -64,7 +64,7 @@ public class Storybook : MonoBehaviour
     {
         // Keep updating signedWord
         signedWord = translateSign.GetSignedWord();
-        Debug.Log(signedWord);
+        //Debug.Log(signedWord);
     }
 
     public void SignCurrentPage()
@@ -91,7 +91,6 @@ public class Storybook : MonoBehaviour
     /// <param name="pageNum"></param>
     public void PageSign(int pageNum)
     {
-        //text.text = pageNum.ToString();
         if (pageNum == flipPage.CurrentPage)
         {
             if (pageNum > 1)
