@@ -68,6 +68,11 @@ public class SignDanceManager : MonoBehaviour
             return;
         }
 
+        if (!flipPage.danceSigned)
+        {
+            return;
+        }
+
         signedWord = signedWord.ToUpper();
 
         // Check if signed word matches current target name
