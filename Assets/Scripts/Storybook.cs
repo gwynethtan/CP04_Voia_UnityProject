@@ -36,8 +36,11 @@ public class Storybook : MonoBehaviour
 
     public bool storybookCompleted = false;
 
+    public GameObject congratsMsg;
+
     void Start()
     {
+        congratsMsg.SetActive(false);
         signDanceManager = FindObjectOfType<SignDanceManager>();
         if (signDanceManager != null)
         {
@@ -226,6 +229,7 @@ public class Storybook : MonoBehaviour
 
         storybookCompleted = true;
         Debug.Log("Storybook completed");
+        congratsMsg.SetActive(true);
         userDataManager.UpdateIndivBadges(1, "bookTrackerToday", "booksRead");
     }
 }
