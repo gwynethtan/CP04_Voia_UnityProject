@@ -38,6 +38,7 @@ public class FlipPage : MonoBehaviour
     public GameObject trees;
     public GameObject Piano;
     public GameObject Drum;
+    public GameObject spawnEffects;
 
     // Page 5: Bottom of the mountain, got 3 wolves + press button and speech bubble
     public GameObject DB_Idle;
@@ -189,6 +190,7 @@ public class FlipPage : MonoBehaviour
 
         Piano.SetActive(true);
         Drum.SetActive(true);
+        spawnEffects.SetActive(true);
 
         //currentPage++;
 
