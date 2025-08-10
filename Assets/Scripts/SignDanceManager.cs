@@ -68,7 +68,7 @@ public class SignDanceManager : MonoBehaviour
             return;
         }
 
-        if (!flipPage.danceSigned)
+        if (!flipPage.danceSigned || signedWord == "dance")
         {
             return;
         }

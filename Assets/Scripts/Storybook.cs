@@ -122,7 +122,7 @@ public class Storybook : MonoBehaviour
             }
 
             // Compare signed word to expected word (ignore case)
-            if (signedWord == "b" || signedWord.Equals(expectedWord, StringComparison.OrdinalIgnoreCase) )
+            if (signedWord.Equals(expectedWord, StringComparison.OrdinalIgnoreCase) )
             {
                 Debug.Log($"Correct sign for page {pageNum}: {signedWord}");
 
