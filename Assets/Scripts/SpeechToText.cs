@@ -107,40 +107,18 @@ public class SpeechToText : MonoBehaviour
         if (volume >= silenceThreshold)
         {
             wasSpeaking = true;
-            stillSpeaking+= Time.deltaTime;
-            Debug.Log("User speaking");
-            if (stopSpeakingPause > 0)
-            {
-                stopSpeakingPause = 0;
-            }
-            if (stillSpeaking >= minSoundDuration)
-            {
-                Debug.Log("Over limit");
-                GetStartEndClip(micPosition, stillSpeaking);
-                stillSpeaking = 0; // to reset to ensure transcription comes every 2 sec
-            }
+            stillSpeaking += Time.deltaTime;
+            stopSpeakingPause = 0;
         }
-        else
+        else if (wasSpeaking)
         {
-            if (wasSpeaking)
+            stopSpeakingPause += Time.deltaTime;
+            if (stopSpeakingPause >= 1f) // finished speaking
             {
-                stopSpeakingPause += Time.deltaTime;
-                if (stopSpeakingPause >= 1) //long pauses as there are pauses in between words when speaking
-                {
-                    Debug.Log("slay"+ stillSpeaking);
-                    wasSpeaking = false;
-                    if (stillSpeaking>=1) 
-                    {
-                        GetStartEndClip(micPosition,stillSpeaking+stopSpeakingPause);
-                        stillSpeaking = 0;
-                    }
-                    stopSpeakingPause = 0;
-                }
-                else
-                {
-                    stillSpeaking += Time.deltaTime; 
-
-                }
+                GetStartEndClip(micPosition, stillSpeaking + stopSpeakingPause);
+                wasSpeaking = false;
+                stillSpeaking = 0;
+                stopSpeakingPause = 0;
             }
         }
     }
