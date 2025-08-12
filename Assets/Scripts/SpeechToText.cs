@@ -86,6 +86,11 @@ public class SpeechToText : MonoBehaviour
     int micPosition;
 
     /// <summary>
+    /// Track the previous words said 
+    /// </summary>
+    string prevTranscript="";
+
+    /// <summary>
     /// Gets the microphone data
     /// </summary>
     void Start()
@@ -229,9 +234,10 @@ public class SpeechToText : MonoBehaviour
             {
                 string transcript = transcription.results[0].alternatives[0].transcript;
                 Debug.Log(transcript);
-                if (transcript != null)
+                if (transcript != null && transcript!= prevTranscript)
                 {
                     StartCoroutine(bubbleMgr.ActivateBubble(SpeechToTextBubbleGroup, transcript, true)); // Displays text for user
+                    prevTranscript=transcript;
                 }
             }
         }
