@@ -1,3 +1,9 @@
+/*
+ * Author: Jacie Thoo Yixuan
+ * Date: 
+ * Description: This Script handles storybook
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +12,29 @@ using UnityEngine;
 
 public class Storybook : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to flipPage script
+    /// </summary>
     public FlipPage flipPage;
+
+    /// <summary>
+    /// Reference to signDanceManager script
+    /// </summary>
     public SignDanceManager signDanceManager;
+
+    /// <summary>
+    /// Reference to translateSign script
+    /// </summary>
     public TranslateSign translateSign;
+
+    /// <summary>
+    /// Reference to userDataManager script
+    /// </summary>
     public UserDataManager userDataManager;
+
+    /// <summary>
+    /// Stores the position of the book
+    /// </summary>
     public Transform bookPosition;
 
     private Dictionary<int, Action> actionsByPage;

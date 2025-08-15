@@ -115,16 +115,20 @@ public class SpeechToText : MonoBehaviour
             stillSpeaking += Time.deltaTime;
             stopSpeakingPause = 0;
         }
-        else if (wasSpeaking)
+        else  
         {
-            stopSpeakingPause += Time.deltaTime;
-            if (stopSpeakingPause >= 1f) // finished speaking
+            if (wasSpeaking)
             {
-                GetStartEndClip(micPosition, stillSpeaking + stopSpeakingPause);
-                wasSpeaking = false;
-                stillSpeaking = 0;
-                stopSpeakingPause = 0;
+                stopSpeakingPause += Time.deltaTime;
+                if (stopSpeakingPause >= 0.6f) // finished speaking
+                {
+                    GetStartEndClip(micPosition, stillSpeaking + stopSpeakingPause);
+                    wasSpeaking = false;
+                    stillSpeaking = 0;
+                    stopSpeakingPause = 0;
+                }
             }
+
         }
     }
 

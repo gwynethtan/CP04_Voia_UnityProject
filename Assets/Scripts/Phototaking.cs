@@ -1,3 +1,9 @@
+/*
+ * Author: Jacie Thoo Yixuan
+ * Date: 
+ * Description: This Script handles the photo taking functions 
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,19 +62,6 @@ public class Phototaking : MonoBehaviour
     public UserDataManager userDataManager;
 
     /// <summary>
-    /// Reference to MyDatabase script
-    /// </summary>
-    //public MyDatabase myDatabase;
-
-    /// <summary>
-    /// Initialise the camera 
-    /// </summary>
-    private void Awake()
-    {
-        //renderCamera = renderCamera = Camera.main;
-    }
-
-    /// <summary>
     /// Turns off camera at the start, gets folder for saving photos
     /// </summary>
     private void Start()
@@ -94,6 +87,7 @@ public class Phototaking : MonoBehaviour
 
         camera.targetTexture = newTexture;
     }
+
 
     public void NewTakePhoto()
     {
