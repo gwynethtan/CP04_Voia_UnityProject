@@ -1,6 +1,6 @@
 /*
  * Author: Hoo Ying Qi Praise and Tan Ting Yu Gwyneth
- * Date: 14/7/2025
+ * Date: 12/7/2025
  * Description: This script handles saving and retrieving user data from Firebase Realtime Database
  */
 
