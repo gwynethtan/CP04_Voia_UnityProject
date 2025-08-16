@@ -180,7 +180,6 @@ public class PageManager : MonoBehaviour
         if (storybook != null)
         {
             storybook.pageManager = this;
-            storybook.bookPosition = this.transform;
         }
 
         else

@@ -1,7 +1,7 @@
 /*
- * Author: Jacie Thoo Yixuan
- * Date: 
- * Description: This Script handles storybook
+ * Author: Jacie Thoo Yixuan, Hoo Ying Qi Praise, Verlaine Ong Xin Yi
+ * Date: 9/6/2025
+ * Description: This Script handles the storybook and sign language integration
  */
 
 using System;
@@ -33,14 +33,18 @@ public class Storybook : MonoBehaviour
     public UserDataManager userDataManager;
 
     /// <summary>
-    /// Stores the position of the book
+    /// Stores actions mapped to page index
     /// </summary>
-    public Transform bookPosition;
-
     private Dictionary<int, Action> actionsByPage;
+
+    /// <summary>
+    /// Tracks completion status of pages in the book
+    /// </summary>
     public Dictionary<int, bool> pageCompleted = new Dictionary<int, bool>();
 
-    // Dictionary for matching page and words
+    /// <summary>
+    /// Maps each page index to expected sign
+    /// </summary>
     private Dictionary<int, string> expectedSigns = new Dictionary<int, string>()
     {
         { 1, "Wolf" },
@@ -53,16 +57,25 @@ public class Storybook : MonoBehaviour
         { 8, "Happily" }
     };
 
+    /// <summary>
+    /// Stores current signed word
+    /// </summary>
     public string signedWord;
 
-    public TextMeshProUGUI text;
-    public TextMeshProUGUI pageCheck;
-    public TextMeshProUGUI completedCheck;
-
+    /// <summary>
+    /// Whether the storybook has been read completely
+    /// </summary>
     public bool storybookCompleted = false;
 
+    /// <summary>
+    /// Stores congratulations canvas
+    /// </summary>
     public GameObject congratsMsg;
 
+
+    /// <summary>
+    /// Initialisation of references and sets congrats off
+    /// </summary>
     void Start()
     {
         congratsMsg.SetActive(false);
@@ -72,7 +85,7 @@ public class Storybook : MonoBehaviour
             signDanceManager.storybook = this;
         }
 
-        //total 14 actual pages, 8 signed pages
+        // Total 14 actual pages, 8 signed pages
         actionsByPage = new Dictionary<int, Action>
         {
             {1, Page1},
@@ -84,33 +97,37 @@ public class Storybook : MonoBehaviour
             {7, Page13},
             {8, Page14},
         };
-
     }
 
-    
+    /// <summary>
+    /// Updates signed word
+    /// </summary>
     void Update()
     {
         // Keep updating signedWord
         signedWord = translateSign.GetSignedWord();
-        //Debug.Log(signedWord);
     }
 
+    /// <summary>
+    /// Attempts to sign the current page
+    /// </summary>
     public void SignCurrentPage()
     {
         if(pageManager == null)
         {
-            Debug.Log("Cannot sign, no FlipPage.");
+            Debug.Log("Cannot sign, pageManager is null");
             return;
         }
 
+        // Don't call PageSign when it's currently flipping
         if (pageManager.isFlipping)
         {
             Debug.Log("Page is flipping...");
             return;
         }
 
-        Debug.Log("CurrentPage signed");
         PageSign(pageManager.CurrentPage);
+        Debug.Log("CurrentPage signed");
     }
 
     /// <summary>
@@ -191,30 +208,45 @@ public class Storybook : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executes events for page 1 and marks it as completed
+    /// </summary>
     void Page1()
     {
         pageManager.Page1Functions();
         pageCompleted[1] = true;
     }
 
+    /// <summary>
+    /// Executes events for page 3 and marks it as completed
+    /// </summary>
     void Page3()
     {
         pageManager.Page3Functions();
         pageCompleted[2] = true;
     }
 
+    /// <summary>
+    /// Executes events for page 5 and marks it as completed
+    /// </summary>
     void Page5()
     {
         pageManager.Page5Functions();
         pageCompleted[3] = true;
     }
 
+    /// <summary>
+    /// Executes events for page 6 and marks it as completed
+    /// </summary>
     void Page6()
     {
         pageManager.Page6Functions();
         pageCompleted[4] = true;
-    } 
+    }
 
+    /// <summary>
+    /// Executes events for page 8 and marks it as completed
+    /// </summary>
     void Page8()
     {
         pageManager.Page8Functions();
@@ -222,6 +254,7 @@ public class Storybook : MonoBehaviour
     }
 
     /// <summary>
+    /// Executes events for page 10 and marks it as completed
     /// Game page
     /// </summary>
     void Page10()
@@ -229,18 +262,27 @@ public class Storybook : MonoBehaviour
         pageManager.Page10Functions();
     }
 
+    /// <summary>
+    /// Executes events for page 13 and marks it as completed
+    /// </summary>
     void Page13()
     {
         pageManager.Page13Functions();
         pageCompleted[7] = true;
     }
 
+    /// <summary>
+    /// Executes events for page 14 and marks it as completed
+    /// </summary>
     void Page14()
     {
         pageManager.Page14Functions();
         pageCompleted[8] = true;
     }
 
+    /// <summary>
+    /// Checks whether the storybook has been completed and update user details
+    /// </summary>
     public void CheckStorybookCompleted()
     {
         for (int i = 1; i <= 8; i++)

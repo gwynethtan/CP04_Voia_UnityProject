@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Author: Jacie Thoo Yixuan
+ * Date: 27/7/2025
+ * Description: This Script handles the mini game mechanics
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,31 +12,79 @@ using UnityEngine;
 public class SignDanceManager : MonoBehaviour
 {
     [Header("Text")]
-    // Shows what name to dance
+    /// <summary>
+    /// Canvas that holds name prompt
+    /// </summary>
     public GameObject namePromptUI;
+
+    /// <summary>
+    /// Text that displays the wolf name prompt (to sign)
+    /// </summary>
     public TextMeshProUGUI namePromptText;
 
     [Header("References")]
-    public PageManager pageManager;  
+    /// <summary>
+    /// Reference to PageManager script
+    /// </summary>
+    public PageManager pageManager;
+
+    /// <summary>
+    /// Reference to Storybook script
+    /// </summary>
     public Storybook storybook;
+
+    /// <summary>
+    /// Reference to BubbleGroup
+    /// </summary>
+    public BubbleGroup bubbleGroup;
+
+    /// <summary>
+    /// Reference to BubbleMgr script
+    /// </summary>
+    public BubbleMgr bubbleMgr;
 
 
     [Header("Wolves")]
+    /// <summary>
+    /// Reference to wolf 1
+    /// </summary>
     public GameObject DB_Sing; 
-    public GameObject LB_Sing; 
+
+    /// <summary>
+    /// Reference to wolf 2
+    /// </summary>
+    public GameObject LB_Sing;
+
+    /// <summary>
+    /// Reference to wolf 3
+    /// </summary>
     public GameObject LG_Sing; 
 
     [Header("Game")]
+    /// <summary>
+    /// Starting tree health amount for the mini game
+    /// </summary>
     public int health = 3;
 
-    // Words to sign
+    /// <summary>
+    /// Array of wolf names user must sign
+    /// </summary>
     private string[] targetWords = { "VAL", "BEL", "ELLE" };
+
+    /// <summary>
+    /// Tracks current index of the target word being signed
+    /// </summary>
     private int currentWordIndex = 0;
+
+    /// <summary>
+    /// Whether all target words have been correctly soigned
+    /// </summary>
     public bool completedAllWords = false;
 
-    public BubbleGroup bubbleGroup;
-    public BubbleMgr bubbleMgr;
 
+    /// <summary>
+    /// Initialises references
+    /// </summary>
     private void Start()
     {
         // Assign references

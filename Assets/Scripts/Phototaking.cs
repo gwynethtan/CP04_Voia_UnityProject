@@ -1,6 +1,6 @@
 /*
  * Author: Jacie Thoo Yixuan
- * Date: 
+ * Date: 30/7/2025
  * Description: This Script handles the photo taking functions 
  */
 
@@ -88,7 +88,9 @@ public class Phototaking : MonoBehaviour
         camera.targetTexture = newTexture;
     }
 
-
+    /// <summary>
+    /// Takes photo, to be assigned in inspector
+    /// </summary>
     public void NewTakePhoto()
     {
         renderCamera.enabled = true;
@@ -96,6 +98,10 @@ public class Phototaking : MonoBehaviour
         StartCoroutine(TakePhotoCoroutine());
     }
 
+    /// <summary>
+    /// Wait before taking photo
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator TakePhotoCoroutine()
     {
         yield return null;

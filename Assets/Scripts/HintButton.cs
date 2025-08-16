@@ -1,3 +1,9 @@
+/*
+ * Author: Jacie Thoo Yixuan
+ * Date: 9/6/2025
+ * Description: This Script handles the hint button functions
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +13,19 @@ using TMPro;
 
 public class HintButton : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to pageManager
+    /// </summary>
     public PageManager pageManager;
+
+    /// <summary>
+    /// Reference to video player
+    /// </summary>
     public VideoPlayer videoPlayer;
+
+    /// <summary>
+    /// Reference to hint canvas
+    /// </summary>
     public GameObject hintCanvas;
 
     /// <summary>
@@ -31,11 +48,14 @@ public class HintButton : MonoBehaviour
         { 8, "happy.mp4" }
     };
 
+    /// <summary>
+    /// Sets up the video player and ensures the hint canvas is hidden at the start
+    /// </summary>
     void Start()
     {
         if (videoPlayer != null)
         {
-            // HIDE HINT CANVAS ONCE VID ENDS
+            // Hide hint canvas once video ends
             videoPlayer.loopPointReached += HideHintCanvas;
         }
 
@@ -45,6 +65,9 @@ public class HintButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows the hint video for current page
+    /// </summary>
     public void ShowHint()
     {
         int currentPage = pageManager.CurrentPage;
@@ -61,6 +84,11 @@ public class HintButton : MonoBehaviour
         StartCoroutine(PlayVideo(fullUrl));
     }
 
+    /// <summary>
+    /// Loads and plays hint video from Supabase URL
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
     private IEnumerator PlayVideo(string url)
     {
         UnityWebRequest request = UnityWebRequest.Get(url);
@@ -79,6 +107,10 @@ public class HintButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hide hint canvas and stop video when it finishes
+    /// </summary>
+    /// <param name="vp"></param>
     private void HideHintCanvas(VideoPlayer vp)
     {
         hintCanvas.SetActive(false);

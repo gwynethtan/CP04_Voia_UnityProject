@@ -1,3 +1,9 @@
+/*
+ * Author: Jacie Thoo Yixuan
+ * Date: 3/6/2025
+ * Description: This Script handles the scene capture 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +12,9 @@ using UnityEngine.XR.OpenXR.Features.Meta;
 
 public class SceneCapture : MonoBehaviour
 {
+    /// <summary>
+    /// Starts scene capture on MR
+    /// </summary>
     public void StartSceneCapture()
     {
         // Get reference to arsession
@@ -23,11 +32,5 @@ public class SceneCapture : MonoBehaviour
         {
             Debug.Log("Scene capture failed.");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
