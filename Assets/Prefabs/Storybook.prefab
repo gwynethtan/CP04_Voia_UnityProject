@@ -22175,18 +22175,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   namePromptUI: {fileID: 6069812664333741294}
   namePromptText: {fileID: 2641484624046081919}
-  pageManager: {fileID: 0}
+  pageManager: {fileID: 3906827433840317119}
   storybook: {fileID: 0}
-  DB_Sing: {fileID: 1881477104845387425}
-  LB_Sing: {fileID: 5569028302954351189}
-  LG_Sing: {fileID: 5999032462682317548}
-  health: 3
-  completedAllWords: 0
   bubbleGroup:
     bubbleBg: {fileID: 1037247953894587516}
     bubbleText: {fileID: 8676961217778863495}
     bubbleActive: 0
   bubbleMgr: {fileID: 0}
+  DB_Sing: {fileID: 1881477104845387425}
+  LB_Sing: {fileID: 5569028302954351189}
+  LG_Sing: {fileID: 5999032462682317548}
+  health: 3
+  completedAllWords: 0
 --- !u!1 &1238484473630060948
 GameObject:
   m_ObjectHideFlags: 0
@@ -123418,7 +123418,7 @@ GameObject:
   - component: {fileID: 3906827433840317119}
   - component: {fileID: 1941160358736389241}
   m_Layer: 0
-  m_Name: BookFlippingMechanism
+  m_Name: PageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

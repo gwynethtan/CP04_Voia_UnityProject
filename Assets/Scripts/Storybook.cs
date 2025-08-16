@@ -13,7 +13,7 @@ using UnityEngine;
 public class Storybook : MonoBehaviour
 {
     /// <summary>
-    /// Reference to flipPage script
+    /// Reference to PageManager script
     /// </summary>
     public PageManager pageManager;
 
