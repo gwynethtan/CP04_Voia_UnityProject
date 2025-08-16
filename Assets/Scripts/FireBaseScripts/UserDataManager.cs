@@ -212,4 +212,16 @@ public class UserDataManager : MonoBehaviour
             }
         });
     }
+
+    /// <summary>
+    /// Stores the images the user took into database
+    /// Checks the last reset date 
+    /// </summary>
+    /// <param name="imageUrl"></param>
+    public void AddImage(string imageUrl)
+    {
+        DatabaseReference imagesRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("imagesTaken");
+        imagesRef.Push().SetValueAsync(imageUrl);
+        Debug.Log("Image added to database");
+    }
 }

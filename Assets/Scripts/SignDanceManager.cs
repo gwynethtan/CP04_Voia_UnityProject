@@ -11,7 +11,7 @@ public class SignDanceManager : MonoBehaviour
     public TextMeshProUGUI namePromptText;
 
     [Header("References")]
-    public FlipPage flipPage;  
+    public PageManager pageManager;  
     public Storybook storybook;
 
 
@@ -62,13 +62,13 @@ public class SignDanceManager : MonoBehaviour
         }
 
         // Only accept input on page index 6 (Page 10)
-        if (flipPage == null || flipPage.GetCurrentPageIndex() != 6)
+        if (pageManager == null || pageManager.GetCurrentPageIndex() != 6)
         {
             Debug.Log("Not on page 10.");
             return;
         }
 
-        if (!flipPage.danceSigned || signedWord == "dance")
+        if (!pageManager.danceSigned || signedWord == "dance")
         {
             return;
         }
@@ -76,7 +76,7 @@ public class SignDanceManager : MonoBehaviour
         signedWord = signedWord.ToUpper();
 
         // Check if signed word matches current target name
-        if (signedWord == targetWords[currentWordIndex] && flipPage.danceSigned)
+        if (signedWord == targetWords[currentWordIndex] && pageManager.danceSigned)
         {
             ShowEval($"{targetWords[currentWordIndex]} signed correctly!");
             TriggerWolfDance(currentWordIndex);
@@ -140,11 +140,11 @@ public class SignDanceManager : MonoBehaviour
                 health -= 1;
 
                 // Addtional things to happen
-                flipPage.angry.SetActive(false);
-                flipPage.smiling.SetActive(true);
-                flipPage.angryEffect.SetActive(false);
-                flipPage.rain.SetActive(false);
-                flipPage.slider.gameObject.SetActive(false);
+                pageManager.angry.SetActive(false);
+                pageManager.smiling.SetActive(true);
+                pageManager.angryEffect.SetActive(false);
+                pageManager.rain.SetActive(false);
+                pageManager.slider.gameObject.SetActive(false);
 
                 // Mark page completed
                 storybook.pageCompleted[6] = true;
@@ -154,10 +154,10 @@ public class SignDanceManager : MonoBehaviour
                 break;
         }
 
-        if (flipPage != null)
+        if (pageManager != null)
         {
             // Update health bar
-            flipPage.UpdateHealthBar(health);
+            pageManager.UpdateHealthBar(health);
         }
     }
 

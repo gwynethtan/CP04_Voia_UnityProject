@@ -15,7 +15,7 @@ public class Storybook : MonoBehaviour
     /// <summary>
     /// Reference to flipPage script
     /// </summary>
-    public FlipPage flipPage;
+    public PageManager pageManager;
 
     /// <summary>
     /// Reference to signDanceManager script
@@ -97,20 +97,20 @@ public class Storybook : MonoBehaviour
 
     public void SignCurrentPage()
     {
-        if(flipPage == null)
+        if(pageManager == null)
         {
             Debug.Log("Cannot sign, no FlipPage.");
             return;
         }
 
-        if (flipPage.isFlipping)
+        if (pageManager.isFlipping)
         {
             Debug.Log("Page is flipping...");
             return;
         }
 
         Debug.Log("CurrentPage signed");
-        PageSign(flipPage.CurrentPage);
+        PageSign(pageManager.CurrentPage);
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public class Storybook : MonoBehaviour
     /// <param name="pageNum"></param>
     public void PageSign(int pageNum)
     {
-        if (pageNum == flipPage.CurrentPage)
+        if (pageNum == pageManager.CurrentPage)
         {
             if (pageNum > 1)
             {
@@ -157,7 +157,7 @@ public class Storybook : MonoBehaviour
                     action.Invoke();
 
                     // Mark page completed unless it is game page
-                    if (flipPage.CurrentPage != 6) 
+                    if (pageManager.CurrentPage != 6) 
                     {
                         MarkPageCompleted(pageNum);
                     }
@@ -187,37 +187,37 @@ public class Storybook : MonoBehaviour
     {
         if (pageCompleted[pageNum] == true)
         {
-            flipPage.pageFlipTrigger.enabled = true;
+            pageManager.pageFlipTrigger.enabled = true;
         }
     }
 
     void Page1()
     {
-        flipPage.Page1Functions();
+        pageManager.Page1Functions();
         pageCompleted[1] = true;
     }
 
     void Page3()
     {
-        flipPage.Page3Functions();
+        pageManager.Page3Functions();
         pageCompleted[2] = true;
     }
 
     void Page5()
     {
-        flipPage.Page5Functions();
+        pageManager.Page5Functions();
         pageCompleted[3] = true;
     }
 
     void Page6()
     {
-        flipPage.Page6Functions();
+        pageManager.Page6Functions();
         pageCompleted[4] = true;
     } 
 
     void Page8()
     {
-        flipPage.Page8Functions();
+        pageManager.Page8Functions();
         pageCompleted[5] = true;
     }
 
@@ -226,18 +226,18 @@ public class Storybook : MonoBehaviour
     /// </summary>
     void Page10()
     { 
-        flipPage.Page10Functions();
+        pageManager.Page10Functions();
     }
 
     void Page13()
     {
-        flipPage.Page13Functions();
+        pageManager.Page13Functions();
         pageCompleted[7] = true;
     }
 
     void Page14()
     {
-        flipPage.Page14Functions();
+        pageManager.Page14Functions();
         pageCompleted[8] = true;
     }
 

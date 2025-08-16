@@ -7,7 +7,7 @@ using TMPro;
 
 public class HintButton : MonoBehaviour
 {
-    public FlipPage flipPage;
+    public PageManager pageManager;
     public VideoPlayer videoPlayer;
     public GameObject hintCanvas;
 
@@ -47,7 +47,7 @@ public class HintButton : MonoBehaviour
 
     public void ShowHint()
     {
-        int currentPage = flipPage.CurrentPage;
+        int currentPage = pageManager.CurrentPage;
         Debug.Log("Hint Button pressed");
 
         if (!videoFiles.TryGetValue(currentPage, out string fileName))
