@@ -1,8 +1,7 @@
 /*
  * Author: Hoo Ying Qi Praise
- * Date: 
- * Description: 
- * Represents user data to be stored in Firebase, with fields for email, username
+ * Date: 12/7/2025
+ * Description: Represents user personal details to be stored in Firebase
  */
 
 [System.Serializable]

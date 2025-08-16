@@ -1,21 +1,25 @@
 /*
  * Author: Hoo Ying Qi Praise and Tan Ting Yu Gwyneth
- * Date: 14 July 2025
- * Description: 
- * This Script handles saving and retrieving user data from Firebase Realtime Database
+ * Date: 14/7/2025
+ * Description: This script handles saving and retrieving user data from Firebase Realtime Database
  */
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class UserDataManager : MonoBehaviour
 {
+    /// <summary>
+    /// Gets instance of user data manager
+    /// </summary>
     public static UserDataManager Instance { get; private set; }
+
+    /// <summary>
+    /// Reference to database
+    /// </summary>
     private DatabaseReference dbRef;
 
     /// <summary>
@@ -46,6 +50,14 @@ public class UserDataManager : MonoBehaviour
         return currentUserId;
     }
 
+    /// <summary>
+    /// Stores new user data into database upon sign up / login
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="email"></param>
+    /// <param name="username"></param>
+    /// <param name="dateCreated"></param>
+    /// <param name="userOnline"></param>
     public void SaveInitialUserData(string userId, string email, string username,long dateCreated, bool userOnline)
     {
         if (string.IsNullOrEmpty(username))
@@ -82,6 +94,27 @@ public class UserDataManager : MonoBehaviour
         playerPath.Child("points").SetValueAsync(0);
     }
 
+    /// <summary>
+    /// Update user online status
+    /// </summary>
+    /// <param name="currentUserId"></param>
+    /// <param name="playerOnline"></param>
+    public void UpdateUserOnline(bool userOnline)
+    {
+        Dictionary<string, object> updatedDetails = new Dictionary<string, object>
+        {
+            ["userOnline"] = userOnline
+        };
+        dbRef.Child("users").Child(SetCurrentUserId()).Child("userDetails").UpdateChildrenAsync(updatedDetails);
+        Debug.Log("Updated playerDetails date");
+    }
+
+    /// <summary>
+    /// Updates relevant badges and points when user finished a task
+    /// </summary>
+    /// <param name="points"></param>
+    /// <param name="badgeType"></param>
+    /// <param name="activityType"></param>
     public async void UpdateIndivBadges(int points, string badgeType, string activityType)
     {
         var pointsRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("points");
@@ -113,12 +146,13 @@ public class UserDataManager : MonoBehaviour
         }
     }
 
-    //need check if need reset badge 
+    /// <summary>
+    /// Resets badge points every 24 hours
+    /// </summary>
     public void CheckResetBadge()
     {
         GetLastResetDate((lastResetDate) =>
         {
-            // Assuming lastResetDate is in Unix timestamp (seconds since epoch)
             var lastDateTime = DateTimeOffset.FromUnixTimeSeconds(lastResetDate).DateTime;
             var now = DateTime.Now;
 
@@ -154,31 +188,9 @@ public class UserDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Update user online status
+    /// Checks the last reset date 
     /// </summary>
-    /// <param name="currentUserId"></param>
-    /// <param name="playerOnline"></param>
-    public void UpdateUserOnline(bool userOnline)
-    {
-        Dictionary<string, object> updatedDetails = new Dictionary<string, object>
-        {
-            ["userOnline"] = userOnline
-        };
-        dbRef.Child("users").Child(SetCurrentUserId()).Child("userDetails").UpdateChildrenAsync(updatedDetails);
-        Debug.Log("Updated playerDetails date");
-    }
-
-    /// <summary>
-    /// Stores the images the user took into database
-    /// </summary>
-    /// <param name="imageUrl"></param>
-    public void AddImage(string imageUrl)
-    {
-        DatabaseReference imagesRef = dbRef.Child("users").Child(SetCurrentUserId()).Child("imagesTaken");
-        imagesRef.Push().SetValueAsync(imageUrl);
-        Debug.Log("Image added to database");
-    }
-
+    /// <param name="callback"></param>
     public void GetLastResetDate(Action<int> callback)
     {
         dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child("lastReset").GetValueAsync().ContinueWithOnMainThread(task =>

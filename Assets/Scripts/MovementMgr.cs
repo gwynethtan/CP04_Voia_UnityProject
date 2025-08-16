@@ -1,3 +1,9 @@
+/*
+ * Author: Tan Ting Yu Gwyneth
+ * Date: 2/6/2025
+ * Description: This script handles logic for user movement detection
+ */
+
 using PDollarGestureRecognizer;
 using TMPro;
 using UnityEngine;

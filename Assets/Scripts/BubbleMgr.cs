@@ -1,3 +1,9 @@
+/*
+ * Author: Tan Ting Yu Gwyneth
+ * Date: 4/5/2025
+ * Description: This script manages notifications for stacking and fading animations
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

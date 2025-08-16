@@ -1,7 +1,7 @@
 /*
 * Author: Tan Ting Yu Gwyneth
-* Date: 1/12/2024
-* Description: This file defines the MainGoals class, which is used to store their results that can greatly determine their work ethic as a firefighter
+* Date: 14/7/2025
+* Description: This file defines both the individual and overall daily badges classes
 */
 
 using System.Collections;
@@ -11,67 +11,63 @@ using UnityEngine;
 public class DailyBadges
 {
     /// <summary>
-    /// Variable to store the date the player's health
+    /// Variable to store the last reset date for the badges
     /// </summary>
     public long lastReset;
 
     /// <summary>
-    /// Variable to store player score
+    /// Variable to store the number of badges completed
     /// </summary>
     public int badgesCompleted;
 
     /// <summary>
-    /// Initializes an empty MainGoals object
+    /// Initializes an empty DailyBadges object
     /// </summary>
     public DailyBadges()
     {
-        // This constructor initializes an empty MainGoals object
+        // This constructor initializes an empty DailyBadges object
     }
 
     /// <summary>
     /// Constructor with parameters to initialize all fields
     /// </summary>
-    /// <param name="savedDog">Indicates if the player saved the dog</param>
-    /// <param name="timeTakenToSaveDog">The time taken to save the dog</param>
-    /// <param name="healthRemaining">The player's remaining health</param>
-    /// <param name="score">The player's score</param>
+    /// <param name="lastReset">Last reset date for all badges</param>
+    /// <param name="badgesCompleted">Number of badges completed</param>
     public DailyBadges(long lastReset, int badgesCompleted)
     {
-        this.lastReset = lastReset; // Set savedDog
-        this.badgesCompleted = badgesCompleted; // Set time to save dog
+        this.lastReset = lastReset; 
+        this.badgesCompleted = badgesCompleted; 
     }
 }
 
 public class IndivBadges
 {
     /// <summary>
-    /// Variable to store the date the player's health
+    /// Variable to store the minimum amount points to earn the badge
     /// </summary>
     public int goal;
 
     /// <summary>
-    /// Variable to store player score
+    /// Variable to store the current score of the badge
     /// </summary>
     public int currentScore;
 
     /// <summary>
-    /// Initializes an empty MainGoals object
+    /// Initializes an empty IndivBadges object
     /// </summary>
     public IndivBadges()
     {
-        // This constructor initializes an empty MainGoals object
+        // This constructor initializes an empty IndivBadges object
     }
 
     /// <summary>
     /// Constructor with parameters to initialize all fields
     /// </summary>
-    /// <param name="savedDog">Indicates if the player saved the dog</param>
-    /// <param name="timeTakenToSaveDog">The time taken to save the dog</param>
-    /// <param name="healthRemaining">The player's remaining health</param>
-    /// <param name="score">The player's score</param>
+    /// <param name="goal">Minimum amount points to earn the badge</param>
+    /// <param name="currentScore">Current user score of the badge</param>
     public IndivBadges(int goal, int currentScore)
     {
-        this.goal = goal; // Set savedDog
-        this.currentScore = currentScore; // Set time to save dog
+        this.goal = goal; 
+        this.currentScore = currentScore; 
     }
 }

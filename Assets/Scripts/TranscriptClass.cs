@@ -1,3 +1,9 @@
+/*
+ * Author: Tan Ting Yu Gwyneth
+ * Date: 14/5/2025
+ * Description: This script stores classes for everything related to the notifications
+ */
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;

@@ -1,3 +1,9 @@
+/*
+ * Author: Tan Ting Yu Gwyneth
+ * Date: 21/5/2025
+ * Description: This script manages hand movement for a single hand
+ */
+
 using UnityEngine.XR.Hands.Gestures;
 using UnityEngine;
 

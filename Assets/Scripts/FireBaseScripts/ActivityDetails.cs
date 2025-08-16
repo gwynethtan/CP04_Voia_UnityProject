@@ -1,7 +1,7 @@
 /*
 * Author: Tan Ting Yu Gwyneth
 * Date: 1/12/2024
-* Description: This file defines the MainGoals class, which is used to store their results that can greatly determine their work ethic as a firefighter
+* Description: This file defines the activity details of the class, which stores their overall activity points
 */
 
 using System.Collections;
@@ -11,45 +11,34 @@ using UnityEngine;
 public class ActivityDetails
 {
     /// <summary>
-    /// Variable to store the date the player's health
+    /// Variable to store the number of books read
     /// </summary>
     public int booksRead;
 
     /// <summary>
-    /// Variable to store player score
+    /// Variable to store the number of times they spelt a word with sign language
     /// </summary>
     public int numberOfTimesSpelt;
 
     /// <summary>
-    /// Variable to store player score
-    /// </summary>
-    public int typeOfWordsSpelt;
-
-    /// <summary>
-    /// Variable to store player score
-    /// </summary>
-    public int wordsSpeltCorrectly;
-
-    /// <summary>
-    /// Variable to stored the total signed words by user
+    /// Variable to stored the total words signed by user
     /// </summary>
     public int totalSignedWords;
 
     /// <summary>
-    /// Initializes an empty MainGoals object
+    /// Initializes an empty ActivityDetails object
     /// </summary>
     public ActivityDetails()
     {
-        // This constructor initializes an empty MainGoals object
+        // This constructor initializes an empty ActivityDetails object
     }
 
     /// <summary>
     /// Constructor with parameters to initialize all fields
     /// </summary>
-    /// <param name="savedDog">Indicates if the player saved the dog</param>
-    /// <param name="timeTakenToSaveDog">The time taken to save the dog</param>
-    /// <param name="healthRemaining">The player's remaining health</param>
-    /// <param name="score">The player's score</param>
+    /// <param name="booksRead">Number of books read</param>
+    /// <param name="numberOfTimesSpelt">Number of times they spelt a word</param>
+    /// <param name="totalSignedWords">Total words signed by user</param>
     public ActivityDetails(int booksRead,int numberOfTimesSpelt, int totalSignedWords)
     {
         this.booksRead = booksRead; 

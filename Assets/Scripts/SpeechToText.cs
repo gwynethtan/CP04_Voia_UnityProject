@@ -1,3 +1,9 @@
+/*
+ * Author: Tan Ting Yu Gwyneth
+ * Date: 4/5/2025
+ * Description: This script manages speech to text conversion 
+ */
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;

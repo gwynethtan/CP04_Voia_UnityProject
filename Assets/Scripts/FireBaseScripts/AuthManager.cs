@@ -1,8 +1,7 @@
 /*
  * Author: Hoo Ying Qi Praise
- * Date: 
- * Description: 
- * This Script handles user authentication and menu navigation
+ * Date: 14/7/2025
+ * Description: This Script handles user authentication and menu navigation
  */
 
 using TMPro;
@@ -44,6 +43,9 @@ public class AuthManager : MonoBehaviour
     /// </summary>
     public GameObject logOutPanel;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Button LogInBtn;
     public Button SignUpBtn;
 
