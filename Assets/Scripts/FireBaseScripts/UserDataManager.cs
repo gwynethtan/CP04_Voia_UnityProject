@@ -153,10 +153,9 @@ public class UserDataManager : MonoBehaviour
     {
         GetLastResetDate((lastResetDate) =>
         {
-            var lastDateTime = DateTimeOffset.FromUnixTimeSeconds(lastResetDate).DateTime;
-            var now = DateTime.Now;
+            long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 
-            if ((now - lastDateTime).TotalSeconds >= 86400)
+            if (now - lastResetDate >= 86400)
             {
                 // Reset logic
                 var dailyBadgesPath = dbRef.Child(currentUserId).Child("dailyBadges");
@@ -176,13 +175,12 @@ public class UserDataManager : MonoBehaviour
                         {
                             ["dayPoints"] = scoreTask.Result.Value
                         };
-                        dbRef.Child("users").Child(currentUserId).Child("pointDetails").Child(DateTime.Now.ToString()).UpdateChildrenAsync(updatedDetails);
+                        dbRef.Child("users").Child(currentUserId).Child("pointDetails").Child(now.ToString()).UpdateChildrenAsync(updatedDetails);
                     }
                 });
 
                 // Update last reset date
-                long newResetTimestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-                dailyBadgesPath.Child("lastReset").SetValueAsync(newResetTimestamp);
+                dailyBadgesPath.Child("lastReset").SetValueAsync(now);
             }
         });
     }
@@ -191,7 +189,7 @@ public class UserDataManager : MonoBehaviour
     /// Checks the last reset date 
     /// </summary>
     /// <param name="callback"></param>
-    public void GetLastResetDate(Action<int> callback)
+    public void GetLastResetDate(Action<long> callback)
     {
         dbRef.Child("users").Child(SetCurrentUserId()).Child("dailyBadges").Child("lastReset").GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -202,9 +200,9 @@ public class UserDataManager : MonoBehaviour
             }
 
             DataSnapshot snapshot = task.Result;
-            if (snapshot.Exists && int.TryParse(snapshot.Value.ToString(), out int goal))
+            if (snapshot.Exists && long.TryParse(snapshot.Value.ToString(), out long lastReset))
             {
-                callback.Invoke(goal);
+                callback.Invoke(lastReset);
             }
             else
             {

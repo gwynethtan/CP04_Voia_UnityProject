@@ -1,11 +1,25 @@
-﻿using System;
+﻿/*
+ * Author: Hoo Ying Qi Praise and Tan Ting Yu Gwyneth
+ * Date: 5/5/2025
+ * A simple utility to convert Unity AudioClips to WAV files and back
+ */
+
+using System;
 using System.IO;
 using UnityEngine;
 
 public static class WavUtility
 {
+    /// <summary>
+    /// Header size
+    /// </summary>
     const int HEADER_SIZE = 44;
 
+    /// <summary>
+    /// Converts a Unity AudioClip into a WAV byte array.
+    /// </summary>
+    /// <param name="clip">The AudioClip to convert.</param>
+    /// <returns>Byte array representing the WAV file.</returns>
     public static byte[] FromAudioClip(AudioClip clip)
     {
         int sampleCount = clip.samples * clip.channels;
@@ -16,7 +30,12 @@ public static class WavUtility
         return ConvertToWav(samples, channels, frequency);
     }
 
-
+    /// <summary>
+    /// Converts a WAV byte array into a Unity AudioClip.
+    /// </summary>
+    /// <param name="wavFileBytes">The byte array containing the WAV file.</param>
+    /// <param name="clipName">Optional name for the created AudioClip (default: "wav").</param>
+    /// <returns>AudioClip created from the WAV data.</returns>
     public static AudioClip ToAudioClip(byte[] wavFileBytes, string clipName = "wav")
     {
         using (MemoryStream stream = new MemoryStream(wavFileBytes))
@@ -39,6 +58,11 @@ public static class WavUtility
         }
     }
 
+    /// <summary>
+    /// Converts a float array of audio samples to a 16-bit PCM byte array.
+    /// </summary>
+    /// <param name="data">The audio samples in float format (-1.0f to 1.0f).</param>
+    /// <returns>Byte array representing 16-bit PCM audio data.</returns>
     private static byte[] ConvertAudioClipDataToInt16ByteArray(float[] data)
     {
         MemoryStream dataStream = new MemoryStream();
@@ -52,6 +76,11 @@ public static class WavUtility
         return dataStream.ToArray();
     }
 
+    /// <summary>
+    /// Converts a 16-bit PCM byte array to a float array of audio samples.
+    /// </summary>
+    /// <param name="array">The byte array of 16-bit PCM audio data.</param>
+    /// <returns>Float array representing the audio samples (-1.0f to 1.0f).</returns>
     private static float[] ConvertByteToFloat(byte[] array)
     {
         int floatCount = array.Length / 2;
@@ -66,6 +95,12 @@ public static class WavUtility
         return floatArr;
     }
 
+    /// <summary>
+    /// Creates a WAV byte array from raw audio samples, channel count, and sample rate.
+    /// </summary>
+    /// <param name="samples">The audio samples in float format.</param>
+    /// <param name="channels">Number of audio channels.</param>
+    /// <param name="sampleRate">Sample rate in Hz.</param>
     private static byte[] ConvertToWav(float[] samples, int channels, int sampleRate)
     {
         using (MemoryStream stream = new MemoryStream())
@@ -109,7 +144,12 @@ public static class WavUtility
         }
     }
 
-
+    /// <summary>
+    /// Writes a WAV file header into a stream for the given AudioClip and data length.
+    /// </summary>
+    /// <param name="stream">The target stream to write the header into.</param>
+    /// <param name="clip">The AudioClip providing metadata.</param>
+    /// <param name="dataLength">The length of the audio data in bytes.</param>
     private static void WriteHeader(Stream stream, AudioClip clip, int dataLength)
     {
         int sampleRate = clip.frequency;

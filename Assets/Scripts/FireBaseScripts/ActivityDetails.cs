@@ -16,9 +16,9 @@ public class ActivityDetails
     public int booksRead;
 
     /// <summary>
-    /// Variable to store the number of times they spelt a word with sign language
+    /// Variable to store the number of times they spelt a word with sign language correctly in the website
     /// </summary>
-    public int numberOfTimesSpelt;
+    public int wordsSpeltCorrectly;
 
     /// <summary>
     /// Variable to stored the total words signed by user
@@ -37,12 +37,12 @@ public class ActivityDetails
     /// Constructor with parameters to initialize all fields
     /// </summary>
     /// <param name="booksRead">Number of books read</param>
-    /// <param name="numberOfTimesSpelt">Number of times they spelt a word</param>
+    /// <param name="wordsSpeltCorrectly">Number of times they spelt a word</param>
     /// <param name="totalSignedWords">Total words signed by user</param>
-    public ActivityDetails(int booksRead,int numberOfTimesSpelt, int totalSignedWords)
+    public ActivityDetails(int booksRead,int wordsSpeltCorrectly, int totalSignedWords)
     {
         this.booksRead = booksRead; 
-        this.numberOfTimesSpelt = numberOfTimesSpelt;
+        this.wordsSpeltCorrectly = wordsSpeltCorrectly;
         this.totalSignedWords = totalSignedWords;
     }
 }
