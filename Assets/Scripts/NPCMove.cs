@@ -1,3 +1,9 @@
+/*
+ * Author: Ong Xi Yi Verlaine
+ * Date: 23/6/2025
+ * Description: Handles the wolf animations in the book
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +11,35 @@ using UnityEngine.AI;
 
 public class NPCMove : MonoBehaviour
 {
+    /// <summary>
+    /// The primary target destination Transform that the NPC will move to.
+    /// </summary>
     [SerializeField]
     private Transform _destination;
+
+    /// <summary>
+    /// A secondary destination Transform for the NPC (e.g., running away).
+    /// </summary>
     public Transform destination2;
 
+    /// <summary>
+    /// The NavMeshAgent component used to control NPC navigation.
+    /// </summary>
     private NavMeshAgent _navMeshAgent;
+
+    /// <summary>
+    /// The Animator component used to control NPC animations.
+    /// </summary>
     private Animator _animator;
 
+    /// <summary>
+    /// Threshold used to determine when the NPC should be considered "running."
+    /// </summary>
     public float runningThreshold = 0.1f;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Called once at the start. Initializes NavMeshAgent and Animator references.
+    /// </summary>
     void Start()
     {
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -26,6 +51,9 @@ public class NPCMove : MonoBehaviour
             Debug.LogError("Animator component not attached.");
     }
 
+    /// <summary>
+    /// Called every frame. Checks if the NPC has reached the destination and stops running if so.
+    /// </summary>
     void Update()
     {
         if (_navMeshAgent != null && _animator != null)
@@ -41,7 +69,9 @@ public class NPCMove : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Moves the NPC towards the currently set destination
+    /// </summary>
     public void MoveToDestination()
     {
         if (_destination != null && _navMeshAgent != null)
@@ -60,19 +90,22 @@ public class NPCMove : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves the NPC to the secondary destination (destination2).
+    /// </summary>
     public void MoveToDestination2()
     {
         SetNewDestination(destination2);
         
     }
 
+    /// <summary>
+    /// Sets a new destination for the NPC and makes it move there.
+    /// </summary>
+    /// <param name="runningAway">The new target Transform.</param>
     public void SetNewDestination(Transform runningAway)
     {
         _destination = runningAway;
         MoveToDestination();
     }
-
-
-
-
 }
